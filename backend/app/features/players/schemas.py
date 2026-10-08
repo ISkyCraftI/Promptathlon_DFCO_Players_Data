@@ -29,8 +29,6 @@ class PlayerRead(BaseModel):
     fatigue: int
     satisfaction: int
     return_date: str | None
-    fc27: bool
-    fc27_url: str | None
     alerts: list[AlertRead]
     weekly_load: int
     load_change: float

@@ -108,7 +108,6 @@ class PlayerController:
             overall=p.get("note_generale_fc27"), ratings={g: p["note_" + g] for g in ATTRIBUTES},
             status=status, availability=p["disponibilite"], health=p["sante_score"], fatigue=fatigue,
             satisfaction=p["satisfaction_score"], return_date=p["retour_prevu"],
-            fc27=p.get("statut_import_fc27") == "IMPORTE", fc27_url=p.get("fc27_url"),
             alerts=alerts, weekly_load=current, load_change=change)
 
     async def list_players(self) -> list[dict]:

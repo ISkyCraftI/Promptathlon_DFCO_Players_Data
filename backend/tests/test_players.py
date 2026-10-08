@@ -28,7 +28,6 @@ class PlayersTests(unittest.IsolatedAsyncioTestCase):
             roster = await controller.list_players()
             self.assertEqual(len(roster), 30)
             self.assertEqual(len({p["id"] for p in roster}), 30)
-            self.assertEqual(sum(p["fc27"] for p in roster), 24)
             for player in roster:
                 PlayerRead.model_validate(player)
                 detail = PlayerDetailRead.model_validate(await controller.detail(player["id"]))

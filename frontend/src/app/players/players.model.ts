@@ -9,7 +9,7 @@ export const PlayerSchema = z.object({
   age: z.number(), height: z.number(), weight: z.number(), foot: z.string(), overall: z.number().nullable(),
   ratings: z.record(z.string(), z.number()), status: z.string(), availability: z.string(),
   health: z.number(), fatigue: z.number(), satisfaction: z.number(), return_date: z.string().nullable(),
-  fc27: z.boolean(), fc27_url: z.string().nullable(), alerts: z.array(AlertSchema),
+  alerts: z.array(AlertSchema),
   weekly_load: z.number(), load_change: z.number(),
 });
 const SessionSchema = z.object({

@@ -3,7 +3,7 @@
     <div><p class="eyebrow">DFCO / ÉQUIPE PREMIÈRE</p><h1>L’effectif<span class="red-dot">.</span></h1><p class="subtitle">Chaque joueur. Les bonnes informations. Au bon moment.</p></div>
     <div class="heading-meta"><span class="season">SAISON 2026 — 2027</span><span>Instantané du 8 octobre 2026</span><p-tag value="Espace coach" icon="pi pi-briefcase" severity="secondary" /></div>
   </div>
-  <p class="demo-note"><i class="pi pi-info-circle"></i> Démonstration · Notes FC 27 quand disponibles. Santé, biométrie, GPS et matchs simulés.</p>
+  <p class="demo-note"><i class="pi pi-info-circle"></i> Démonstration · Santé, biométrie, GPS et matchs simulés.</p>
   @if (service.state().loading) {
     <div class="summary-grid" aria-label="Chargement de l’effectif">@for (i of [1,2,3,4]; track i) {<p-skeleton height="7rem" />}</div>
     <p-skeleton height="25rem" />
@@ -29,7 +29,7 @@
           <ng-template #body let-player><tr>
             <td><a class="player-link" [routerLink]="['/effectif', player.id]"><span class="avatar mini">{{ service.initials(player.name) }}</span><span><strong>{{ player.name }}</strong><small>{{ player.role }} · {{ player.age }} ans</small></span></a></td>
             <td><p-tag [value]="player.status" [severity]="service.severity(player.status)" /><small class="status-detail">{{ player.alerts.length ? player.alerts.length + ' point(s) à examiner' : 'Aucun signal dans le scénario' }}</small></td>
-            <td><strong class="overall-number">{{ player.overall ?? '—' }}</strong><small class="status-detail">{{ player.fc27 ? 'FC 27' : 'Non renseigné' }}</small></td>
+            <td><strong class="overall-number">{{ player.overall ?? '—' }}</strong><small class="status-detail">{{ player.overall === null ? 'Non renseigné' : 'Sur 100' }}</small></td>
             <td><div class="mini-ratings">@for (g of groups; track g.key) {<span><small>{{ g.short }}</small><b>{{ player.ratings[g.key] }}</b></span>}</div></td>
             <td><div class="fatigue-cell" [class.high]="player.fatigue >= 60"><span>{{ player.fatigue }}<small>/100</small></span><p-progressbar [value]="player.fatigue" [showValue]="false" /></div></td>
             <td><p-button icon="pi pi-arrow-up-right" [rounded]="true" [text]="true" [routerLink]="['/effectif', player.id]" [ariaLabel]="'Ouvrir la fiche de ' + player.name" /></td>

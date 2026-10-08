@@ -8,6 +8,7 @@ from fastapi import APIRouter
 
 from app.features.health.view import health_routes
 from app.features.players.view import player_routes
+from app.features.development.view import development_routes
 
 # EXAMPLE — feature CRUD de référence (désactivée).
 # Pour réactiver : décommenter l'import et include_router ci-dessous.
@@ -22,6 +23,7 @@ routes = APIRouter()
 
 routes.include_router(health_routes)
 routes.include_router(player_routes)
+routes.include_router(development_routes)
 
 # EXAMPLE
 # routes.include_router(item_routes)
