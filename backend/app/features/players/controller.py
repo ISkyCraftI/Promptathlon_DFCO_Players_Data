@@ -112,10 +112,16 @@ class PlayerController:
             alerts=alerts, weekly_load=current, load_change=change)
 
     async def list_players(self) -> list[dict]:
-        players = list((await self.session.execute(select(Player).order_by(Player.id))).scalars())
-        followups = list((await self.session.execute(select(PlayerFollowup).order_by(PlayerFollowup.id))).scalars())
+        players = list((await self.session.execute(
+            select(Player).order_by(Player.id))).scalars())
+        followups = list((await self.session.execute(
+            select(PlayerFollowup).order_by(PlayerFollowup.id))).scalars())
         latest = {f.player_id: f for f in followups}
-        return [self._summary(p.payload, latest.get(p.id)) for p in players]
+        return [
+            self._summary(p.payload, latest.get(p.id))
+            for p in players
+            if p.payload.get("type_joueur") == "DFCO"
+        ]
 
     async def detail(self, player_id: str) -> dict:
         entity = await self._get(player_id)

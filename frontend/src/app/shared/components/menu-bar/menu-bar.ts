@@ -19,5 +19,6 @@ export class MenuBar {
   protected readonly items: MenuItem[] = [
     { label: "Accueil", icon: "pi pi-home", routerLink: "/" },
     { label: "Effectif", icon: "pi pi-users", routerLink: "/effectif" },
+    { label: "Prospection", icon: "pi pi-search", routerLink: "/prospection" },
   ];
 }

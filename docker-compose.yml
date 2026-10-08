@@ -1,11 +1,9 @@
 # Production / serveur : pull des images Docker Hub puis `docker compose up -d`
-# Remplace DOCKERHUB_USER par ton utilisateur Docker Hub avant push/pull.
-#
 # En local avec le code source, `docker-compose.override.yml` ajoute les builds.
 
 services:
   backend:
-    image: DOCKERHUB_USER/promptatlon:backend
+    image: floalzaix/easyfoot:backend
     restart: unless-stopped
     environment:
       - APP_NAME=Easyfoot
@@ -21,10 +19,10 @@ services:
     ports:
       - "5059:5059"
     networks:
-      - promptatlon-network
+      - easyfoot-network
 
   frontend:
-    image: DOCKERHUB_USER/promptatlon:frontend
+    image: floalzaix/easyfoot:frontend
     restart: unless-stopped
     depends_on:
       - backend
@@ -33,11 +31,11 @@ services:
     ports:
       - "8089:8089"
     networks:
-      - promptatlon-network
+      - easyfoot-network
 
 volumes:
   sqlite-data:
 
 networks:
-  promptatlon-network:
+  easyfoot-network:
     driver: bridge

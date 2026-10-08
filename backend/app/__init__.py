@@ -1,3 +1,3 @@
 """
-	Application package for the Promptatlon backend.
+	Application package for the easyfoot backend.
 """

@@ -23,6 +23,10 @@ export const routes: Routes = [
     loadComponent: () => import("./players/player-detail.page/player-detail.page").then(m => m.PlayerDetailPage),
   },
   {
+    path: "prospection",
+    loadComponent: () => import("./prospection/prospection.page/prospection.page").then(m => m.ProspectionPage),
+  },
+  {
     path: "**",
     redirectTo: "",
   },
