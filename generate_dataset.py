@@ -236,3 +236,6 @@ with zipfile.ZipFile(OUT / 'dfco_dataset.zip', 'w', zipfile.ZIP_DEFLATED) as z:
     for name in ['joueurs.csv', 'blessures.csv', 'relations.csv', 'dictionnaire.csv', 'dfco_simulation.json', 'README.md']:
         z.write(OUT / name, arcname=name)
 print(json.dumps(dict(joueurs=len(players), dfco=30, prospects=60, blessures=len(injuries), relations=len(relations), validation='OK'), ensure_ascii=False))
+if (Path(__file__).resolve().parent / 'sources' / 'fc27_futwiz.json').exists():
+    from update_fc27 import main as apply_fc27
+    apply_fc27()

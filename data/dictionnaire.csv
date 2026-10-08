@@ -1,8 +1,8 @@
 ﻿table;colonne;type;description
 joueurs;joueur_id;texte_ou_date;Identifiant stable, clé primaire.
-joueurs;nom;texte_ou_date;Nom public DFCO ou identité fictive explicitement nommée.
+joueurs;nom;texte_ou_date;Nom DFCO officiel ou nom de joueur réel FUTWIZ pour les prospects.
 joueurs;type_joueur;texte_ou_date;DFCO ou PROSPECT.
-joueurs;club;texte_ou_date;DFCO ou club fictif.
+joueurs;club;texte_ou_date;"DFCO ; vide pour les prospects (club non importé)."
 joueurs;groupe_poste;texte_ou_date;Groupe de poste, pas poste tactique détaillé.
 joueurs;gardien;booleen;Booléen. CSV : 1 gardien, 0 joueur de champ.
 joueurs;date_reference;texte_ou_date;Date du scénario, ISO 8601.
@@ -10,7 +10,7 @@ joueurs;date_naissance_simulee;texte_ou_date;Date fictive utilisée pour calcule
 joueurs;age;nombre;Années révolues calculées au 08/10/2026 à partir de la naissance simulée.
 joueurs;taille_cm;nombre;Taille simulée en centimètres.
 joueurs;poids_kg;nombre;Poids simulé en kilogrammes.
-joueurs;pied_fort;texte_ou_date;Droit, Gauche ou Ambidextre, simulé.
+joueurs;pied_fort;texte_ou_date;"Droit/Gauche importé de FUTWIZ si couvert ; simulé sinon."
 joueurs;personnalite_tags;liste;Liste de tags simulés.
 joueurs;specialite_tags;liste;Liste de spécialités simulées, labels descriptifs sans règle de bonus.
 joueurs;langues_parlees;liste;Liste de langues simulées, sans déduction de la nationalité.
@@ -26,53 +26,53 @@ joueurs;retour_prevu;texte_ou_date;Date ISO simulée, vide/null si aucune blessu
 joueurs;nb_blessures_12_mois;nombre;Nombre d’événements débutés dans les 365 jours précédant la référence.
 joueurs;affinites_positives_ids;liste;Liste des cibles de relations positives dirigées.
 joueurs;affinites_negatives_ids;liste;Liste des cibles de relations négatives dirigées.
-joueurs;provenance_identite;texte_ou_date;source_publique ou fictif.
+joueurs;provenance_identite;texte_ou_date;source_publique DFCO ou fc27_futwiz pour prospects réels.
 joueurs;provenance_groupe_poste;texte_ou_date;source_publique ou simule.
-joueurs;provenance_autres_champs;texte_ou_date;simule pour tous les autres champs hors source et identifiant.
-joueurs;source_url;texte_ou_date;Source de l’identité et du groupe de poste uniquement.
+joueurs;provenance_autres_champs;texte_ou_date;simule ou mixte_voir_provenance.csv. Utiliser provenance.csv pour connaître l’origine de chaque colonne.
+joueurs;source_url;texte_ou_date;Source identité DFCO officielle ou fiche FUTWIZ du prospect. Les notes FC 27 sont sourcées par fc27_url.
 joueurs;source_consultee_le;texte_ou_date;Date de consultation ISO.
 joueurs;relation_equipe_general;texte_ou_date;"Tendue <40 ; En intégration 40–64 ; Bonne cohésion ≥65."
-joueurs;acceleration;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;vitesse_de_pointe;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;note_vitesse;nombre;Moyenne arithmétique des sous-attributs du groupe, arrondie à 1 décimale. Valeur figée à régénérer si les notes changent.
-joueurs;placement_offensif;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;finition;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;puissance_de_tir;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;tir_de_loin;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;volee;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;penalty;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;note_frappe;nombre;Moyenne arithmétique des sous-attributs du groupe, arrondie à 1 décimale. Valeur figée à régénérer si les notes changent.
-joueurs;vista;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;centre;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;precision_coup_franc;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;passe_courte;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;passe_longue;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;effet;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;note_passe;nombre;Moyenne arithmétique des sous-attributs du groupe, arrondie à 1 décimale. Valeur figée à régénérer si les notes changent.
-joueurs;agilite;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;equilibre;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;reactivite;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;conduite_de_balle;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;dribble;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;calme;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;note_dribble;nombre;Moyenne arithmétique des sous-attributs du groupe, arrondie à 1 décimale. Valeur figée à régénérer si les notes changent.
-joueurs;interception;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;precision_de_la_tete;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;lucidite_defensive;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;tacle_debout;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;tacle_glisse;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;note_defense;nombre;Moyenne arithmétique des sous-attributs du groupe, arrondie à 1 décimale. Valeur figée à régénérer si les notes changent.
-joueurs;detente;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;endurance;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;force;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;agressivite;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
-joueurs;note_physique;nombre;Moyenne arithmétique des sous-attributs du groupe, arrondie à 1 décimale. Valeur figée à régénérer si les notes changent.
-joueurs;gardien_plongeon;nombre;"Attribut gardien simulé 1–99 ; null/vide pour joueurs de champ."
-joueurs;gardien_prise_de_balle;nombre;"Attribut gardien simulé 1–99 ; null/vide pour joueurs de champ."
-joueurs;gardien_jeu_au_pied;nombre;"Attribut gardien simulé 1–99 ; null/vide pour joueurs de champ."
-joueurs;gardien_reflexes;nombre;"Attribut gardien simulé 1–99 ; null/vide pour joueurs de champ."
-joueurs;gardien_sorties;nombre;"Attribut gardien simulé 1–99 ; null/vide pour joueurs de champ."
-joueurs;gardien_placement;nombre;"Attribut gardien simulé 1–99 ; null/vide pour joueurs de champ."
+joueurs;acceleration;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;vitesse_de_pointe;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;note_vitesse;nombre;"Note globale FUTWIZ FC 27 pour les joueurs couverts. Moyenne simple simulée pour les 6 autres ; voir provenance_notes_groupes."
+joueurs;placement_offensif;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;finition;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;puissance_de_tir;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;tir_de_loin;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;volee;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;penalty;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;note_frappe;nombre;"Note globale FUTWIZ FC 27 pour les joueurs couverts. Moyenne simple simulée pour les 6 autres ; voir provenance_notes_groupes."
+joueurs;vista;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;centre;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;precision_coup_franc;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;passe_courte;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;passe_longue;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;effet;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;note_passe;nombre;"Note globale FUTWIZ FC 27 pour les joueurs couverts. Moyenne simple simulée pour les 6 autres ; voir provenance_notes_groupes."
+joueurs;agilite;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;equilibre;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;reactivite;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;conduite_de_balle;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;dribble;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;calme;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;note_dribble;nombre;"Note globale FUTWIZ FC 27 pour les joueurs couverts. Moyenne simple simulée pour les 6 autres ; voir provenance_notes_groupes."
+joueurs;interception;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;precision_de_la_tete;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;lucidite_defensive;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;tacle_debout;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;tacle_glisse;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;note_defense;nombre;"Note globale FUTWIZ FC 27 pour les joueurs couverts. Moyenne simple simulée pour les 6 autres ; voir provenance_notes_groupes."
+joueurs;detente;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;endurance;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;force;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;agressivite;nombre;"Attribut 1–99 : FUTWIZ FC 27 pour 84 joueurs ; simulé pour 6 DFCO non couverts. Voir provenance.csv."
+joueurs;note_physique;nombre;"Note globale FUTWIZ FC 27 pour les joueurs couverts. Moyenne simple simulée pour les 6 autres ; voir provenance_notes_groupes."
+joueurs;gardien_plongeon;nombre;"Attribut FC 27 pour gardien couvert ; simulé pour gardien non couvert, vide pour joueur de champ."
+joueurs;gardien_prise_de_balle;nombre;"Attribut FC 27 pour gardien couvert ; simulé pour gardien non couvert, vide pour joueur de champ."
+joueurs;gardien_jeu_au_pied;nombre;"Attribut FC 27 pour gardien couvert ; simulé pour gardien non couvert, vide pour joueur de champ."
+joueurs;gardien_reflexes;nombre;"Attribut FC 27 pour gardien couvert ; simulé pour gardien non couvert, vide pour joueur de champ."
+joueurs;gardien_sorties;nombre;Toujours simulé, car sorties n’est pas fourni par FUTWIZ. Vide pour joueur de champ.
+joueurs;gardien_placement;nombre;"Attribut FC 27 pour gardien couvert ; simulé pour gardien non couvert, vide pour joueur de champ."
 blessures;blessure_id;texte_ou_date;Identifiant de l’événement.
 blessures;joueur_id;texte_ou_date;Identifiant stable, clé primaire.
 blessures;type_blessure;texte_ou_date;Type de blessure simulé.
@@ -93,3 +93,19 @@ relations;effet_performance_pct;nombre;Variation fictive en points de pourcentag
 relations;motif;texte_ou_date;Explication fictive de relation.
 relations;date_reference;texte_ou_date;Date du scénario, ISO 8601.
 relations;provenance;texte_ou_date;simule.
+joueurs;nom_fc27;texte;Nom affiché par FUTWIZ, distinct de la graphie officielle DFCO.
+joueurs;note_generale_fc27;nombre;"Note générale FC 27 de la carte de base ; vide si joueur absent du filtre DFCO."
+joueurs;poste_fc27;texte;Poste principal de la carte FC 27, codes anglais (CB = défenseur central, ST = avant-centre).
+joueurs;groupe_poste_fc27;texte;Groupe dérivé du poste FC 27. Peut différer du groupe officiel DFCO.
+joueurs;fc27_url;texte;URL exacte de la fiche FUTWIZ consultée le 08/10/2026.
+joueurs;fc27_id_fiche;texte;Identifiant de fiche FUTWIZ, pas identifiant EA du joueur.
+joueurs;fc27_version_carte;texte;Bronze ou Silver, carte de base observée. Pas de carte spéciale ou bonus de chimie.
+joueurs;playstyles_fc27_observes;liste;Libellés anglais affichés et relevés. Liste vide = aucun libellé relevé, pas preuve d’absence de PlayStyles.
+joueurs;gardien_vitesse;nombre;SPD gardien FC 27, différent de PAC joueur de champ. Vide si gardien non couvert ou joueur de champ.
+joueurs;statut_import_fc27;texte;IMPORTE ou ABSENT_DU_FILTRE_DFCO. Aucune donnée FC 27 inventée pour les absents.
+joueurs;provenance_biometrie;texte;simule : âge, naissance, poids et taille conservés du scénario initial.
+joueurs;provenance_pied_fort;texte;fc27_futwiz ou simule.
+joueurs;provenance_attributs;texte;fc27_futwiz pour les 29 attributs importés, sinon simule.
+joueurs;provenance_notes_groupes;texte;"fc27_futwiz : notes globales du site ; moyenne_simulee : moyennes du scénario initial."
+joueurs;provenance_scenario;texte;simule pour santé, langues, satisfaction, personnalité, spécialités et relations.
+relations;contexte;texte;scenario_recrutement : relations fictives entre IDs, sans assertion de relation réelle ni de club commun.
