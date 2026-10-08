@@ -14,7 +14,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 # Perso
 
-from app.features.players.controller import ATTRIBUTES
+from app.shared.football.catalog import ATTRIBUTES
+from app.shared.football.valuation import market_value
 from app.features.players.model import Player
 
 #
@@ -68,6 +69,7 @@ class ProspectionController:
             playstyles=payload.get(
                 "playstyles_fc27_observes", []
             ),
+            market_value=market_value(payload),
         )
 
     async def _payloads(
@@ -183,6 +185,7 @@ class ProspectionController:
         dribble_min: int | None = None,
         defense_min: int | None = None,
         physique_min: int | None = None,
+        budget_max: int | None = None,
     ) -> list[dict]:
         mins = {
             "vitesse": vitesse_min,
@@ -223,7 +226,10 @@ class ProspectionController:
                     break
             if skip:
                 continue
-            results.append(self._to_prospect(payload))
+            prospect = self._to_prospect(payload)
+            if budget_max is not None and prospect["market_value"] > budget_max:
+                continue
+            results.append(prospect)
         results.sort(
             key=lambda item: (
                 -(item["overall"] or 0),

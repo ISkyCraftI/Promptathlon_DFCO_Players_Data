@@ -61,6 +61,7 @@ async def search_prospects(
     physique_min: int | None = Query(
         default=None, ge=0, le=99
     ),
+    budget_max: int | None = Query(default=None, ge=0),
 ) -> list[ProspectRead]:
     return await ProspectionController(db).search(
         q=q,
@@ -75,6 +76,7 @@ async def search_prospects(
         dribble_min=dribble_min,
         defense_min=defense_min,
         physique_min=physique_min,
+        budget_max=budget_max,
     )
 
 

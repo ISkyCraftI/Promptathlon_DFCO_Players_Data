@@ -1,0 +1,33 @@
+<div class="ef-page">
+  <ef-page-header heading="Recrutement" description="Décrivez le profil recherché poste par poste : les 60 prospects suivis sont classés selon leur adéquation et comparés à l'effectif actuel.">
+    <p-button label="Nouveau profil" icon="pi pi-plus" (onClick)="editing.set('new')" />
+  </ef-page-header>
+
+  <ef-async-state [state]="service.profiles()" [skeleton]="['24rem']" (retry)="service.refresh()" />
+
+  @if (service.profiles().data) {
+    <div class="layout">
+      <div class="side">
+        <ef-panel heading="Profils de poste" [subheading]="profiles().length + ' profils'">
+          <ef-profile-list [profiles]="profiles()" [selectedId]="selectedId()" (select)="selectedId.set($event.id)" />
+        </ef-panel>
+        <ef-similar-finder [(playerId)]="similarId" />
+      </div>
+
+      @if (selected(); as p) {
+        <ef-panel [heading]="p.name" [subheading]="p.description || 'Profil ' + p.role" [flush]="true">
+          <div panel-actions class="criteria">
+            <p-tag [value]="p.role" severity="secondary" />
+            @if (p.max_age) { <p-tag [value]="p.max_age + ' ans max.'" severity="secondary" /> }
+            @if (p.min_overall) { <p-tag [value]="'Gén. ≥ ' + p.min_overall" severity="secondary" /> }
+            <p-button label="Modifier" icon="pi pi-pencil" size="small" [text]="true" (onClick)="editing.set(p)" />
+          </div>
+          <ef-async-state [state]="shortlist()" [skeleton]="['20rem']" (retry)="version.update(v => v + 1)" />
+          @if (shortlist().data; as s) { <ef-shortlist [data]="s" /> }
+          <p class="method">Adéquation = moyenne des attributs pondérée par l'importance donnée (0 à 3). Les prospects hors critères restent visibles en fin de liste.</p>
+        </ef-panel>
+      }
+    </div>
+  }
+  <ef-profile-editor [profile]="editing()" (closed)="editing.set(null)" (saved)="onSaved($event)" (removed)="onRemoved()" />
+</div>

@@ -14,6 +14,8 @@ class AlertRead(BaseModel):
 class PlayerRead(BaseModel):
     id: str
     name: str
+    kind: Literal["DFCO", "PROSPECT"]
+    club: str | None
     role: str
     position: str
     goalkeeper: bool
@@ -34,11 +36,15 @@ class PlayerRead(BaseModel):
     alerts: list[AlertRead]
     weekly_load: int
     load_change: float
+    acwr: float | None
+    load_zone: str
+    market_value: int
 
 
 class SessionRead(BaseModel):
     date: str
     label: str
+    kind: str
     duration: int
     rpe: int
     load: int
@@ -51,12 +57,16 @@ class SessionRead(BaseModel):
 
 class MatchRead(BaseModel):
     date: str
+    matchday: int
+    venue: str
     opponent: str
     minutes: int
     goals: int
     assists: int
     pass_accuracy: int
     duels_won: int
+    distance_km: float
+    rating: float | None
     simulated: bool = True
 
 
@@ -85,6 +95,8 @@ class RecoveryRead(BaseModel):
     steps: list[str]
     current_step: int
     return_date: str | None
+    days_left: int | None
+    injury: str | None
 
 
 class PlayerDetailRead(BaseModel):

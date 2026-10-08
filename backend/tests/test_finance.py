@@ -1,9 +1,10 @@
 import unittest
 
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
 from app.features.finance.controller import FinanceController, value_player
-from app.features.finance.schemas import ValuationRead
+from app.features.finance.schemas import ClubValueRead, ValuationRead
 from app.features.players.controller import seed_players
 from app.features.players.model import Player
 from app.shared.db.base import Base
@@ -97,6 +98,21 @@ class FinanceTests(unittest.IsolatedAsyncioTestCase):
                 v_old["injury_discount_factor"],
                 v_young["injury_discount_factor"],
             )
+
+    async def test_club_value_sums_squad_and_prospects_are_priced(self):
+        async with self.sessions() as session:
+            controller = FinanceController(session)
+            club = ClubValueRead.model_validate(await controller.club())
+            self.assertEqual(club.squad_size, 30)
+            self.assertEqual(club.total_value, sum(p.market_value for p in club.players))
+            self.assertEqual(club.total_value, sum(r.total_value for r in club.by_role))
+            self.assertTrue(all(p.kind == "DFCO" for p in club.players))
+            values = [p.market_value for p in club.players]
+            self.assertEqual(values, sorted(values, reverse=True))
+            prospect = next(p for p in (await session.execute(select(Player))).scalars()
+                            if p.payload["type_joueur"] == "PROSPECT")
+            valuation = await controller.valuation(prospect.id)
+            self.assertGreater(valuation["final_valuation"], 0)
 
 
 if __name__ == "__main__":

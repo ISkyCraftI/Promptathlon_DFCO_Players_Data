@@ -1,0 +1,111 @@
+.grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 340px) minmax(0, 1fr);
+  gap: var(--ef-space-5);
+  align-items: start;
+}
+
+.depth {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ef-space-4);
+}
+
+h3 {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--ef-text-sm);
+  padding-bottom: var(--ef-space-1);
+  border-bottom: 1px solid var(--ef-border);
+  margin-bottom: var(--ef-space-1);
+}
+
+h3 .ef-num {
+  color: var(--ef-text-muted);
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: var(--ef-space-2);
+  padding: 3px 0;
+  font-size: var(--ef-text-sm);
+}
+
+li a {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+li a:hover {
+  color: var(--ef-accent-text);
+}
+
+li.out a {
+  color: var(--ef-text-faint);
+}
+
+.pos {
+  font-size: var(--ef-text-xs);
+  color: var(--ef-text-muted);
+  width: 2.2rem;
+}
+
+.ovr {
+  width: 1.6rem;
+  text-align: right;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  ef-pitch {
+    max-width: 360px;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .depth {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.st {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ef-success);
+}
+
+.st[data-status="Vigilance"] { background: var(--ef-warn); }
+.st[data-status="Réathlétisation"] { background: var(--ef-info); }
+.st[data-status="Blessé"] { background: var(--ef-danger); }
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ef-space-2);
+  margin-top: var(--ef-space-4);
+  font-size: var(--ef-text-xs);
+  color: var(--ef-text-muted);
+}
+
+.legend .st:not(:first-child) {
+  margin-left: var(--ef-space-3);
+}

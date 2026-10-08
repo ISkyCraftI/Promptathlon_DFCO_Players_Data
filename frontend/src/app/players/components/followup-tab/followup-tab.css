@@ -1,0 +1,116 @@
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: var(--ef-space-4);
+  align-items: start;
+}
+
+.col {
+  display: grid;
+  gap: var(--ef-space-4);
+}
+
+.timeline,
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+
+.timeline li {
+  display: flex;
+  gap: var(--ef-space-3);
+  padding: var(--ef-space-3) 0;
+}
+
+.timeline li + li,
+.list li + li {
+  border-top: 1px solid var(--ef-border-subtle);
+}
+
+.who {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--ef-accent-soft);
+  color: var(--ef-accent-text);
+  font-size: 0.75rem;
+}
+
+.who[data-author="Joueur"] {
+  background: var(--ef-info-soft);
+  color: var(--ef-info-text);
+}
+
+.meta {
+  display: flex;
+  gap: var(--ef-space-3);
+  align-items: baseline;
+}
+
+.meta time,
+.metrics {
+  color: var(--ef-text-muted);
+  font-size: var(--ef-text-xs);
+}
+
+.metrics {
+  display: flex;
+  gap: var(--ef-space-3);
+  margin-top: var(--ef-space-1);
+}
+
+.timeline p {
+  margin-top: 2px;
+  white-space: pre-line;
+}
+
+.feel {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ef-space-2);
+  margin-bottom: var(--ef-space-2);
+}
+
+.feel strong {
+  font-size: 2rem;
+}
+
+.feel span {
+  color: var(--ef-text-muted);
+  font-size: var(--ef-text-sm);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ef-space-2);
+  margin: var(--ef-space-2) 0;
+}
+
+.list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--ef-space-3);
+  padding: var(--ef-space-2) 0;
+}
+
+.list li > div {
+  display: grid;
+}
+
+.list small {
+  color: var(--ef-text-muted);
+  font-size: var(--ef-text-xs);
+}
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

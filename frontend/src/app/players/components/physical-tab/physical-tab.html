@@ -1,0 +1,40 @@
+@let p = detail().player;
+@let i = info();
+<ef-panel heading="Charge des 14 derniers jours" subheading="Charge de séance = durée × effort perçu (RPE), en unités arbitraires">
+  @if (p.kind === "DFCO") { <p-button panel-actions label="Suivi physique du groupe" icon="pi pi-arrow-up-right" [text]="true" size="small" routerLink="/physique" /> }
+  <div class="head">
+    <strong class="ef-num">{{ p.weekly_load }} UA</strong> sur 7 jours
+    <span>({{ change() }} vs semaine précédente)</span>
+    <ef-zone-badge [zone]="p.load_zone" />
+    <span>Ratio aigu/chronique {{ p.acwr | fr: 2 }}</span>
+  </div>
+  <ef-load-chart [points]="points()" height="220px" />
+  <p class="note">Repère usuel : ratio entre 0,8 et 1,3. Un signal invite à examiner, il ne remplace pas l'avis du staff.</p>
+</ef-panel>
+
+<div class="tiles">
+  <ef-stat-tile label="Distance" icon="pi-map-marker" [value]="i.distance | fr" unit="km" hint="Cumul des 6 dernières séances" />
+  <ef-stat-tile label="Sprints" icon="pi-bolt" [value]="i.sprints" hint="Cumul des 6 dernières séances" />
+  <ef-stat-tile label="Haute intensité" icon="pi-forward" [value]="i.highSpeed | number: '1.0-0'" unit="m" hint="Au-delà de 19,8 km/h" />
+  <ef-stat-tile label="Vitesse max" icon="pi-gauge" [value]="i.maxSpeed | fr" unit="km/h" hint="Pic des 6 dernières séances" />
+</div>
+
+<ef-panel [heading]="detail().recovery.active ? 'Parcours de retour' : 'Disponibilité'" [subheading]="detail().recovery.injury ?? p.availability">
+  @if (detail().recovery.active) {
+    <ef-recovery-steps [steps]="detail().recovery.steps" [current]="detail().recovery.current_step" [progress]="detail().recovery.progress"
+      [returnDate]="detail().recovery.return_date" [daysLeft]="detail().recovery.days_left" />
+    <p class="note">Avancement estimé d'après les dates du scénario. Le retour est validé par le staff médical.</p>
+  } @else {
+    <p class="ef-muted">Aucune blessure active. L'historique est dans l'onglet Suivi.</p>
+  }
+</ef-panel>
+
+<ef-panel heading="Journal des séances" [flush]="true" subheading="GPS et RPE simulés">
+  <p-table [value]="detail().sessions" [scrollable]="true" [tableStyle]="{ 'min-width': '680px' }" sortField="date" [sortOrder]="-1">
+    <ng-template #header><tr><th>Date</th><th>Séance</th><th>Durée</th><th>RPE</th><th>Charge</th><th>Distance</th><th>Sprints</th><th>V. max</th></tr></ng-template>
+    <ng-template #body let-s>
+      <tr><td>{{ s.date | date: "EEE d MMM" }}</td><td>{{ s.label }}</td><td>{{ s.duration }} min</td><td>{{ s.rpe }}/10</td>
+        <td class="ef-num">{{ s.load }}</td><td>{{ s.distance_km | fr }} km</td><td>{{ s.sprints }}</td><td>{{ s.max_speed | fr }} km/h</td></tr>
+    </ng-template>
+  </p-table>
+</ef-panel>

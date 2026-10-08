@@ -1,3 +1,3 @@
 @echo off
 cd /d "%~dp0"
-..\.venv\Scripts\uvicorn.exe main:app --reload --host 0.0.0.0 --port 5059
+.venv\Scripts\python.exe -m uvicorn main:app --reload --host 0.0.0.0 --port 5059

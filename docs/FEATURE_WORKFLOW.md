@@ -4,7 +4,7 @@ Suivre ces étapes **dans l'ordre**. Exemple de référence : feature `items`.
 
 ## 1. Backend
 
-1. Créer `backend/app/features/<name>/`
+1. Créer `backend/app/features/<name>/` (calcul partagé ? -> `app/shared/football/`)
 2. Ajouter :
    - `model.py` — table SQLAlchemy (`Base`)
    - `schemas.py` — `Create` / `Update` / `Read`
@@ -20,13 +20,12 @@ Suivre ces étapes **dans l'ordre**. Exemple de référence : feature `items`.
 2. Ajouter :
    - `<name>.model.ts` — Zod
    - `<name>.service.ts` — uniquement `AsyncHttpClient`
-   - `<name>.page/` — UI PrimeNG
-3. Déclarer la route dans `app.routes.ts`.
-4. Ajouter l'entrée menu dans
-   `shared/components/menu-bar/menu-bar.ts`
-   (`items: MenuItem[]`), ex. :
-   `{ label: "Ma feature", routerLink: "/ma-feature" }`.
-5. Ne pas utiliser `HttpClient` directement.
+   - `<name>.page/` — page routée (PrimeNG + `shared/ui`)
+   - `components/` — un dossier par composant de présentation
+3. Déclarer la route dans `app.routes.ts` (avec `title` et `data.section` / `data.heading`).
+4. Ajouter l'entrée menu dans `core/layout/navigation.ts`, ex. :
+   `{ label: "Ma feature", icon: "pi-star", link: "/ma-feature" }`.
+5. Ne pas utiliser `HttpClient` directement ; couleurs uniquement via les tokens `--ef-*`.
 
 > La feature `items` (front + back) est **désactivée** mais
 > conservée comme EXAMPLE / template à copier.

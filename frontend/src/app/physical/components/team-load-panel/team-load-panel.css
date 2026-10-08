@@ -1,0 +1,44 @@
+.zones {
+  display: flex;
+  gap: 3px;
+  height: 10px;
+  margin-top: var(--ef-space-4);
+}
+
+.zones span {
+  flex-basis: 0;
+  border-radius: 3px;
+}
+
+[data-zone="sous-charge"] { background: var(--ef-info); }
+[data-zone="optimale"] { background: var(--ef-success); }
+[data-zone="vigilance"] { background: var(--ef-warn); }
+[data-zone="risque"] { background: var(--ef-danger); }
+
+.legend {
+  list-style: none;
+  margin: var(--ef-space-2) 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ef-space-2) var(--ef-space-4);
+  font-size: var(--ef-text-sm);
+  color: var(--ef-text-muted);
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: var(--ef-space-2);
+}
+
+.legend strong {
+  color: var(--ef-text);
+  font-size: 1rem;
+}
+
+.sw {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}

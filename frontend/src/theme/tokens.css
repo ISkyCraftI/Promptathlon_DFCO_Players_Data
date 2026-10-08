@@ -1,0 +1,86 @@
+/*
+ * Tokens sémantiques Easyfoot.
+ * Les composants n'utilisent QUE ces variables (jamais une couleur Radix brute ni un hex),
+ * ce qui permet de changer de palette ou de thème à un seul endroit.
+ * Les variables Radix basculent seules en sombre (classe .app-dark sur <html>).
+ */
+:root {
+  /* Surfaces */
+  --ef-bg: var(--slate-2);
+  --ef-surface: #ffffff;
+  --ef-surface-raised: #ffffff;
+  --ef-surface-sunken: var(--slate-3);
+  --ef-hover: var(--slate-a3);
+  --ef-border: var(--slate-6);
+  --ef-border-subtle: var(--slate-4);
+  --ef-border-strong: var(--slate-7);
+
+  /* Texte */
+  --ef-text: var(--slate-12);
+  --ef-text-muted: var(--slate-11);
+  --ef-text-faint: var(--slate-10);
+
+  /* Marque DFCO #d40125 */
+  --ef-accent: var(--brand-9);
+  --ef-accent-hover: var(--brand-10);
+  --ef-accent-soft: var(--brand-3);
+  --ef-accent-soft-hover: var(--brand-4);
+  --ef-accent-border: var(--brand-7);
+  --ef-accent-text: var(--brand-11);
+  --ef-on-accent: #ffffff;
+
+  /* Statuts */
+  --ef-success: var(--grass-9);
+  --ef-success-soft: var(--grass-3);
+  --ef-success-text: var(--grass-11);
+  --ef-warn: var(--amber-9);
+  --ef-warn-soft: var(--amber-3);
+  --ef-warn-text: var(--amber-11);
+  --ef-danger: var(--red-9);
+  --ef-danger-soft: var(--red-3);
+  --ef-danger-text: var(--red-11);
+  --ef-info: var(--blue-9);
+  --ef-info-soft: var(--blue-3);
+  --ef-info-text: var(--blue-11);
+
+  /* Terrain (mini-cartes de poste, onze type) */
+  --ef-pitch: var(--grass-3);
+  --ef-pitch-line: var(--grass-7);
+
+  /* Typographie */
+  --ef-font: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --ef-font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --ef-text-xs: 0.75rem;
+  --ef-text-sm: 0.8125rem;
+  --ef-text-md: 0.875rem;
+  --ef-text-lg: 1rem;
+  --ef-text-xl: 1.25rem;
+  --ef-text-2xl: 1.75rem;
+  --ef-text-3xl: 2.5rem;
+
+  /* Espacements, rayons, mise en page */
+  --ef-space-1: 0.25rem;
+  --ef-space-2: 0.5rem;
+  --ef-space-3: 0.75rem;
+  --ef-space-4: 1rem;
+  --ef-space-5: 1.5rem;
+  --ef-space-6: 2rem;
+  --ef-radius-sm: 6px;
+  --ef-radius: 10px;
+  --ef-radius-lg: 14px;
+  --ef-sidebar-width: 248px;
+  --ef-topbar-height: 60px;
+  --ef-content-max: 1440px;
+  --ef-shadow-pop: 0 10px 30px -12px rgb(0 0 0 / 0.25);
+}
+
+.app-dark {
+  --ef-bg: var(--slate-1);
+  --ef-surface: var(--slate-2);
+  --ef-surface-raised: var(--slate-3);
+  --ef-surface-sunken: var(--slate-1);
+  --ef-on-accent: #ffffff;
+  --ef-pitch: var(--grass-3);
+  --ef-pitch-line: var(--grass-7);
+  color-scheme: dark;
+}

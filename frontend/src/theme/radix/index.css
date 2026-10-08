@@ -1,0 +1,18 @@
+/*
+ * Radix Colors (MIT, © 2021 Radix — voir LICENSE), vendorisées depuis @radix-ui/colors@3.0.0.
+ * Seule modification : le sélecteur dark inclut `.app-dark` (classe posée sur <html> par ThemeService).
+ * brand.css est généré (scripts/generate-brand-scale.py) autour du rouge DFCO #d40125.
+ */
+@import "./slate.css";
+@import "./slate-dark.css";
+@import "./slate-alpha.css";
+@import "./slate-dark-alpha.css";
+@import "./brand.css";
+@import "./red.css";
+@import "./red-dark.css";
+@import "./grass.css";
+@import "./grass-dark.css";
+@import "./amber.css";
+@import "./amber-dark.css";
+@import "./blue.css";
+@import "./blue-dark.css";

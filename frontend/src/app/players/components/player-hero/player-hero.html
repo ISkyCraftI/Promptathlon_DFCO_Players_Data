@@ -1,0 +1,33 @@
+@let p = player();
+<div class="identity">
+  <ef-player-avatar [name]="p.name" [kind]="p.kind" [size]="64" />
+  <div class="names">
+    <div class="tags">
+      <ef-status-tag [status]="p.status" />
+      @if (p.kind === "PROSPECT") { <p-tag value="Prospect" severity="info" /> } @else { <p-tag value="Effectif DFCO" /> }
+      @if (p.age <= youngMaxAge()) { <p-tag value="U21" severity="secondary" /> }
+    </div>
+    <h1>{{ p.name }}</h1>
+    <p class="role">{{ positionLabel() }} · {{ p.role }}@if (p.club) { · {{ p.club }} }</p>
+    <dl class="facts">
+      <div><dt>Âge</dt><dd class="ef-num">{{ p.age }} <small>ans</small></dd></div>
+      <div><dt>Taille</dt><dd class="ef-num">{{ p.height }} <small>cm</small></dd></div>
+      <div><dt>Poids</dt><dd class="ef-num">{{ p.weight | fr }} <small>kg</small></dd></div>
+      <div><dt>Pied fort</dt><dd class="ef-num">{{ p.foot }}</dd></div>
+      <div class="price"><dt>{{ p.kind === "PROSPECT" ? "Coût estimé" : "Valeur estimée" }}</dt><dd class="ef-num">{{ p.market_value | eur }}</dd></div>
+    </dl>
+    <div class="actions">
+      @if (p.kind === "DFCO") {
+        <p-button label="Vue joueur" icon="pi pi-user" size="small" [outlined]="true" [routerLink]="['/mon-espace', p.id]" />
+      }
+      <p-button label="Comparer au collectif" icon="pi pi-arrow-right-arrow-left" size="small" [outlined]="true" routerLink="/comparaison"
+        [queryParams]="{ mode: compareMode(), joueur: p.id }" />
+      <p-button label="Profils similaires" icon="pi pi-clone" size="small" [text]="true" routerLink="/recrutement" [queryParams]="{ similaire: p.id }" />
+      @if (p.fc27_url) {
+        <a class="source" [href]="p.fc27_url" target="_blank" rel="noopener noreferrer">Fiche FC 27 <i class="pi pi-external-link"></i></a>
+      }
+    </div>
+  </div>
+</div>
+<ef-pitch class="mini" [markers]="marker()" [compact]="true" [attr.aria-label]="'Poste : ' + positionLabel()" role="img" />
+<ef-fc-card class="card" [overall]="p.overall" [position]="p.position" [kind]="p.kind" [stats]="stats()" [fc27]="p.fc27" />

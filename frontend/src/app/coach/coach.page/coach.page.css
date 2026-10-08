@@ -1,0 +1,92 @@
+.col {
+  display: grid;
+  gap: var(--ef-space-4);
+  min-width: 0;
+}
+
+.more {
+  font-size: var(--ef-text-sm);
+  font-weight: 600;
+  color: var(--ef-accent-text);
+  text-decoration: none;
+}
+
+.prio,
+.returns {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+
+.prio li + li,
+.returns li + li {
+  border-top: 1px solid var(--ef-border-subtle);
+}
+
+.prio a {
+  display: flex;
+  align-items: center;
+  gap: var(--ef-space-3);
+  padding: var(--ef-space-2) 0;
+  text-decoration: none;
+}
+
+.prio span {
+  display: grid;
+  min-width: 0;
+}
+
+.prio em {
+  font-style: normal;
+  font-size: var(--ef-text-xs);
+  font-weight: 600;
+  color: var(--ef-warn-text);
+}
+
+.prio li[data-level="danger"] em {
+  color: var(--ef-danger-text);
+}
+
+.prio li[data-level="info"] em {
+  color: var(--ef-info-text);
+}
+
+.prio a:hover strong,
+.returns a:hover strong {
+  color: var(--ef-accent-text);
+}
+
+.returns li {
+  display: flex;
+  align-items: center;
+  gap: var(--ef-space-3);
+  padding: var(--ef-space-2) 0;
+}
+
+.returns a {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  text-decoration: none;
+}
+
+.returns small {
+  color: var(--ef-text-muted);
+  font-size: var(--ef-text-xs);
+}
+
+.returns .ef-num {
+  font-size: 1.1rem;
+  color: var(--ef-info-text);
+}
+
+.kpi-link {
+  display: grid;
+  text-decoration: none;
+  border-radius: var(--ef-radius);
+}
+
+.kpi-link:hover ef-stat-tile {
+  border-color: var(--ef-accent-border);
+}

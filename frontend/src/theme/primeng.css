@@ -1,0 +1,66 @@
+/* Ajustements globaux PrimeNG : densité « data app » (Snowflake / FM) sans toucher au preset. */
+.p-datatable .p-datatable-thead > tr > th {
+  background: var(--ef-surface-sunken);
+  color: var(--ef-text-muted);
+  font-size: var(--ef-text-xs);
+  font-weight: 600;
+  padding: 0.55rem 0.75rem;
+  border-color: var(--ef-border-subtle);
+  white-space: nowrap;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  padding: 0.55rem 0.75rem;
+  border-color: var(--ef-border-subtle);
+  font-size: var(--ef-text-sm);
+}
+
+.p-datatable .p-datatable-tbody > tr {
+  background: transparent;
+}
+
+.p-datatable .p-datatable-tbody > tr:hover {
+  background: var(--ef-hover);
+}
+
+.p-tabs .p-tablist-tab-list,
+.p-tabs .p-tablist,
+.p-tabs .p-tablist-content {
+  background: transparent;
+}
+
+.p-tab {
+  font-weight: 600;
+  font-size: var(--ef-text-sm);
+  padding: 0.75rem 1rem;
+}
+
+.p-tabs .p-tabpanels {
+  background: transparent;
+  padding: var(--ef-space-4) 0 0;
+}
+
+.p-tag {
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: var(--ef-text-xs);
+}
+
+.p-button {
+  font-weight: 600;
+}
+
+.p-progressbar {
+  height: 6px;
+  background: var(--ef-surface-sunken);
+}
+
+.p-select,
+.p-inputtext,
+.p-multiselect {
+  font-size: var(--ef-text-sm);
+}
+
+.p-dialog .p-dialog-header {
+  padding-bottom: var(--ef-space-2);
+}

@@ -1,0 +1,51 @@
+@let d = detail();
+<div class="grid">
+  <div class="col">
+    <ef-panel heading="Nouveau bilan" subheading="Visible par le staff et dans l'espace du joueur">
+      <ef-followup-form [playerId]="d.player.id" author="Staff" [initialFatigue]="d.player.fatigue" (saved)="saved.emit()" />
+    </ef-panel>
+    <ef-panel heading="Historique du suivi" [subheading]="d.followups.length + ' bilan(s)'">
+      <ol class="timeline">
+        @for (f of d.followups; track f.id) {
+          <li>
+            <span class="who" [attr.data-author]="f.author"><i class="pi" [class.pi-user]="f.author === 'Joueur'" [class.pi-briefcase]="f.author === 'Staff'"></i></span>
+            <div>
+              <div class="meta"><strong>{{ f.author }}</strong><time>{{ f.date | date: "d MMM y, HH:mm" }}</time></div>
+              <p>{{ f.note }}</p>
+              <div class="metrics"><span>Fatigue {{ f.fatigue }}/100</span><span>Gêne {{ f.soreness }}/10</span><span>RPE {{ f.rpe }}/10</span></div>
+            </div>
+          </li>
+        } @empty {
+          <ef-empty-state icon="pi-comments" heading="Aucun bilan pour l'instant" text="Le premier bilan saisi ci-dessus apparaîtra ici." />
+        }
+      </ol>
+    </ef-panel>
+  </div>
+  <div class="col">
+    <ef-panel heading="Ressenti" subheading="Scénario simulé">
+      <div class="feel"><strong class="ef-num">{{ d.player.satisfaction }}</strong><span>/100 · {{ d.satisfaction_reason }}</span></div>
+      <p class="ef-muted ef-small">Vie de groupe : {{ d.team_relation }}</p>
+      <div class="tags">@for (t of d.tags; track t) { <p-tag [value]="t" severity="secondary" /> }</div>
+      <p class="ef-muted ef-small">Langues : {{ d.languages.join(", ") }}</p>
+    </ef-panel>
+    <ef-panel heading="Blessures" subheading="Historique simulé">
+      <ul class="list">
+        @for (b of d.injuries; track b.blessure_id) {
+          <li>
+            <div><strong>{{ b.type_blessure }}</strong><small>{{ b.zone }} · {{ b.gravite }}</small>
+              <small>{{ b.debut | date: "d MMM y" }} → {{ (b.retour_effectif ?? b.retour_prevu) | date: "d MMM y" }}</small></div>
+            <p-tag [value]="b.statut" [severity]="b.statut === 'Terminée' ? 'secondary' : 'warn'" />
+          </li>
+        } @empty { <li class="ef-muted">Aucune blessure enregistrée.</li> }
+      </ul>
+    </ef-panel>
+    <ef-panel heading="Affinités" subheading="Liens fictifs du scénario de recrutement">
+      <ul class="list">
+        @for (r of d.relations; track r.relation_id) {
+          <li><div><strong>{{ r.target_name }}</strong><small>{{ r.motif }}</small></div>
+            <p-tag [value]="r.polarite === 'POSITIF' ? 'Positive' : 'Négative'" [severity]="r.polarite === 'POSITIF' ? 'success' : 'warn'" /></li>
+        } @empty { <li class="ef-muted">Aucune affinité renseignée.</li> }
+      </ul>
+    </ef-panel>
+  </div>
+</div>

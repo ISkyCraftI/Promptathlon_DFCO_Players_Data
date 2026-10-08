@@ -1,0 +1,45 @@
+<div class="ef-page">
+  <ef-page-header heading="Comparaison" [description]="copy().description" />
+
+  <ef-panel>
+    <p-selectbutton class="modes" [options]="modes" optionLabel="label" optionValue="value" [ngModel]="mode()" (ngModelChange)="chooseMode($event ?? mode())"
+      [allowEmpty]="false" ariaLabel="Type de comparaison" />
+    <div class="pickers">
+      <div class="field">
+        <label for="cmp-subject">{{ copy().subject }}</label>
+        <p-select inputId="cmp-subject" [options]="subjectOptions()" [group]="true" optionLabel="label" optionValue="value" [ngModel]="subjectId()"
+          (ngModelChange)="chooseSubject($event)" [filter]="true" filterBy="label" [placeholder]="copy().placeholder" [fluid]="true"
+          [loading]="candidates().loading" />
+      </div>
+      <i class="pi pi-arrow-right-arrow-left sep" aria-hidden="true"></i>
+      <div class="field">
+        <label for="cmp-reference">{{ copy().reference }}</label>
+        <p-select inputId="cmp-reference" [options]="referenceOptions()" optionLabel="label" optionValue="value" [ngModel]="referenceId()"
+          (ngModelChange)="chooseReference($event)" [filter]="true" filterBy="label" [showClear]="true"
+          placeholder="Choix automatique (style le plus proche)" [disabled]="!subjectId()" [fluid]="true" />
+      </div>
+    </div>
+  </ef-panel>
+
+  <ef-async-state [state]="candidates()" [skeleton]="[]" />
+  <ef-async-state [state]="result()" [skeleton]="['16rem', '22rem']" />
+
+  @if (result().data; as r) {
+    <ef-duel-header [data]="r" />
+    <div class="ef-grid ef-grid-2">
+      <ef-progress-axes [data]="r" />
+      <ef-panel heading="Profil global" subheading="Moyenne des sous-attributs par groupe">
+        <ef-radar-chart [labels]="radarLabels()" [series]="radar()" height="300px" ariaLabel="Profils superposés des deux joueurs" />
+      </ef-panel>
+    </div>
+    <ef-gap-list [data]="r" />
+    <ef-panel heading="Repères physiques" subheading="Séances et matchs simulés, 14 derniers jours" [flush]="true">
+      <p-table [value]="physicalRows()">
+        <ng-template #header><tr><th>Indicateur</th><th class="r">{{ r.subject.name }}</th><th class="r">{{ r.reference.name }}</th></tr></ng-template>
+        <ng-template #body let-row><tr><td>{{ row.label }}</td><td class="r ef-num">{{ row.subject | fr }} {{ row.unit }}</td><td class="r ef-num">{{ row.ref | fr }} {{ row.unit }}</td></tr></ng-template>
+      </p-table>
+    </ef-panel>
+  } @else if (!result().loading && !result().error) {
+    <ef-panel><ef-empty-state icon="pi-arrow-right-arrow-left" [heading]="copy().placeholder + ' pour commencer'" [text]="copy().empty" /></ef-panel>
+  }
+</div>

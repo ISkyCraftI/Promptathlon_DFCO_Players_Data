@@ -1,0 +1,79 @@
+:host {
+  position: relative;
+  display: block;
+  aspect-ratio: 68 / 100;
+  width: 100%;
+  border-radius: var(--ef-radius);
+  background: var(--ef-pitch);
+  overflow: hidden;
+}
+
+.lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.lines * {
+  fill: none;
+  stroke: var(--ef-pitch-line);
+  stroke-width: 0.4;
+  vector-effect: non-scaling-stroke;
+}
+
+.marker {
+  --tone: var(--ef-accent);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-decoration: none;
+  color: var(--ef-text);
+  max-width: 30%;
+  text-align: center;
+}
+
+.marker[data-tone="success"] { --tone: var(--ef-success); }
+.marker[data-tone="warn"] { --tone: var(--ef-warn); }
+.marker[data-tone="danger"] { --tone: var(--ef-danger); }
+.marker[data-tone="info"] { --tone: var(--ef-info); }
+.marker[data-tone="muted"] { --tone: var(--slate-8); }
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--tone);
+  box-shadow: 0 0 0 3px var(--ef-surface);
+}
+
+:host(.compact) .dot {
+  width: 12px;
+  height: 12px;
+}
+
+.name {
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--ef-surface);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+a.marker:hover .name {
+  color: var(--ef-accent-text);
+}
+
+.sub {
+  font-size: 10px;
+  color: var(--ef-text-muted);
+  font-weight: 600;
+}

@@ -1,0 +1,24 @@
+<a class="brand" routerLink="/tableau-de-bord" (click)="navigate.emit()" aria-label="Easyfoot, retour au tableau de bord">
+  <img [src]="wordmark()" alt="Easyfoot" width="148" height="39" />
+</a>
+<p class="club">Dijon FCO · Ligue 2</p>
+
+<nav aria-label="Navigation principale">
+  @for (section of sections; track section.label) {
+    <p class="section">{{ section.label }}</p>
+    <ul>
+      @for (item of section.items; track item.link) {
+        <li>
+          <a [routerLink]="item.link" routerLinkActive="active" ariaCurrentWhenActive="page" (click)="navigate.emit()">
+            <i [class]="'pi ' + item.icon" aria-hidden="true"></i>{{ item.label }}
+          </a>
+        </li>
+      }
+    </ul>
+  }
+</nav>
+
+<div class="foot">
+  <p><strong>Données de démonstration</strong></p>
+  <p>Notes FC 27 importées. Santé, GPS et matchs simulés.</p>
+</div>

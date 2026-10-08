@@ -1,273 +1,121 @@
-<section class="prospection-page app-dark">
-  <div class="page-heading">
-    <div>
-      <p class="eyebrow">RECRUTEMENT / PROSPECTS</p>
-      <h1>Prospection<span class="red-dot">.</span></h1>
-      <p class="subtitle">Cherchez des profils hors effectif, puis ciblez ceux qui comblent les faiblesses de l’équipe.</p>
-    </div>
-    <div class="heading-meta">
-      <span class="season">HORS EFFECTIF</span>
-      <span>{{ prospects().length }} profil{{ prospects().length > 1 ? "s" : "" }} affiché{{ prospects().length > 1 ? "s" : "" }}</span>
-      <p-tag value="Espace recrutement" icon="pi pi-search" severity="secondary" />
-    </div>
-  </div>
-  <p class="demo-note"><i class="pi pi-info-circle"></i> Les suggestions comparent les notes techniques DFCO aux prospects disponibles.</p>
+<div class="ef-page">
+  <ef-page-header heading="Prospection"
+    description="Cherchez des profils hors effectif dans votre budget, puis ciblez ceux qui comblent les faiblesses du groupe.">
+    <p-button label="Recrutement par profil" icon="pi pi-search" [outlined]="true" routerLink="/recrutement" />
+  </ef-page-header>
 
-  @if (service.suggestionState().loading && !profile()) {
-    <div class="summary-grid">@for (i of [1,2,3,4]; track i) {<p-skeleton height="7rem" />}</div>
-  } @else if (profile(); as team) {
-    <div class="summary-grid">
-      <div class="summary-tile">
-        <span class="tile-label">Effectif de référence <i class="pi pi-users"></i></span>
-        <strong>{{ team.roster_size }}<small>joueurs</small></strong>
-        <span class="tile-foot">Base des moyennes techniques</span>
-      </div>
+  @if (profile(); as team) {
+    <div class="ef-grid ef-grid-kpi">
+      <ef-stat-tile label="Effectif de référence" icon="pi-users" [value]="team.roster_size" unit="joueurs" hint="Base des moyennes du groupe" />
       @for (weak of team.weaknesses.slice(0, 3); track weak.key) {
-        <div class="summary-tile amber">
-          <span class="tile-label">Faiblesse · {{ weak.label }} <i class="pi pi-chart-line"></i></span>
-          <strong>{{ weak.team_avg }}<small>moyenne</small></strong>
-          <span class="tile-foot">Écart −{{ weak.gap }} vs moyenne d’équipe</span>
-        </div>
+        <ef-stat-tile [label]="'Point faible · ' + weak.label" icon="pi-chart-line" tone="warn" [value]="weak.team_avg | fr" unit="de moyenne"
+          [hint]="'−' + (weak.gap | fr) + ' sous la moyenne du groupe'" />
       }
     </div>
+  } @else {
+    <ef-async-state [state]="service.suggestionState()" [skeleton]="['6.5rem']" (retry)="service.refresh()" />
   }
 
-  <div class="prospect-layout">
-    <div class="panel search-panel">
-      <div class="panel-heading">
-        <div>
-          <p class="eyebrow">RECHERCHE</p>
-          <h2>Filtrer les prospects</h2>
-        </div>
-        <span class="muted">{{ prospects().length }} résultat{{ prospects().length > 1 ? "s" : "" }}</span>
+  <div class="ef-grid ef-grid-main-aside">
+    <ef-panel [flush]="true" heading="Prospects" [subheading]="prospects().length + ' profil' + (prospects().length > 1 ? 's' : '') + ' hors effectif'">
+      <div panel-actions class="budget">
+        <p-select [options]="budgets" optionLabel="label" optionValue="value" [ngModel]="draft().budget_max" (ngModelChange)="setBudget($event)"
+          ariaLabel="Budget maximum" />
       </div>
-
-      <div class="roster-filters">
-        <div class="search-field">
-          <i class="pi pi-search"></i>
-          <input
-            pInputText
-            placeholder="Rechercher un joueur"
-            aria-label="Rechercher un prospect"
-            [ngModel]="draft().q"
-            (ngModelChange)="patch('q', $event)"
-            (keyup.enter)="apply()"
-          />
-        </div>
-        <p-select
-          [options]="roles"
-          optionLabel="label"
-          optionValue="value"
-          [ngModel]="draft().role"
-          (ngModelChange)="patch('role', $event)"
-          ariaLabel="Poste"
-          placeholder="Tous les postes"
-        />
-        <p-select
-          [options]="feet"
-          optionLabel="label"
-          optionValue="value"
-          [ngModel]="draft().foot"
-          (ngModelChange)="patch('foot', $event)"
-          ariaLabel="Pied fort"
-          placeholder="Pied fort"
-        />
-      </div>
-
-      <div class="range-filters">
-        <label class="range-field">
-          <span>Note gén. min</span>
-          <p-inputNumber
-            [ngModel]="draft().overall_min"
-            (ngModelChange)="patch('overall_min', $event)"
-            [min]="0"
-            [max]="99"
-            [showButtons]="false"
-            placeholder="—"
-            inputId="overall_min"
-          />
+      <div class="filters">
+        <p-iconfield class="search">
+          <p-inputicon class="pi pi-search" />
+          <input pInputText placeholder="Nom du joueur" aria-label="Rechercher un prospect" [ngModel]="draft().q" (ngModelChange)="patch('q', $event)"
+            (keyup.enter)="apply()" />
+        </p-iconfield>
+        <p-select [options]="roles" optionLabel="label" optionValue="value" [ngModel]="draft().role" (ngModelChange)="patch('role', $event)" ariaLabel="Poste" />
+        <p-select [options]="feet" optionLabel="label" optionValue="value" [ngModel]="draft().foot" (ngModelChange)="patch('foot', $event)" ariaLabel="Pied fort" />
+        <label class="num-field"><span>Gén. min</span>
+          <p-inputnumber [inputStyle]="{ width: '4.5rem' }" [ngModel]="draft().overall_min" (ngModelChange)="patch('overall_min', $event)" [min]="0" [max]="99" placeholder="—" inputId="overall_min" />
         </label>
-        <label class="range-field">
-          <span>Âge min</span>
-          <p-inputNumber
-            [ngModel]="draft().age_min"
-            (ngModelChange)="patch('age_min', $event)"
-            [min]="15"
-            [max]="45"
-            [showButtons]="false"
-            placeholder="—"
-            inputId="age_min"
-          />
+        <label class="num-field"><span>Âge min</span>
+          <p-inputnumber [inputStyle]="{ width: '4.5rem' }" [ngModel]="draft().age_min" (ngModelChange)="patch('age_min', $event)" [min]="15" [max]="45" placeholder="—" inputId="age_min" />
         </label>
-        <label class="range-field">
-          <span>Âge max</span>
-          <p-inputNumber
-            [ngModel]="draft().age_max"
-            (ngModelChange)="patch('age_max', $event)"
-            [min]="15"
-            [max]="45"
-            [showButtons]="false"
-            placeholder="—"
-            inputId="age_max"
-          />
+        <label class="num-field"><span>Âge max</span>
+          <p-inputnumber [inputStyle]="{ width: '4.5rem' }" [ngModel]="draft().age_max" (ngModelChange)="patch('age_max', $event)" [min]="15" [max]="45" placeholder="—" inputId="age_max" />
         </label>
-      </div>
-
-      <div class="rating-filters">
-        @for (filter of ratingFilters; track filter.key) {
-          <label class="rating-filter">
-            <span>{{ filter.short }}</span>
-            <p-inputNumber
-              [ngModel]="draft()[filter.key]"
-              (ngModelChange)="patch(filter.key, $event)"
-              [min]="0"
-              [max]="99"
-              [showButtons]="false"
-              placeholder="min"
-              [inputId]="filter.key"
-            />
+        @for (f of ratingFilters; track f.key) {
+          <label class="num-field"><span [title]="f.label">{{ f.short }} min</span>
+            <p-inputnumber [inputStyle]="{ width: '4.5rem' }" [ngModel]="draft()[f.key]" (ngModelChange)="patch(f.key, $event)" [min]="0" [max]="99" placeholder="—" [inputId]="f.key" />
           </label>
         }
-      </div>
-
-      <div class="filter-actions">
-        <p-button label="Rechercher" icon="pi pi-search" (onClick)="apply()" />
-        <p-button label="Réinitialiser" [text]="true" severity="secondary" (onClick)="reset()" />
-      </div>
-
-      @if (service.searchState().loading) {
-        <div class="table-pad"><p-skeleton height="22rem" /></div>
-      } @else if (service.searchState().error; as error) {
-        <div class="empty-state">
-          <p-message severity="error">{{ error }}</p-message>
-          <p-button label="Réessayer" icon="pi pi-refresh" (onClick)="service.refresh()" />
+        <div class="actions">
+          <p-button label="Rechercher" icon="pi pi-search" (onClick)="apply()" />
+          <p-button label="Réinitialiser" [text]="true" severity="secondary" (onClick)="reset()" />
         </div>
-      } @else {
-        <p-table
-          [value]="prospects()"
-          [scrollable]="true"
-          [tableStyle]="{'min-width': '760px'}"
-          sortField="overall"
-          [sortOrder]="-1"
-          dataKey="id"
-          styleClass="roster-table"
-        >
+      </div>
+
+      <ef-async-state [state]="service.searchState()" [skeleton]="['22rem']" (retry)="service.refresh()" />
+      @if (service.searchState().data) {
+        <p-table [value]="prospects()" [scrollable]="true" sortField="overall" [sortOrder]="-1" dataKey="id" [tableStyle]="{ 'min-width': '900px' }">
           <ng-template #header>
             <tr>
               <th pSortableColumn="name">Joueur <p-sortIcon field="name" /></th>
-              <th pSortableColumn="age">Âge <p-sortIcon field="age" /></th>
-              <th pSortableColumn="overall">GÉN <p-sortIcon field="overall" /></th>
-              <th>Profil technique</th>
+              <th pSortableColumn="age" class="num">Âge <p-sortIcon field="age" /></th>
+              <th pSortableColumn="overall" class="num">Gén. <p-sortIcon field="overall" /></th>
+              @for (g of groups; track g.key) { <th class="num" [title]="g.label">{{ g.short }}</th> }
+              <th pSortableColumn="market_value" class="num">Coût estimé <p-sortIcon field="market_value" /></th>
               <th>Spécialités</th>
-              <th><span class="sr-only">Ouvrir</span></th>
             </tr>
           </ng-template>
-          <ng-template #body let-player>
+          <ng-template #body let-p>
             <tr>
               <td>
-                <a class="player-link" [routerLink]="['/effectif', player.id]">
-                  <span class="avatar mini">{{ service.initials(player.name) }}</span>
-                  <span>
-                    <strong>{{ player.name }}</strong>
-                    <small>{{ player.role }} · {{ player.foot }} · {{ player.position }}</small>
-                  </span>
+                <a class="player" [routerLink]="['/effectif', p.id]">
+                  <ef-player-avatar [name]="p.name" kind="PROSPECT" [size]="32" />
+                  <span><strong>{{ p.name }}</strong><small>{{ p.position }} · {{ p.role }} · pied {{ p.foot.toLowerCase() }}</small></span>
                 </a>
               </td>
-              <td><strong>{{ player.age }}</strong></td>
-              <td><strong class="overall-number">{{ player.overall ?? "—" }}</strong></td>
+              <td class="num ef-num">{{ p.age }}</td>
+              <td class="num"><ef-rating [value]="p.overall" [pill]="true" /></td>
+              @for (g of groups; track g.key) { <td class="num"><ef-rating [value]="p.ratings[g.key]" /></td> }
+              <td class="num"><span class="ef-num cost">{{ p.market_value | eur }}</span></td>
               <td>
-                <div class="mini-ratings">
-                  @for (key of ratingKeys; track key) {
-                    <span>
-                      <small>{{ statShort[key] }}</small>
-                      <b>{{ player.ratings[key] }}</b>
-                    </span>
-                  }
-                </div>
-              </td>
-              <td>
-                <div class="tag-row">
-                  @for (tag of player.specialties.slice(0, 2); track tag) {
-                    <p-tag [value]="tag" severity="secondary" />
-                  } @empty {
-                    <span class="muted small">—</span>
-                  }
-                </div>
-              </td>
-              <td>
-                <p-button
-                  icon="pi pi-arrow-up-right"
-                  [rounded]="true"
-                  [text]="true"
-                  [routerLink]="['/effectif', player.id]"
-                  [ariaLabel]="'Ouvrir la fiche de ' + player.name"
-                />
+                <span class="tags">
+                  @for (tag of p.specialties.slice(0, 2); track tag) { <p-tag [value]="tag" severity="secondary" /> }
+                  @empty { <span class="ef-muted">—</span> }
+                </span>
               </td>
             </tr>
           </ng-template>
           <ng-template #emptymessage>
-            <tr>
-              <td colspan="6">
-                <div class="empty-state">
-                  <i class="pi pi-search"></i>
-                  <h3>Aucun prospect pour ces filtres</h3>
-                  <p>Élargissez les critères ou réinitialisez la recherche.</p>
-                  <p-button label="Réinitialiser" [text]="true" severity="secondary" (onClick)="reset()" />
-                </div>
-              </td>
-            </tr>
+            <tr><td colspan="11">
+              <ef-empty-state icon="pi-search" heading="Aucun prospect pour ces filtres" text="Augmentez le budget ou élargissez les critères.">
+                <p-button label="Réinitialiser" [text]="true" (onClick)="reset()" />
+              </ef-empty-state>
+            </td></tr>
           </ng-template>
         </p-table>
-        <div class="panel-footer">
-          <span class="status-dot"></span>
-          Prospects hors effectif · Ouvrez une fiche pour le détail technique.
-        </div>
       }
-    </div>
+    </ef-panel>
 
-    <aside class="suggest-panel">
-      <div class="priority-title">
-        <span class="eyebrow">SUGGESTIONS</span>
-        <i class="pi pi-bolt"></i>
-      </div>
-      <h2>Qui comble les trous ?</h2>
-      <p class="muted">Classement selon les faiblesses détectées dans l’effectif DFCO.</p>
-      <p-select
-        [options]="suggestionRoles"
-        optionLabel="label"
-        optionValue="value"
-        [ngModel]="suggestionRole()"
-        (ngModelChange)="setSuggestionRole($event)"
-        ariaLabel="Filtrer les suggestions par poste"
-        placeholder="Tous les postes"
-        styleClass="suggest-select"
-      />
-
+    <ef-panel heading="Qui comble les manques ?" subheading="Classement selon les faiblesses du groupe DFCO">
+      <p-select [options]="roles" optionLabel="label" optionValue="value" [ngModel]="suggestionRole()" (ngModelChange)="setSuggestionRole($event)"
+        ariaLabel="Filtrer les suggestions par poste" [fluid]="true" />
       @if (service.suggestionState().loading) {
-        <p-skeleton height="8rem" styleClass="suggest-skeleton" />
-        <p-skeleton height="8rem" styleClass="suggest-skeleton" />
-      } @else if (service.suggestionState().error; as error) {
-        <p-message severity="error">{{ error }}</p-message>
+        <ef-async-state [state]="service.suggestionState()" [skeleton]="['6rem', '6rem', '6rem']" />
       } @else {
-        @for (item of suggestions(); track item.prospect.id) {
-          <a class="priority-item" [routerLink]="['/effectif', item.prospect.id]">
-            <div class="priority-item-head">
-              <span class="avatar tiny">{{ service.initials(item.prospect.name) }}</span>
-              <strong>{{ item.prospect.name }}</strong>
-              <span class="score">{{ item.score }}</span>
-            </div>
-            <div class="tag-row">
-              <p-tag [value]="item.prospect.role" severity="secondary" />
-              @if (item.covers.length) {
-                <p-tag [value]="coverLabels(item.covers)" severity="warn" />
-              }
-            </div>
-            <p>{{ item.reason }}</p>
-          </a>
-        } @empty {
-          <p-message severity="info">Aucune suggestion pour ce filtre de poste.</p-message>
-        }
+        <ul class="suggestions">
+          @for (item of suggestions(); track item.prospect.id) {
+            <li>
+              <a [routerLink]="['/effectif', item.prospect.id]">
+                <ef-player-avatar [name]="item.prospect.name" kind="PROSPECT" [size]="30" />
+                <span class="who"><strong>{{ item.prospect.name }}</strong><small>{{ item.prospect.position }} · {{ item.prospect.age }} ans · {{ item.prospect.market_value | eur }}</small></span>
+                <span class="score ef-num" title="Score d'adéquation">{{ item.score | fr }}</span>
+              </a>
+              @if (item.covers.length) { <span class="covers">Renforce : {{ coverLabels(item.covers) }}</span> }
+              <p>{{ item.reason }}</p>
+            </li>
+          } @empty {
+            <ef-empty-state heading="Aucune suggestion" text="Aucun prospect ne comble les manques à ce poste." />
+          }
+        </ul>
       }
-    </aside>
+    </ef-panel>
   </div>
-</section>
+</div>

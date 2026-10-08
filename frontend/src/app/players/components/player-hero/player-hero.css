@@ -1,0 +1,108 @@
+:host {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 92px 300px;
+  gap: var(--ef-space-5);
+  align-items: stretch;
+  padding: var(--ef-space-5);
+  background: var(--ef-surface);
+  border: 1px solid var(--ef-border);
+  border-radius: var(--ef-radius);
+}
+
+.identity {
+  display: flex;
+  gap: var(--ef-space-4);
+  min-width: 0;
+}
+
+.names {
+  display: grid;
+  gap: var(--ef-space-2);
+  align-content: start;
+  min-width: 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ef-space-2);
+}
+
+h1 {
+  font-family: var(--ef-font-display);
+  font-size: var(--ef-text-3xl);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.role {
+  color: var(--ef-text-muted);
+  font-weight: 600;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ef-space-5);
+  margin: var(--ef-space-2) 0 0;
+}
+
+.facts dt {
+  font-size: var(--ef-text-xs);
+  color: var(--ef-text-muted);
+}
+
+.facts dd {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.facts .price dd {
+  color: var(--ef-accent-text);
+}
+
+.facts small {
+  font-family: var(--ef-font);
+  font-size: var(--ef-text-xs);
+  color: var(--ef-text-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ef-space-2);
+  margin-top: var(--ef-space-2);
+}
+
+.source {
+  font-size: var(--ef-text-sm);
+  font-weight: 600;
+  color: var(--ef-text-muted);
+}
+
+.mini {
+  align-self: center;
+}
+
+@media (max-width: 1100px) {
+  :host {
+    grid-template-columns: minmax(0, 1fr) 300px;
+  }
+
+  .mini {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  :host {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--ef-space-4);
+  }
+
+  .identity {
+    flex-direction: column;
+  }
+}

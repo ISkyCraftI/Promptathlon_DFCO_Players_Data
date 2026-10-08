@@ -30,3 +30,23 @@ export const ValuationSchema = z.object({
 
 export type Valuation = z.infer<typeof ValuationSchema>;
 export type LedgerEntry = z.infer<typeof LedgerEntrySchema>;
+
+export const ClubPlayerValueSchema = z.object({
+  id: z.string(), name: z.string(), kind: z.string(), role: z.string(), position: z.string(), age: z.number(),
+  overall: z.number().nullable(), status: z.string(), market_value: z.number(), annual_wage: z.number(),
+  injury_discount: z.number(),
+});
+
+export const ClubValueSchema = z.object({
+  total_value: z.number(), squad_size: z.number(), average_value: z.number(),
+  annual_wage_ceiling: z.number(), wage_to_value_ratio: z.number(),
+  young_value: z.number(), young_count: z.number(), young_max_age: z.number(),
+  unavailable_value: z.number(), unavailable_count: z.number(),
+  prospects_count: z.number(), prospects_median_cost: z.number(),
+  by_role: z.array(z.object({ role: z.string(), count: z.number(), total_value: z.number(), share: z.number(), top_player: z.string().nullable() })),
+  players: z.array(ClubPlayerValueSchema),
+  formula_version: z.string(),
+});
+
+export type ClubValue = z.infer<typeof ClubValueSchema>;
+export type ClubPlayerValue = z.infer<typeof ClubPlayerValueSchema>;

@@ -1,0 +1,46 @@
+form {
+  display: grid;
+  gap: var(--ef-space-4);
+}
+
+.field {
+  display: grid;
+  gap: var(--ef-space-2);
+}
+
+label {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--ef-text-sm);
+  font-weight: 600;
+}
+
+.scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--ef-text-xs);
+  color: var(--ef-text-faint);
+}
+
+.two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ef-space-3);
+}
+
+textarea {
+  width: 100%;
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--ef-space-3);
+}
+
+@media (max-width: 560px) {
+  .two {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

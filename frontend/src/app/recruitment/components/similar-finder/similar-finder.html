@@ -1,0 +1,22 @@
+<ef-panel heading="Profils similaires" subheading="Remplacer un joueur : même poste, style de jeu le plus proche">
+  <p-select [options]="options()" optionLabel="label" optionValue="value" [ngModel]="playerId()" (ngModelChange)="playerId.set($event)"
+    [filter]="true" filterBy="label" placeholder="Choisir un joueur de l'effectif" ariaLabel="Joueur de référence" [fluid]="true" [showClear]="true" />
+  <ef-async-state [state]="state()" [skeleton]="['12rem']" />
+  @if (state().data; as list) {
+    <ul>
+      @for (s of list; track s.id) {
+        <li>
+          <a [routerLink]="['/effectif', s.id]">
+            <ef-player-avatar [name]="s.name" [kind]="s.kind" [size]="28" />
+            <span class="who"><strong>{{ s.name }}</strong><small>{{ s.position }} · {{ s.age }} ans · {{ s.market_value | eur }}</small></span>
+          </a>
+          <ef-rating [value]="s.overall" [pill]="true" />
+          <span class="sim" [title]="'Similarité de style ' + (s.similarity | fr: 0) + ' %'"><span class="ef-num">{{ s.similarity | fr: 0 }}</span><small>%</small></span>
+        </li>
+      } @empty { <ef-empty-state heading="Aucun prospect à ce poste" /> }
+    </ul>
+    <p class="note">Similarité cosinus sur les sous-attributs centrés : compare la forme du profil, pas le niveau.</p>
+  } @else if (!state().loading) {
+    <p class="hint">Sélectionnez un joueur pour voir les prospects qui lui ressemblent.</p>
+  }
+</ef-panel>

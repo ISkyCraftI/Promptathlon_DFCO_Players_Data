@@ -1,0 +1,59 @@
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--ef-space-2);
+  font-size: var(--ef-text-sm);
+  font-weight: 600;
+  color: var(--ef-text-muted);
+  cursor: pointer;
+}
+
+.row {
+  cursor: pointer;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  gap: var(--ef-space-2);
+}
+
+.player span {
+  display: grid;
+}
+
+.player small {
+  color: var(--ef-text-muted);
+  font-size: var(--ef-text-xs);
+}
+
+.ratio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ef-space-2);
+}
+
+.ratio .ef-num {
+  min-width: 2.2rem;
+  font-size: 1.05rem;
+}
+
+.r {
+  text-align: right;
+}
+
+.up {
+  color: var(--ef-warn-text);
+}
+
+.flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.reviewed {
+  color: var(--ef-success-text);
+  font-size: var(--ef-text-xs);
+  font-weight: 600;
+}

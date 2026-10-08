@@ -1,33 +1,10 @@
+/*
+ * Point d'entrée des styles globaux. Ordre : palettes Radix -> tokens sémantiques -> socle -> PrimeNG.
+ * Les styles de composants restent dans chaque composant (styleUrl).
+ */
 @import "primeicons/primeicons.css";
-@import "./app/players/players.css";
-@import "./app/prospection/prospection.css";
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Figtree:wght@400;500;600;700&display=swap");
-
-:root {
-  --ef-red: #e30613;
-  --ef-red-dark: #9b0410;
-  --ef-black: #0a0a0a;
-  --ef-charcoal: #141414;
-  --ef-cream: #fff5f0;
-  --ef-muted: rgba(255, 245, 240, 0.65);
-}
-
-html,
-body {
-  margin: 0;
-  min-height: 100%;
-  font-family: "Figtree", "Segoe UI", sans-serif;
-  background:
-    radial-gradient(ellipse 80% 50% at 10% -10%, rgba(227, 6, 19, 0.28), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(227, 6, 19, 0.12), transparent 50%),
-    linear-gradient(165deg, #0a0a0a 0%, #161616 45%, #1c1012 100%);
-  color: var(--ef-cream);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-a {
-  color: inherit;
-}
+@import "./theme/fonts.css";
+@import "./theme/radix/index.css";
+@import "./theme/tokens.css";
+@import "./theme/base.css";
+@import "./theme/primeng.css";

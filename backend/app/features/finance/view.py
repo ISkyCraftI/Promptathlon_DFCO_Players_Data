@@ -8,7 +8,7 @@ from fastapi import APIRouter, HTTPException, status
 
 from app.dependencies import DbSession
 from app.features.finance.controller import FinanceController
-from app.features.finance.schemas import ValuationRead
+from app.features.finance.schemas import ClubValueRead, ValuationRead
 from app.shared.exceptions import AppError
 
 #
@@ -16,6 +16,19 @@ from app.shared.exceptions import AppError
 #
 
 finance_routes = APIRouter(prefix="/finance", tags=["finance"])
+
+
+@finance_routes.get(
+    "/club/",
+    response_model=ClubValueRead,
+    status_code=status.HTTP_200_OK,
+    summary="Valeur de l’effectif DFCO",
+)
+async def club_value(db: DbSession) -> ClubValueRead:
+    """
+        Somme des valorisations de tous les joueurs du club, répartition par poste.
+    """
+    return await FinanceController(session=db).club()
 
 
 @finance_routes.get(
@@ -35,12 +48,7 @@ async def player_valuation(
     try:
         return await controller.valuation(player_id)
     except AppError as e:
-        code = (
-            status.HTTP_404_NOT_FOUND
-            if e.user_safe_title == "Joueur introuvable"
-            else status.HTTP_400_BAD_REQUEST
-        )
         raise HTTPException(
-            status_code=code,
+            status_code=e.status_code,
             detail=e.to_detail(),
         ) from e

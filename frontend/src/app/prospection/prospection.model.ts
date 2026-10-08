@@ -14,6 +14,7 @@ export const ProspectSchema = z.object({
   ratings: z.record(z.string(), z.number()),
   specialties: z.array(z.string()),
   playstyles: z.array(z.string()),
+  market_value: z.number(),
 });
 
 export const WeaknessSchema = z.object({
@@ -55,6 +56,7 @@ export interface ProspectFilters {
   dribble_min: number | null;
   defense_min: number | null;
   physique_min: number | null;
+  budget_max: number | null;
 }
 
 export const EMPTY_FILTERS: ProspectFilters = {
@@ -70,6 +72,7 @@ export const EMPTY_FILTERS: ProspectFilters = {
   dribble_min: null,
   defense_min: null,
   physique_min: null,
+  budget_max: null,
 };
 
 export const RATING_FILTERS = [
@@ -89,3 +92,12 @@ export const STAT_SHORT: Record<string, string> = {
   defense: "DEF",
   physique: "PHY",
 };
+
+/** Paliers de budget (coût de transfert estimé). */
+export const BUDGETS = [
+  { label: "Tous budgets", value: null },
+  { label: "Jusqu'à 750 k€", value: 750_000 },
+  { label: "Jusqu'à 1 M€", value: 1_000_000 },
+  { label: "Jusqu'à 1,5 M€", value: 1_500_000 },
+  { label: "Jusqu'à 2 M€", value: 2_000_000 },
+];

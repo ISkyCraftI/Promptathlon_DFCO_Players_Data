@@ -1,0 +1,42 @@
+@let d = data();
+<div class="bench">
+  <span class="ef-muted ef-small">Référence effectif sur ce profil</span>
+  <ul>
+    @for (s of squadTop(); track s.id) {
+      <li><a [routerLink]="['/effectif', s.id]">{{ s.name }}</a><span class="ef-num">{{ s.score | fr }}</span></li>
+    } @empty { <li class="ef-muted">Aucun joueur de l'effectif à ce poste.</li> }
+  </ul>
+</div>
+<p-table [value]="d.candidates" [scrollable]="true" dataKey="id" [tableStyle]="{ 'min-width': '860px' }">
+  <ng-template #header>
+    <tr>
+      <th class="c">#</th><th>Prospect</th><th class="c">Gén.</th><th>Adéquation au profil</th>
+      <th class="c" title="Écart avec le meilleur joueur de l'effectif sur ce profil">vs effectif</th><th class="c" title="Coût de transfert estimé">Coût estimé</th><th>Atouts</th><th>Critères</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-c>
+    <tr [class.out]="!c.eligible">
+      <td class="c ef-num rank">{{ c.rank }}</td>
+      <td>
+        <a class="player" [routerLink]="['/effectif', c.id]">
+          <ef-player-avatar [name]="c.name" [kind]="c.kind" [size]="30" />
+          <span><strong>{{ c.name }}</strong><small>{{ c.position }} · {{ c.age }} ans · pied {{ c.foot | lowercase }}</small></span>
+        </a>
+      </td>
+      <td class="c"><ef-rating [value]="c.overall" [pill]="true" /></td>
+      <td>
+        <span class="fit"><span class="track" title="Échelle 40 à 90"><span [style.width.%]="bar(c.score)"></span></span><strong class="ef-num">{{ c.score | fr }}</strong></span>
+      </td>
+      <td class="c"><span class="ef-num delta" [attr.data-sign]="(c.delta_vs_squad ?? 0) >= 0 ? 'up' : 'down'">{{ c.delta_vs_squad === null ? "—" : signed(c.delta_vs_squad, 1) }}</span></td>
+      <td class="c"><span class="ef-num cost">{{ c.market_value | eur }}</span></td>
+      <td><span class="chips">@for (s of c.strengths.slice(0, 2); track s.key) { <span>{{ s.label }} <b>{{ s.value }}</b></span> }</span></td>
+      <td>
+        @if (c.eligible) { <i class="pi pi-check-circle ok" title="Dans les critères du profil"></i><span class="sr-only">Dans les critères</span> }
+        @else { @for (r of c.reasons; track r) { <p-tag [value]="r" severity="secondary" /> } }
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr><td colspan="8"><ef-empty-state icon="pi-search" heading="Aucun prospect à ce poste" text="Élargissez le profil ou importez de nouveaux prospects." /></td></tr>
+  </ng-template>
+</p-table>

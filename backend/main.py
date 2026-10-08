@@ -76,7 +76,7 @@ async def app_error_handler(
     exc: AppError,
 ) -> JSONResponse:
     return JSONResponse(
-        status_code=400,
+        status_code=exc.status_code,
         content={"detail": exc.to_detail()},
     )
 

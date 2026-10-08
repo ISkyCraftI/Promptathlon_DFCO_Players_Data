@@ -1,0 +1,31 @@
+/* Échelle « brand » générée façon Radix autour de #d40125 (teinte OKLCH du rouge DFCO,
+   luminosités de l'échelle Radix red). Script : frontend/scripts/generate-brand-scale.py */
+:root, .light, .light-theme {
+  --brand-1: #fefcfc;
+  --brand-2: #fff7f7;
+  --brand-3: #ffebe9;
+  --brand-4: #fedcd9;
+  --brand-5: #fececa;
+  --brand-6: #ffbdb7;
+  --brand-7: #fba69f;
+  --brand-8: #f38a83;
+  --brand-9: #d40125;
+  --brand-10: #c00020;
+  --brand-11: #b0041e;
+  --brand-12: #6a0d13;
+}
+
+.app-dark, .dark, .dark-theme {
+  --brand-1: #1a1110;
+  --brand-2: #211311;
+  --brand-3: #3f0f0f;
+  --brand-4: #55060c;
+  --brand-5: #670c12;
+  --brand-6: #781b1e;
+  --brand-7: #932b2c;
+  --brand-8: #be3b3b;
+  --brand-9: #d40125;
+  --brand-10: #e62835;
+  --brand-11: #fe968f;
+  --brand-12: #ffd3ce;
+}

@@ -1,0 +1,28 @@
+<form (ngSubmit)="submit()">
+  @if (success()) { <p-message severity="success" size="small">Bilan enregistré. Il apparaît dans l'historique.</p-message> }
+  @if (error(); as e) { <p-message severity="error" size="small">{{ e }}</p-message> }
+  <div class="field">
+    <label for="ff-fatigue">Fatigue <strong class="ef-num">{{ draft.fatigue }}/100</strong></label>
+    <p-slider inputId="ff-fatigue" name="fatigue" [(ngModel)]="draft.fatigue" [min]="0" [max]="100" ariaLabel="Fatigue sur 100" />
+    <div class="scale"><span>Reposé</span><span>Très fatigué</span></div>
+  </div>
+  <div class="two">
+    <div class="field">
+      <label for="ff-soreness">Gêne ou douleur /10</label>
+      <p-inputnumber inputId="ff-soreness" name="soreness" [(ngModel)]="draft.soreness" [min]="0" [max]="10" [showButtons]="true" [allowEmpty]="false" buttonLayout="horizontal" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [fluid]="true" />
+    </div>
+    <div class="field">
+      <label for="ff-rpe">Effort perçu (RPE) /10</label>
+      <p-inputnumber inputId="ff-rpe" name="rpe" [(ngModel)]="draft.rpe" [min]="0" [max]="10" [showButtons]="true" [allowEmpty]="false" buttonLayout="horizontal" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [fluid]="true" />
+    </div>
+  </div>
+  <div class="field">
+    <label for="ff-note">{{ author() === "Staff" ? "Observation du staff" : "Mon message au staff" }}</label>
+    <textarea pTextarea id="ff-note" name="note" [(ngModel)]="draft.note" rows="3" maxlength="1500" [autoResize]="true"
+      [placeholder]="author() === 'Staff' ? 'Déroulement de la séance, point à suivre…' : 'Comment s’est passée la séance ? Une gêne ?'"></textarea>
+  </div>
+  <div class="foot">
+    <span class="ef-faint ef-small">{{ draft.note.length }}/1500 · {{ author() }}</span>
+    <p-button type="submit" label="Enregistrer le bilan" icon="pi pi-check" [loading]="saving()" />
+  </div>
+</form>

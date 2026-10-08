@@ -1,0 +1,24 @@
+<p-button class="menu-btn" icon="pi pi-bars" [text]="true" severity="secondary" ariaLabel="Ouvrir la navigation" (onClick)="menu.emit()" />
+
+<nav class="crumbs" aria-label="Fil d'Ariane">
+  @if (crumbs().section) { <span>{{ crumbs().section }}</span><i class="pi pi-angle-right" aria-hidden="true"></i> }
+  <strong>{{ crumbs().heading ?? "Easyfoot" }}</strong>
+</nav>
+
+<div class="search">
+  <p-autocomplete [(ngModel)]="query" [suggestions]="suggestions()" (completeMethod)="search($event)" (onSelect)="open($event)"
+    optionLabel="name" placeholder="Rechercher un joueur ou un prospect" [delay]="120" [minLength]="1"
+    inputId="global-search" ariaLabel="Rechercher un joueur ou un prospect" appendTo="body" [fluid]="true">
+    <ng-template let-p #item>
+      <div class="suggestion">
+        <ef-player-avatar [name]="p.name" [kind]="p.kind" [size]="26" />
+        <span><strong>{{ p.name }}</strong><small>{{ p.kind === "DFCO" ? "Effectif" : "Prospect" }} · {{ p.position }} · {{ p.age }} ans</small></span>
+      </div>
+    </ng-template>
+  </p-autocomplete>
+</div>
+
+<span class="snapshot"><i class="pi pi-calendar" aria-hidden="true"></i> Instantané du 8 octobre 2026</span>
+<p-button [icon]="theme.mode() === 'dark' ? 'pi pi-sun' : 'pi pi-moon'" [text]="true" severity="secondary" [rounded]="true"
+  [ariaLabel]="theme.mode() === 'dark' ? 'Passer en thème clair' : 'Passer en thème sombre'"
+  [pTooltip]="theme.mode() === 'dark' ? 'Thème clair' : 'Thème sombre'" tooltipPosition="bottom" (onClick)="theme.toggle()" />

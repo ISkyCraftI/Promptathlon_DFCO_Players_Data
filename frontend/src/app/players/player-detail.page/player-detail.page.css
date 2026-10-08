@@ -1,0 +1,24 @@
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ef-space-2);
+  justify-self: start;
+  color: var(--ef-text-muted);
+  font-weight: 600;
+  font-size: var(--ef-text-sm);
+  text-decoration: none;
+}
+
+.back:hover {
+  color: var(--ef-text);
+}
+
+.tabs {
+  min-width: 0;
+  scroll-margin-top: calc(var(--ef-topbar-height) + var(--ef-space-3));
+}
+
+.disclaimer {
+  font-size: var(--ef-text-xs);
+  color: var(--ef-text-faint);
+}

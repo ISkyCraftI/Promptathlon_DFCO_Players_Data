@@ -1,0 +1,42 @@
+<ef-panel heading="Charge par joueur" subheading="Aiguë = 7 jours · chronique = moyenne hebdomadaire sur 28 jours" [flush]="true">
+  <label panel-actions class="toggle">
+    <p-toggleswitch [ngModel]="onlyOpen()" (ngModelChange)="onlyOpen.set($event)" inputId="only-open" />
+    <span>Signaux à examiner seulement</span>
+  </label>
+  <p-table [value]="rows()" [scrollable]="true" dataKey="id" [tableStyle]="{ 'min-width': '980px' }" selectionMode="single" (onRowSelect)="onSelect($event.data)">
+    <ng-template #header>
+      <tr>
+        <th pSortableColumn="name">Joueur <p-sortIcon field="name" /></th>
+        <th>Statut</th>
+        <th pSortableColumn="acwr">Ratio A/C <p-sortIcon field="acwr" /></th>
+        <th pSortableColumn="acute" class="r">Aiguë <p-sortIcon field="acute" /></th>
+        <th pSortableColumn="chronic" class="r">Chronique <p-sortIcon field="chronic" /></th>
+        <th pSortableColumn="load_change" class="r">Évol. <p-sortIcon field="load_change" /></th>
+        <th>14 jours</th>
+        <th pSortableColumn="fatigue" class="r">Fatigue <p-sortIcon field="fatigue" /></th>
+        <th>Signaux</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-p>
+      <tr [pSelectableRow]="p" class="row">
+        <td><span class="player"><ef-player-avatar [name]="p.name" [size]="28" /><span><strong>{{ p.name }}</strong><small>{{ p.position }}</small></span></span></td>
+        <td><ef-status-tag [status]="p.status" /></td>
+        <td><span class="ratio"><span class="ef-num">{{ p.acwr | fr: 2 }}</span><ef-zone-badge [zone]="p.zone" /></span></td>
+        <td class="r ef-num">{{ p.acute }}</td>
+        <td class="r ef-num">{{ p.chronic | fr: 0 }}</td>
+        <td class="r ef-num" [class.up]="p.load_change > 30">{{ signed(p.load_change) }} %</td>
+        <td><ef-sparkline [values]="p.trend" [label]="'Charge quotidienne de ' + p.name + ' sur 14 jours'" /></td>
+        <td class="r ef-num" [class.up]="p.fatigue >= 60">{{ p.fatigue }}</td>
+        <td>
+          <span class="flags">
+            @for (f of openFlags(p); track f.code) { <p-tag [value]="f.label" [severity]="f.level" /> }
+            @if (!openFlags(p).length && p.flags.length) { <span class="reviewed"><i class="pi pi-check"></i> Examiné</span> }
+          </span>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <tr><td colspan="9"><ef-empty-state icon="pi-check-circle" heading="Aucun signal ouvert" text="Tous les signaux du groupe ont été examinés." /></td></tr>
+    </ng-template>
+  </p-table>
+</ef-panel>

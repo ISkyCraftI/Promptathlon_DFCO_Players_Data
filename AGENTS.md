@@ -45,13 +45,16 @@ Easyfoot/
 │   │       ├── schemas.py    # DTOs Pydantic (entrée/sortie API)
 │   │       ├── controller.py # Controller (logique métier)
 │   │       └── view.py       # View = APIRouter (routes HTTP)
+│   │   (shared/football/     # référentiel + calculs métier partagés : catalog, simulation, workload, scoring)
 │   └── data/                 # SQLite runtime (gitignore)
 └── frontend/
     ├── src/
     │   ├── environments/     # apiBaseUrl prod=/api ; dev=http://localhost:5059/api
+    │   ├── theme/            # radix/ (palettes vendorisées + brand.css), tokens.css, base.css, primeng.css, fonts.css
     │   └── app/
-    │       ├── shared/       # AsyncHttpClient, interceptors, errors
-    │       └── <feature>/    # service + model zod + page/composants
+    │       ├── core/         # layout (shell, sidebar, topbar, navigation.ts), theme (clair/sombre, Chart.js), catalog
+    │       ├── shared/       # AsyncHttpClient, interceptors, errors, state/, utils/, ui/ (kit), charts/
+    │       └── <feature>/    # model zod + service + <feature>.page/ + components/
     ├── nginx.conf
     └── Dockerfile
 ```
@@ -69,7 +72,7 @@ Easyfoot/
 
 ### Règles strictes
 
-1. Une feature = un dossier sous `app/features/<name>/`.
+1. Une feature = un dossier sous `app/features/<name>/` (`model.py` seulement si la feature a une table).
 2. Les routes vivent uniquement dans `view.py` (les "views").
 3. `view.py` instancie le controller ; **pas de SQL dans la view**.
 4. Enregistrer le router dans `app/shared/router.py`.
@@ -97,6 +100,19 @@ Easyfoot/
 
 Feature `items` = template à copier pour toute nouvelle feature CRUD.
 
+### Features en place
+
+| Feature | Routes | Rôle |
+|---------|--------|------|
+| `players` | `/players/`, `/players/{id}`, `/players/{id}/followups/` | Effectif (`?kind=DFCO|PROSPECT|ALL`), fiche, bilans |
+| `catalog` | `/catalog/` | Attributs, groupes, pondérations par poste, zones de charge |
+| `recruitment` | `/recruitment/profiles/…`, `/recruitment/similar/{id}/` | Profils de poste (CRUD), shortlist pondérée, similarité |
+| `comparison` | `/comparison/players/`, `/comparison/?young_id=&pro_id=` | Jeune (≤ 21 ans) vs pro DFCO, axes de progression |
+| `physical` | `/physical/overview/`, `/physical/players/{id}/`, `/physical/reviews/` | Charge ACWR, signaux, « examiné », retours de blessure |
+| `coach` | `/coach/dashboard/` | Agrégation : onze disponible, forme, activité, pipeline |
+
+Les calculs réutilisés par plusieurs features vivent dans `app/shared/football/` (jamais dans une view).
+
 ---
 
 ## Frontend — Angular + PrimeNG
@@ -119,19 +135,26 @@ Feature `items` = template à copier pour toute nouvelle feature CRUD.
 ```
 app/<feature>/
   <feature>.model.ts      # Zod schemas + types
-  <feature>.service.ts    # appelle AsyncHttpClient
-  <feature>.page/         # page routée (PrimeNG)
+  <feature>.service.ts    # appelle AsyncHttpClient, expose des signaux LoadState
+  <feature>.utils.ts      # (optionnel) logique d'affichage pure, testable
+  <feature>.page/         # page routée : orchestre, ne calcule pas
+  components/<nom>/       # composants de présentation (input()/output(), OnPush)
 ```
 
-### Menu
+- Composants partagés : `shared/ui` (importer depuis `shared/ui/index.ts`), graphiques dans `shared/charts`.
+- États de chargement : `toLoadState()` + `<ef-async-state>` ; nombres affichés avec le pipe `fr` (virgule).
+- Paramètres de route = `input()` (router `withComponentInputBinding`).
 
-- Barre haute : `shared/components/menu-bar/`
-- Ajouter chaque feature dans `MenuBar.items`
-  (`{ label, routerLink }`).
-- Branding Easyfoot : le « e » du logo est
-  `public/brand/easyfoot-e.png` ; couleurs DFCO dans
-  `styles.css` / `theme/easyfoot.preset.ts`.
-  Ne pas écrire le nom de l’école dans l’UI.
+### Navigation et thème
+
+- Menu latéral : ajouter l'entrée dans `core/layout/navigation.ts`, la route dans `app.routes.ts`
+  (`data.section` / `data.heading` alimentent le fil d'Ariane).
+- Couleurs : **Radix Colors** vendorisées dans `src/theme/radix/` ; marque `#d40125` = échelle `--brand-1…12`
+  (`frontend/scripts/generate-brand-scale.py`). Les composants n'utilisent que les tokens `--ef-*` de `tokens.css`.
+- Clair / sombre : classe `.app-dark` sur `<html>` (`core/theme/theme.service.ts`), suivie par Radix et PrimeNG.
+- Logos : `public/brand/` (copies de `logos/` : `easyfoot.svg` en haut à gauche, `favicon.svg` pour l'onglet).
+- Polices auto-hébergées (`public/fonts`, OFL) : Manrope (texte), Barlow Condensed (chiffres, noms).
+- Voir `docs/THEME.md`. Ne pas écrire le nom de l’école dans l’UI.
 
 ### Feature EXAMPLE
 
@@ -195,6 +218,7 @@ docker push DOCKERHUB_USER/Easyfoot:frontend
 
 - Versionner `.env`, `.venv`, `node_modules`, `*.db`, certificats, `dist/`, `.angular/`
 - Ajouter une lib UI autre que PrimeNG sans nécessité
+- Écrire une couleur en dur dans un composant (passer par les tokens `--ef-*`)
 - Mettre de la logique métier dans `view.py` ou dans un composant Angular
 - Introduire de l'authentification sans demande explicite
 - Changer le format `detail.user_safe_*` des erreurs

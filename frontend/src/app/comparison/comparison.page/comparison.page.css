@@ -1,0 +1,40 @@
+.modes {
+  display: block;
+  margin-bottom: var(--ef-space-4);
+}
+
+.pickers {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: end;
+  gap: var(--ef-space-4);
+}
+
+.field {
+  display: grid;
+  gap: var(--ef-space-1);
+}
+
+label {
+  font-size: var(--ef-text-sm);
+  font-weight: 600;
+}
+
+.sep {
+  padding-bottom: 0.7rem;
+  color: var(--ef-text-faint);
+}
+
+.r {
+  text-align: right;
+}
+
+@media (max-width: 760px) {
+  .pickers {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sep {
+    display: none;
+  }
+}

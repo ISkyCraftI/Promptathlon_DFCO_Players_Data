@@ -15,6 +15,7 @@ class ProspectRead(BaseModel):
     ratings: dict[str, float]
     specialties: list[str]
     playstyles: list[str]
+    market_value: int
 
 
 class WeaknessRead(BaseModel):

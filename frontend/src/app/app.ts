@@ -1,11 +1,9 @@
 import { Component } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
-import { MenuBar } from "./shared/components/menu-bar/menu-bar";
+import { AppShell } from "./core/layout/app-shell/app-shell";
 
 @Component({
   selector: "app-root",
-  imports: [RouterOutlet, MenuBar],
-  templateUrl: "./app.html",
-  styleUrl: "./app.css",
+  imports: [AppShell],
+  template: `<ef-app-shell />`,
 })
 export class App {}

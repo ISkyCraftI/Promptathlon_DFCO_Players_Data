@@ -61,26 +61,26 @@ Certificats : placer `fullchain.pem` + `privkey.pem` dans `./certs/`, sinon cert
 
 Voir [`docs/FEATURE_WORKFLOW.md`](./docs/FEATURE_WORKFLOW.md).
 
-## Effectif et fiches joueurs
+## Fonctionnalités
 
-La page `/effectif` présente les 30 joueurs du DFCO, les disponibilités, les notes
-générales et les situations à examiner. Recherche, filtres de poste et de santé
-permettent d'accéder directement à une fiche `/effectif/<id>`.
+| Page | Route | Contenu |
+|------|-------|---------|
+| Tableau de bord | `/tableau-de-bord` | Agrégation pour l'entraîneur : disponibilités, onze disponible (4-3-3), charge du groupe, forme, signaux, retours, derniers bilans, pistes de recrutement |
+| Effectif | `/effectif` | 30 joueurs DFCO : statut, notes FC (VIT…PHY), zone de charge, fatigue ; filtres |
+| Fiche joueur | `/effectif/<id>` | Identité, poste, carte de notes, attributs, physique et GPS, matchs, suivi (bilans, blessures, affinités) |
+| Suivi physique | `/physique` | Charge aiguë / chronique (ACWR), signaux à examiner (marquer comme examiné), retours de blessure |
+| Recrutement | `/recrutement` | Profils par poste (importance 0-3 par attribut), shortlist des 60 prospects, profils similaires |
+| Jeunes vs pros | `/comparaison` | Jeune ≤ 21 ans vs pro DFCO du même poste : écarts, axes de progression, repères physiques |
+| Mon suivi | `/mon-espace/<id>` | Vue joueur : forme, charge, objectifs, bilan du jour, échanges |
 
-Les fiches regroupent identité, graphique des qualités, attributs détaillés,
-matchs, GPS, charge sur 14 jours, parcours de réathlétisation et historique.
-Les alertes conduisent à la rubrique concernée. Le mode « Joueur » ouvre le bilan
-personnel ; les observations, fatigue et gêne déclarées sont enregistrées en SQLite
-et restent disponibles après rechargement. Ces modes sont des vues de démonstration,
-sans authentification ni restriction d'accès.
+Thème clair / sombre (bouton en haut à droite), design détaillé dans [`docs/THEME.md`](./docs/THEME.md).
 
-Les attributs importés FC27 affichent leur source FUTWIZ. Les joueurs sans fiche
-importée restent identifiés comme simulés. Santé, blessures, relations, GPS,
-matchs et charge sont des données de démonstration : aucun capteur ou fournisseur
-de matchs n'est connecté. Les alertes sont des règles de lecture pour le staff,
-et l'avancement de réathlétisation illustre les dates prévues sans valider un retour.
+Les attributs importés FC27 affichent leur source FUTWIZ. Santé, blessures, relations, GPS, matchs et
+charge sont des données de démonstration : aucun capteur ni fournisseur de matchs n'est connecté. Les
+signaux sont des règles de lecture pour le staff ; l'avancement de réathlétisation illustre les dates
+prévues sans valider un retour. Les modes « joueur » sont des vues de démonstration, sans authentification.
 
-Le démarrage du backend importe les joueurs absents depuis
+Le démarrage du backend importe les joueurs (effectif + prospects) et les profils de recrutement absents depuis
 `backend/resources/players.json`, sans écraser les joueurs ni les bilans existants.
 Pour régénérer ce fichier à partir du jeu de données :
 

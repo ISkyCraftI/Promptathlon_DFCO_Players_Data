@@ -1,0 +1,109 @@
+.col {
+  display: grid;
+  gap: var(--ef-space-4);
+  align-content: start;
+  min-width: 0;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  gap: var(--ef-space-3);
+  text-decoration: none;
+}
+
+.player span {
+  display: grid;
+  min-width: 0;
+}
+
+.player small,
+.per {
+  color: var(--ef-text-muted);
+  font-size: var(--ef-text-xs);
+}
+
+.per {
+  margin-left: 4px;
+}
+
+.player:hover strong {
+  color: var(--ef-accent-text);
+}
+
+.num {
+  text-align: right;
+}
+
+.value {
+  display: grid;
+  grid-template-columns: minmax(60px, 1fr) 5.5rem;
+  align-items: center;
+  gap: var(--ef-space-3);
+}
+
+.value strong {
+  text-align: right;
+  font-size: 1.1rem;
+}
+
+.track {
+  display: block;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--ef-surface-sunken);
+  overflow: hidden;
+}
+
+.track span {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--ef-accent);
+}
+
+.roles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--ef-space-4);
+}
+
+.roles li {
+  display: grid;
+  gap: var(--ef-space-1);
+}
+
+.role-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.role-head .ef-num {
+  font-size: 1.15rem;
+}
+
+.roles small,
+.note {
+  color: var(--ef-text-muted);
+  font-size: var(--ef-text-xs);
+}
+
+.market {
+  margin-bottom: var(--ef-space-3);
+  color: var(--ef-text-muted);
+  font-size: var(--ef-text-sm);
+}
+
+.market .ef-num {
+  display: block;
+  font-size: 2rem;
+  line-height: 1.1;
+  color: var(--ef-text);
+}
+
+.note {
+  padding: 0 var(--ef-space-1);
+}

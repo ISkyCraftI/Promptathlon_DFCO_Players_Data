@@ -1,0 +1,65 @@
+:host {
+  display: grid;
+  gap: var(--ef-space-3);
+  padding: var(--ef-space-4);
+  border-radius: var(--ef-radius);
+  border: 1px solid var(--ef-border);
+  border-top: 3px solid var(--ef-accent);
+  background: var(--ef-surface);
+}
+
+:host([data-kind="PROSPECT"]) {
+  border-top-color: var(--ef-info);
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.ovr {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ef-space-2);
+}
+
+.ovr strong {
+  font-size: 3.25rem;
+  line-height: 0.9;
+  font-weight: 700;
+}
+
+.ovr span {
+  font-size: 1.25rem;
+  color: var(--ef-text-muted);
+}
+
+.source {
+  font-size: var(--ef-text-xs);
+  color: var(--ef-text-faint);
+}
+
+.stats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--ef-space-2) var(--ef-space-3);
+}
+
+.stats li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ef-space-2);
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--ef-border-subtle);
+}
+
+.stats span {
+  font-size: var(--ef-text-xs);
+  font-weight: 700;
+  color: var(--ef-text-muted);
+}

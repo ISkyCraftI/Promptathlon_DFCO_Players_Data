@@ -1,0 +1,82 @@
+<div class="ef-page">
+  @let s = service.club();
+  <ef-page-header heading="Finance"
+    description="Valeur de marché estimée de chaque joueur du club et plafond salarial recommandé. Chaque montant est justifié ligne par ligne dans l'onglet Finance de la fiche joueur.">
+    <p-button label="Prospection" icon="pi pi-compass" [outlined]="true" routerLink="/prospection" />
+  </ef-page-header>
+  <ef-async-state [state]="s" [skeleton]="['6.5rem', '30rem']" (retry)="service.refresh()" />
+
+  @if (s.data; as d) {
+    <div class="ef-grid ef-grid-kpi">
+      <ef-stat-tile label="Valeur de l'effectif" icon="pi-wallet" tone="accent" [value]="d.total_value | eur"
+        [hint]="d.squad_size + ' joueurs · ' + (d.average_value | eur) + ' en moyenne'" />
+      <ef-stat-tile label="Masse salariale plafond" icon="pi-money-bill" [value]="d.annual_wage_ceiling | eur" unit="/ an"
+        [hint]="(d.wage_to_value_ratio * 100 | fr: 0) + ' % de la valeur de chaque joueur'" />
+      <ef-stat-tile label="Valeur des moins de 21 ans" icon="pi-star" tone="info" [value]="d.young_value | eur"
+        [hint]="d.young_count + ' jeunes · ' + (d.young_value / d.total_value * 100 | fr: 0) + ' % de l’effectif'" />
+      <ef-stat-tile label="Valeur à l'infirmerie" icon="pi-heart" tone="danger" [value]="d.unavailable_value | eur"
+        [hint]="d.unavailable_count + ' joueurs blessés ou en réathlétisation'" />
+    </div>
+
+    <div class="ef-grid ef-grid-main-aside">
+      <ef-panel [flush]="true" heading="Valeur par joueur" [subheading]="players().length + ' joueurs · classés par valeur'">
+        <p-selectbutton panel-actions [options]="roles()" optionLabel="label" optionValue="value" [ngModel]="role()" (ngModelChange)="role.set($event)"
+          size="small" ariaLabel="Filtrer par poste" />
+        <p-table [value]="players()" [scrollable]="true" dataKey="id" sortField="market_value" [sortOrder]="-1" [tableStyle]="{ 'min-width': '720px' }">
+          <ng-template #header>
+            <tr>
+              <th pSortableColumn="name">Joueur <p-sortIcon field="name" /></th>
+              <th>Statut</th>
+              <th pSortableColumn="age" class="num">Âge <p-sortIcon field="age" /></th>
+              <th pSortableColumn="overall" class="num">Gén. <p-sortIcon field="overall" /></th>
+              <th pSortableColumn="market_value">Valeur estimée <p-sortIcon field="market_value" /></th>
+              <th pSortableColumn="annual_wage" class="num">Salaire plafond <p-sortIcon field="annual_wage" /></th>
+            </tr>
+          </ng-template>
+          <ng-template #body let-p>
+            <tr>
+              <td>
+                <a class="player" [routerLink]="['/effectif', p.id]" [queryParams]="{ onglet: 'finance' }">
+                  <ef-player-avatar [name]="p.name" [size]="30" />
+                  <span><strong>{{ p.name }}</strong><small>{{ p.position }} · {{ p.role }}</small></span>
+                </a>
+              </td>
+              <td><ef-status-tag [status]="p.status" /></td>
+              <td class="num ef-num">{{ p.age }}</td>
+              <td class="num"><ef-rating [value]="p.overall" [pill]="true" /></td>
+              <td>
+                <span class="value">
+                  <span class="track"><span [style.width.%]="p.market_value / maxValue() * 100"></span></span>
+                  <strong class="ef-num">{{ p.market_value | eur }}</strong>
+                </span>
+              </td>
+              <td class="num"><span class="ef-num">{{ p.annual_wage / 12 | eur }}</span><small class="per">/ mois</small></td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </ef-panel>
+
+      <div class="col">
+        <ef-panel heading="Répartition par poste" subheading="Part de la valeur totale de l'effectif">
+          <ul class="roles">
+            @for (r of d.by_role; track r.role) {
+              <li>
+                <div class="role-head"><strong>{{ r.role }}s</strong><span class="ef-num">{{ r.total_value | eur }}</span></div>
+                <span class="track"><span [style.width.%]="r.share"></span></span>
+                <small>{{ r.count }} joueurs · {{ r.share | fr }} %@if (r.top_player) { · plus forte valeur : {{ r.top_player }} }</small>
+              </li>
+            }
+          </ul>
+        </ef-panel>
+        <ef-panel heading="Marché des prospects" subheading="Coût de transfert estimé, même moteur de valorisation">
+          <p class="market"><span class="ef-num">{{ d.prospects_median_cost | eur }}</span> coût médian d'un prospect suivi ({{ d.prospects_count }} profils).</p>
+          <p-button label="Chercher dans un budget" icon="pi pi-compass" size="small" [outlined]="true" routerLink="/prospection" />
+        </ef-panel>
+        <p class="note">
+          Moteur de valorisation {{ d.formula_version }} : ancre Ligue 2, note pondérée par poste, courbe d'âge, personnalité et
+          relations, décote liée aux blessures. Estimation indicative, à confronter au marché réel.
+        </p>
+      </div>
+    </div>
+  }
+</div>

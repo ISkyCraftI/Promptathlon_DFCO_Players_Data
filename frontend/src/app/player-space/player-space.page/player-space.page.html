@@ -1,0 +1,64 @@
+<div class="ef-page narrow">
+  <ef-page-header [heading]="state().data ? 'Bonjour ' + firstName() : 'Mon suivi'"
+    description="Votre forme, votre charge, vos objectifs, et un bilan à partager avec le staff après chaque séance.">
+    <p-select [options]="options()" optionLabel="label" optionValue="value" [ngModel]="id() ?? null" (ngModelChange)="choose($event)"
+      [filter]="true" filterBy="label" placeholder="Je suis…" ariaLabel="Choisir le joueur (démonstration sans connexion)" />
+  </ef-page-header>
+
+  <ef-async-state [state]="state()" [skeleton]="['10rem', '18rem']" (retry)="saved()" />
+
+  @if (state().data; as s) {
+    <div class="ef-grid ef-grid-main-aside">
+      <div class="col">
+        <ef-panel heading="Ma charge" subheading="21 derniers jours · barres = charge du jour, ligne = ratio semaine / habitude">
+          <p class="zone" [attr.data-zone]="s.load.player.zone">{{ zoneText() }}</p>
+          <ef-load-chart [points]="s.load.series" height="220px" />
+        </ef-panel>
+
+        @if (s.detail.recovery.active) {
+          <ef-panel heading="Mon retour" [subheading]="s.detail.recovery.injury ?? ''">
+            <ef-recovery-steps [steps]="s.detail.recovery.steps" [current]="s.detail.recovery.current_step" [progress]="s.detail.recovery.progress"
+              [returnDate]="s.detail.recovery.return_date" [daysLeft]="s.detail.recovery.days_left" />
+          </ef-panel>
+        }
+
+        @if (s.goals; as g) {
+          <ef-panel heading="Mes objectifs" [subheading]="'Pour vous rapprocher du profil de ' + g.reference.name + ' au poste de ' + g.subject.role.toLowerCase()">
+            <ol class="goals">
+              @for (a of g.axes; track a.key) {
+                <li><strong>{{ a.label }}</strong><span class="ef-num">{{ a.subject }} → {{ a.reference }}</span><p>{{ a.advice }}</p></li>
+              } @empty { <li>Vos attributs clés sont déjà au niveau de la référence. Continuez ainsi.</li> }
+            </ol>
+          </ef-panel>
+        }
+
+        <ef-panel heading="Mon bilan du jour" subheading="Visible par le staff">
+          <ef-followup-form [playerId]="s.detail.player.id" author="Joueur" [initialFatigue]="s.detail.player.fatigue" (saved)="saved()" />
+        </ef-panel>
+
+        <ef-panel heading="Mes échanges" [subheading]="s.detail.followups.length + ' bilan(s)'">
+          <ul class="history">
+            @for (f of s.detail.followups; track f.id) {
+              <li><strong>{{ f.author === "Joueur" ? "Moi" : "Staff" }}</strong> · <time>{{ f.date | date: "d MMM, HH:mm" }}</time><p>{{ f.note }}</p></li>
+            } @empty { <li class="ef-muted">Aucun échange pour l'instant.</li> }
+          </ul>
+        </ef-panel>
+      </div>
+      <div class="col">
+        <ef-readiness-card [detail]="s.detail" [playerView]="true" />
+        <ef-panel heading="Mes derniers matchs">
+          <ul class="matches">
+            @for (m of s.detail.matches; track m.date) {
+              <li><span>J{{ m.matchday }} · {{ m.venue }}</span><span class="ef-muted">{{ m.minutes ? m.minutes + " min" : "Non utilisé" }}</span>
+                <span class="ef-num rating" [attr.data-good]="(m.rating ?? 0) >= 7">{{ m.rating | fr }}</span></li>
+            }
+          </ul>
+        </ef-panel>
+        <a class="sheet" [routerLink]="['/effectif', s.detail.player.id]"><ef-player-avatar [name]="s.detail.player.name" [size]="28" /> Voir ma fiche complète</a>
+      </div>
+    </div>
+  } @else if (!state().loading && !state().error) {
+    <ef-panel><ef-empty-state icon="pi-user" heading="Choisissez votre nom"
+      text="Démonstration sans connexion : sélectionnez un joueur de l'effectif pour ouvrir son espace." /></ef-panel>
+  }
+</div>

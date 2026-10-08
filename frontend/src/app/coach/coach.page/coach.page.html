@@ -1,0 +1,58 @@
+<div class="ef-page">
+  @let s = service.dashboard();
+  <ef-page-header heading="Tableau de bord" [description]="'Ce qu’il faut savoir avant la séance du ' + ((s.data?.reference_date | date: 'EEEE d MMMM') ?? '') + '.'">
+    <p-button label="Effectif" icon="pi pi-users" [outlined]="true" routerLink="/effectif" />
+    <p-button label="Suivi physique" icon="pi pi-heart" routerLink="/physique" />
+  </ef-page-header>
+  <ef-async-state [state]="s" [skeleton]="['6.5rem', '30rem']" (retry)="service.refresh()" />
+
+  @if (s.data; as d) {
+    <div class="ef-grid ef-grid-kpi">
+      <ef-stat-tile label="Disponibles" icon="pi-check-circle" tone="success" [value]="d.kpis.available" [unit]="'/ ' + d.kpis.squad_size" hint="Match et entraînement" />
+      <ef-stat-tile label="Joueurs à examiner" icon="pi-eye" tone="warn" [value]="d.kpis.attention" hint="Au moins un signal" />
+      <ef-stat-tile label="Retours de blessure" icon="pi-heart" tone="info" [value]="d.kpis.recovery" hint="Blessés ou en réathlétisation" />
+      <ef-stat-tile label="Signaux de charge ouverts" icon="pi-flag" tone="danger" [value]="d.kpis.open_flags" hint="À examiner par le staff" />
+      <ef-stat-tile label="Note moyenne" icon="pi-star" [value]="d.kpis.avg_rating | fr: 2" unit="/ 10" hint="Six dernières journées" />
+      <a class="kpi-link" routerLink="/finance" aria-label="Valeur du club : voir le détail financier">
+        <ef-stat-tile label="Valeur du club" icon="pi-wallet" tone="accent" [value]="d.kpis.squad_value | eur" [hint]="'Les ' + d.kpis.squad_size + ' joueurs de l’effectif · détail'" />
+      </a>
+    </div>
+
+    <div class="ef-grid ef-grid-main-aside">
+      <div class="col">
+        <ef-lineup-panel [data]="d" />
+        <ef-panel heading="Charge du groupe" subheading="Moyenne par joueur valide, 21 derniers jours">
+          <a panel-actions class="more" routerLink="/physique">Détail par joueur</a>
+          <ef-load-chart [points]="d.team_series" height="220px" />
+        </ef-panel>
+        <ef-form-table [form]="d.form" />
+      </div>
+      <div class="col">
+        <ef-panel heading="À examiner" [subheading]="d.priorities.length + ' signaux prioritaires'">
+          <ul class="prio">
+            @for (p of d.priorities; track $index) {
+              <li [attr.data-level]="p.level">
+                <a [routerLink]="['/effectif', p.player_id]" [queryParams]="{ onglet: p.section }">
+                  <ef-player-avatar [name]="p.player_name" [size]="26" />
+                  <span><strong>{{ p.player_name }}</strong><em>{{ p.title }}</em></span>
+                </a>
+              </li>
+            }
+          </ul>
+        </ef-panel>
+        <ef-panel heading="Retours attendus" [subheading]="d.returns.length + ' joueurs'">
+          <ul class="returns">
+            @for (r of d.returns; track r.id) {
+              <li>
+                <a [routerLink]="['/effectif', r.id]" [queryParams]="{ onglet: 'physical' }"><strong>{{ r.name }}</strong><small>{{ r.phase }} · {{ r.injury }}</small></a>
+                <span class="ef-num">{{ r.days_left === null ? "—" : "J-" + r.days_left }}</span>
+              </li>
+            }
+          </ul>
+        </ef-panel>
+        <ef-activity-feed [items]="d.activity" />
+        <ef-pipeline-list [items]="d.pipeline" />
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,59 @@
+<p-drawer [visible]="visible()" (visibleChange)="!$event && closed.emit()" position="right" [style]="{ width: 'min(560px, 100vw)' }"
+  [header]="player()?.name ?? ''" [modal]="true" [dismissible]="true">
+  <ef-async-state [state]="state()" [skeleton]="['14rem', '10rem']" />
+  @if (state().data; as d) {
+    <div class="body">
+      <div class="summary">
+        <span class="ef-num big">{{ d.player.acwr | fr: 2 }}</span>
+        <span><ef-zone-badge [zone]="d.player.zone" /><small>Ratio aigu/chronique · {{ d.player.acute }} UA sur 7 jours</small></span>
+        <a class="link" [routerLink]="['/effectif', d.player.id]" [queryParams]="{ onglet: 'physical' }">Fiche <i class="pi pi-arrow-up-right"></i></a>
+      </div>
+      <ef-load-chart [points]="d.series" height="200px" />
+
+      <section>
+        <h3>Signaux</h3>
+        @if (error(); as e) { <p class="err">{{ e }}</p> }
+        <ul class="flags">
+          @for (f of d.player.flags; track f.code) {
+            <li [attr.data-level]="f.level" [class.done]="f.reviewed">
+              <div><strong>{{ f.label }}</strong><p>{{ f.detail }}</p></div>
+              @if (f.reviewed) {
+                <span class="ok"><i class="pi pi-check"></i> Examiné</span>
+              } @else {
+                <div class="act">
+                  <input pInputText [(ngModel)]="notes[f.code]" placeholder="Décision (facultatif)" [attr.aria-label]="'Décision pour ' + f.label" />
+                  <p-button label="Marquer comme examiné" size="small" [outlined]="true" [loading]="saving() === f.code" (onClick)="markReviewed(f)" />
+                </div>
+              }
+            </li>
+          } @empty { <li class="none">Aucun signal pour ce joueur.</li> }
+        </ul>
+      </section>
+
+      @if (d.reviews.length) {
+        <section>
+          <h3>Décisions du staff</h3>
+          <ul class="reviews">
+            @for (r of d.reviews; track r.id) { <li><strong>{{ r.author }}</strong> · {{ r.date | date: "d MMM, HH:mm" }}<p>{{ r.note || "Signal examiné, sans commentaire." }}</p></li> }
+          </ul>
+        </section>
+      }
+
+      @if (d.recovery.injury) {
+        <section>
+          <h3>Retour de blessure · {{ d.recovery.injury }}</h3>
+          <ef-recovery-steps [steps]="d.recovery.steps" [current]="d.recovery.current_step" [progress]="d.recovery.progress" [returnDate]="d.recovery.return_date" [daysLeft]="d.recovery.days_left" />
+        </section>
+      }
+
+      <section>
+        <h3>Bilans de forme</h3>
+        <ul class="reviews">
+          @for (w of d.wellness.slice().reverse(); track w.date) {
+            <li><strong>{{ w.author }}</strong> · {{ w.date | date: "d MMM, HH:mm" }}<p>Fatigue {{ w.fatigue }}/100 · gêne {{ w.soreness }}/10 · RPE {{ w.rpe }}/10</p></li>
+          } @empty { <li class="none">Aucun bilan saisi. Le joueur peut en déposer depuis son espace.</li> }
+        </ul>
+      </section>
+    </div>
+  }
+</p-drawer>

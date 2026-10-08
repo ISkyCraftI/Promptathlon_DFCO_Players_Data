@@ -39,3 +39,43 @@ class ValuationRead(BaseModel):
         default_factory=list,
     )
     formula_version: str = "dfco-tpe-1.0"
+
+
+class ClubPlayerValue(BaseModel):
+    id: str
+    name: str
+    kind: str
+    role: str
+    position: str
+    age: int
+    overall: int | None
+    status: str
+    market_value: int
+    annual_wage: int
+    injury_discount: float
+
+
+class RoleValue(BaseModel):
+    role: str
+    count: int
+    total_value: int
+    share: float
+    top_player: str | None
+
+
+class ClubValueRead(BaseModel):
+    total_value: int
+    squad_size: int
+    average_value: int
+    annual_wage_ceiling: int
+    wage_to_value_ratio: float
+    young_value: int
+    young_count: int
+    young_max_age: int
+    unavailable_value: int
+    unavailable_count: int
+    prospects_count: int
+    prospects_median_cost: int
+    by_role: list[RoleValue]
+    players: list[ClubPlayerValue]
+    formula_version: str

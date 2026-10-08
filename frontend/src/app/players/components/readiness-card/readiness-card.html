@@ -1,0 +1,37 @@
+@let p = detail().player;
+<ef-panel [heading]="playerView() ? 'Ma forme' : 'État du jour'" [subheading]="p.availability">
+  <div class="gauges">
+    <div>
+      <span class="label">Indice de forme</span>
+      <strong class="ef-num">{{ p.health }}<small>/100</small></strong>
+      <span class="bar"><span [style.width.%]="p.health" data-tone="info"></span></span>
+    </div>
+    <div>
+      <span class="label">Fatigue déclarée</span>
+      <strong class="ef-num" [class.warn]="p.fatigue >= 60">{{ p.fatigue }}<small>/100</small></strong>
+      <span class="bar"><span [style.width.%]="p.fatigue" [attr.data-tone]="p.fatigue >= 60 ? 'warn' : 'muted'"></span></span>
+    </div>
+  </div>
+  <p class="note">Indicateurs du scénario, pas une aptitude médicale.</p>
+</ef-panel>
+
+<ef-panel [heading]="playerView() ? 'À partager avec le staff' : 'À examiner'" [subheading]="p.alerts.length ? p.alerts.length + ' signal(s)' : 'Aucun signal'">
+  <ul class="alerts">
+    @for (a of p.alerts; track a.title) {
+      <li [attr.data-level]="a.level">
+        <strong>{{ a.title }}</strong>
+        <p>{{ a.description }}</p>
+        @if (!playerView()) { <p-button [label]="a.action" icon="pi pi-arrow-right" iconPos="right" [text]="true" size="small" (onClick)="open.emit(a.section)" /> }
+      </li>
+    } @empty {
+      <li class="clear"><i class="pi pi-check-circle"></i> Rien de particulier dans le dernier état.</li>
+    }
+  </ul>
+</ef-panel>
+
+@if (detail().sessions.at(-1); as s) {
+  <ef-panel heading="Dernière séance" [subheading]="(s.date | date: 'EEEE d MMMM') ?? ''">
+    <p class="session"><strong>{{ s.label }}</strong></p>
+    <p class="ef-muted ef-small">{{ s.duration }} min · RPE {{ s.rpe }}/10 · {{ s.load }} UA · {{ s.distance_km | fr }} km</p>
+  </ef-panel>
+}

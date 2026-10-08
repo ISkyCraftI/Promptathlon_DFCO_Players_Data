@@ -1,0 +1,56 @@
+<p-dialog [visible]="visible()" (visibleChange)="!$event && closed.emit()" [modal]="true" [draggable]="false"
+  [header]="editing() ? 'Modifier le profil' : 'Nouveau profil de poste'" [style]="{ width: 'min(760px, 96vw)' }">
+  <form class="form" (ngSubmit)="submit()">
+    @if (error(); as e) { <p-message severity="error" size="small">{{ e }}</p-message> }
+    <div class="row">
+      <div class="field grow">
+        <label for="pe-name">Nom du profil</label>
+        <input pInputText id="pe-name" name="name" [(ngModel)]="draft.name" placeholder="Ex. Ailier percutant" maxlength="80" />
+      </div>
+      <div class="field">
+        <label id="pe-role">Poste</label>
+        <p-selectbutton [options]="roles" optionLabel="label" optionValue="value" [ngModel]="role()" name="role"
+          (ngModelChange)="changeRole($event)" [allowEmpty]="false" ariaLabelledBy="pe-role" size="small" />
+      </div>
+    </div>
+    <div class="field">
+      <label for="pe-desc">Ce que l'on cherche</label>
+      <textarea pTextarea id="pe-desc" name="description" [(ngModel)]="draft.description" rows="2" maxlength="400" [autoResize]="true"></textarea>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="pe-age">Âge maximum</label>
+        <p-inputnumber inputId="pe-age" name="max_age" [(ngModel)]="draft.max_age" [min]="16" [max]="40" [showButtons]="true" placeholder="Aucun" />
+      </div>
+      <div class="field">
+        <label for="pe-ovr">Note générale minimale</label>
+        <p-inputnumber inputId="pe-ovr" name="min_overall" [(ngModel)]="draft.min_overall" [min]="0" [max]="99" [showButtons]="true" placeholder="Aucune" />
+      </div>
+    </div>
+
+    <div class="weights-head">
+      <strong>Importance des attributs</strong>
+      <span class="ef-muted ef-small">{{ weighted() }} attribut(s) pris en compte · 0 étoile = ignoré</span>
+    </div>
+    <div class="weights">
+      @for (g of groups(); track g.key) {
+        <fieldset>
+          <legend>{{ g.label }}</legend>
+          @for (a of g.attributes; track a.key) {
+            <div class="w">
+              <span class="wl">{{ a.label }}</span>
+              <p-rating [name]="'w-' + a.key" [stars]="3" [(ngModel)]="draft.weights[a.key]" (ngModelChange)="count()" [attr.aria-label]="'Importance ' + a.label" />
+            </div>
+          }
+        </fieldset>
+      }
+    </div>
+
+    <div class="foot">
+      @if (editing()) { <p-button label="Supprimer le profil" severity="danger" [text]="true" icon="pi pi-trash" (onClick)="remove()" [disabled]="saving()" /> }
+      <span class="spacer"></span>
+      <p-button label="Annuler" [text]="true" severity="secondary" (onClick)="closed.emit()" />
+      <p-button type="submit" [label]="editing() ? 'Enregistrer' : 'Créer le profil'" icon="pi pi-check" [loading]="saving()" />
+    </div>
+  </form>
+</p-dialog>
