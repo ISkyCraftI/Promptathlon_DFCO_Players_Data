@@ -1,0 +1,50 @@
+<section class="players-page app-dark">
+  <div class="page-heading">
+    <div><p class="eyebrow">DFCO / ÉQUIPE PREMIÈRE</p><h1>L’effectif<span class="red-dot">.</span></h1><p class="subtitle">Chaque joueur. Les bonnes informations. Au bon moment.</p></div>
+    <div class="heading-meta"><span class="season">SAISON 2026 — 2027</span><span>Instantané du 8 octobre 2026</span><p-tag value="Espace coach" icon="pi pi-briefcase" severity="secondary" /></div>
+  </div>
+  <p class="demo-note"><i class="pi pi-info-circle"></i> Démonstration · Notes FC 27 quand disponibles. Santé, biométrie, GPS et matchs simulés.</p>
+  @if (service.state().loading) {
+    <div class="summary-grid" aria-label="Chargement de l’effectif">@for (i of [1,2,3,4]; track i) {<p-skeleton height="7rem" />}</div>
+    <p-skeleton height="25rem" />
+  } @else if (service.state().error; as error) {
+    <div class="empty-state"><p-message severity="error">{{ error }}</p-message><p-button label="Réessayer" icon="pi pi-refresh" (onClick)="service.refresh()" /></div>
+  } @else {
+    <div class="summary-grid">
+      <div class="summary-tile"><span class="tile-label">Effectif professionnel <i class="pi pi-users"></i></span><strong>{{ players().length }}<small>joueurs</small></strong><span class="tile-foot">Un groupe, une vision commune</span></div>
+      <div class="summary-tile green"><span class="tile-label">Disponibles <i class="pi pi-check-circle"></i></span><strong>{{ overview().available }}<small>/ {{ players().length }}</small></strong><span class="tile-foot">Match et entraînement</span></div>
+      <div class="summary-tile amber"><span class="tile-label">À examiner <i class="pi pi-eye"></i></span><strong>{{ overview().attention }}<small>joueurs</small></strong><span class="tile-foot">Un point avec le staff</span></div>
+      <div class="summary-tile red"><span class="tile-label">Retour de blessure <i class="pi pi-heart"></i></span><strong>{{ overview().recovery }}<small>parcours</small></strong><span class="tile-foot">Blessure ou réathlétisation</span></div>
+    </div>
+    <div class="roster-layout">
+      <div class="panel roster-panel">
+        <div class="panel-heading"><div><p class="eyebrow">LE GROUPE</p><h2>Vos joueurs</h2></div><span class="muted">{{ filtered().length }} résultat{{ filtered().length > 1 ? "s" : "" }}</span></div>
+        <div class="roster-filters">
+          <div class="search-field"><i class="pi pi-search"></i><input pInputText placeholder="Rechercher un joueur" aria-label="Rechercher un joueur" [ngModel]="search()" (ngModelChange)="search.set($event)" /></div>
+          <p-select [options]="roles" optionLabel="label" optionValue="value" [ngModel]="role()" (ngModelChange)="role.set($event)" ariaLabel="Filtrer par poste" placeholder="Tous les postes" />
+        </div>
+        <div class="roster-scopes"><p-selectbutton [options]="scopes" optionLabel="label" optionValue="value" [ngModel]="scope()" (ngModelChange)="scope.set($event ?? 'all')" [allowEmpty]="false" ariaLabel="Filtrer l’effectif" /></div>
+        <p-table [value]="filtered()" [scrollable]="true" [tableStyle]="{'min-width': '760px'}" sortField="name" [sortOrder]="1" dataKey="id" styleClass="roster-table">
+          <ng-template #header><tr><th pSortableColumn="name">Joueur <p-sortIcon field="name" /></th><th>Disponibilité</th><th pSortableColumn="overall">GÉN <p-sortIcon field="overall" /></th><th>Profil technique</th><th>Fatigue</th><th><span class="sr-only">Ouvrir la fiche</span></th></tr></ng-template>
+          <ng-template #body let-player><tr>
+            <td><a class="player-link" [routerLink]="['/effectif', player.id]"><span class="avatar mini">{{ service.initials(player.name) }}</span><span><strong>{{ player.name }}</strong><small>{{ player.role }} · {{ player.age }} ans</small></span></a></td>
+            <td><p-tag [value]="player.status" [severity]="service.severity(player.status)" /><small class="status-detail">{{ player.alerts.length ? player.alerts.length + ' point(s) à examiner' : 'Aucun signal dans le scénario' }}</small></td>
+            <td><strong class="overall-number">{{ player.overall ?? '—' }}</strong><small class="status-detail">{{ player.fc27 ? 'FC 27' : 'Non renseigné' }}</small></td>
+            <td><div class="mini-ratings">@for (g of groups; track g.key) {<span><small>{{ g.short }}</small><b>{{ player.ratings[g.key] }}</b></span>}</div></td>
+            <td><div class="fatigue-cell" [class.high]="player.fatigue >= 60"><span>{{ player.fatigue }}<small>/100</small></span><p-progressbar [value]="player.fatigue" [showValue]="false" /></div></td>
+            <td><p-button icon="pi pi-arrow-up-right" [rounded]="true" [text]="true" [routerLink]="['/effectif', player.id]" [ariaLabel]="'Ouvrir la fiche de ' + player.name" /></td>
+          </tr></ng-template>
+          <ng-template #emptymessage><tr><td colspan="6"><div class="empty-state"><i class="pi pi-search"></i><h3>Aucun joueur pour ces filtres</h3><p>Essayez un autre nom ou élargissez votre sélection.</p><p-button label="Réinitialiser les filtres" [text]="true" (onClick)="reset()" /></div></td></tr></ng-template>
+        </p-table>
+        <div class="panel-footer"><span class="status-dot"></span> 30 joueurs DFCO · Sélectionnez un nom pour ouvrir sa fiche.</div>
+      </div>
+      <aside class="priority-panel">
+        <div class="priority-title"><span class="eyebrow">VOTRE ATTENTION</span><i class="pi pi-bolt"></i></div><h2>Le point staff</h2><p class="muted">Les situations à regarder en premier.</p>
+        @for (player of overview().priorities; track player.id) {
+          <a class="priority-item" [routerLink]="['/effectif', player.id]" [queryParams]="{tab: player.alerts[0].section}"><div class="priority-item-head"><span class="avatar tiny">{{ service.initials(player.name) }}</span><strong>{{ player.name }}</strong><i class="pi pi-arrow-up-right"></i></div><p-tag [value]="player.alerts[0].title" [severity]="player.alerts[0].level" /><p>{{ player.alerts[0].description }}</p></a>
+        } @empty {<p-message severity="success">Aucun point à examiner dans le scénario actuel.</p-message>}
+        <div class="staff-note"><i class="pi pi-comment"></i><div><strong>Commencez par un échange</strong><p>Les signaux invitent à examiner la situation. La validation du retour appartient au staff.</p></div></div>
+      </aside>
+    </div>
+  }
+</section>

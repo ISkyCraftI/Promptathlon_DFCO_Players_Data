@@ -59,10 +59,15 @@ async def bootstrap_db() -> None:
     # Import models so metadata is registered before create_all.
     # EXAMPLE — décommenter quand la feature items (ou une autre) est active :
     # import app.features.items.model  # noqa: F401
+    import app.features.players.model  # noqa: F401
 
 
     async with _engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+
+    from app.features.players.controller import seed_players
+    async with _session_maker() as session:
+        await seed_players(session)
 
     try:
         async with _engine.connect() as conn:

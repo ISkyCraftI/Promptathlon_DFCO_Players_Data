@@ -17,6 +17,7 @@ export class MenuBar {
    * { label: "Items", routerLink: "/items" },
    */
   protected readonly items: MenuItem[] = [
-    // --- Features (à compléter) ---
+    { label: "Accueil", icon: "pi pi-home", routerLink: "/" },
+    { label: "Effectif", icon: "pi pi-users", routerLink: "/effectif" },
   ];
 }

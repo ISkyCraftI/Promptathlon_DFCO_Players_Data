@@ -15,6 +15,14 @@ export const routes: Routes = [
   //   component: ItemsPage,
   // },
   {
+    path: "effectif",
+    loadComponent: () => import("./players/players.page/players.page").then(m => m.PlayersPage),
+  },
+  {
+    path: "effectif/:id",
+    loadComponent: () => import("./players/player-detail.page/player-detail.page").then(m => m.PlayerDetailPage),
+  },
+  {
     path: "**",
     redirectTo: "",
   },

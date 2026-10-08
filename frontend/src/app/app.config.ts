@@ -3,7 +3,7 @@ import {
   ErrorHandler,
   provideBrowserGlobalErrorListeners,
 } from "@angular/core";
-import { provideRouter } from "@angular/router";
+import { provideRouter, withInMemoryScrolling } from "@angular/router";
 import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { providePrimeNG } from "primeng/config";
 import { routes } from "./app.routes";
@@ -14,7 +14,7 @@ import { EasyfootPreset } from "./theme/easyfoot.preset";
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes),
+    provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: "enabled" })),
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     provideHttpClient(
       withInterceptors([errorInterceptor])
