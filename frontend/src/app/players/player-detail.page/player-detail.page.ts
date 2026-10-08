@@ -2,6 +2,7 @@ import { Component, computed, effect, ElementRef, inject, signal, viewChild } fr
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { DatePipe } from "@angular/common";
+import { DestroyRef } from "@angular/core";
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
 import { BehaviorSubject, catchError, map, of, startWith, switchMap } from "rxjs";
 import { ButtonModule } from "primeng/button";
@@ -19,7 +20,10 @@ import { SkeletonModule } from "primeng/skeleton";
 import { TableModule } from "primeng/table";
 import { PlayersService } from "../players.service";
 import { GOALKEEPER_STATS, LoadState, PlayerDetail, STAT_GROUPS } from "../players.model";
-import { DestroyRef } from "@angular/core";
+import { FinanceService } from "../../finance/finance.service";
+import { Valuation } from "../../finance/finance.model";
+
+const DETAIL_TABS = ["physical", "history", "attributes", "matches", "finance"];
 
 @Component({selector: "app-player-detail-page", standalone: true,
   imports: [FormsModule, RouterLink, DatePipe, ButtonModule, TagModule, TabsModule, ChartModule,
@@ -27,20 +31,36 @@ import { DestroyRef } from "@angular/core";
   templateUrl: "./player-detail.page.html"})
 export class PlayerDetailPage {
   readonly service = inject(PlayersService);
+  readonly finance = inject(FinanceService);
   private readonly playerContent = viewChild<ElementRef<HTMLElement>>("playerContent");
   private readonly route = inject(ActivatedRoute);
   private readonly destroyRef = inject(DestroyRef);
   private readonly reload = new BehaviorSubject<void>(undefined);
+  private readonly financeReload = new BehaviorSubject<void>(undefined);
+  readonly mode = signal("coach");
+  readonly activeTab = signal(
+    DETAIL_TABS.includes(this.route.snapshot.queryParamMap.get("tab") ?? "")
+      ? this.route.snapshot.queryParamMap.get("tab")! : "overview");
   readonly state = toSignal(this.route.paramMap.pipe(switchMap(params => this.reload.pipe(switchMap(() =>
     this.service.detail(params.get("id") ?? "").pipe(
       map(data => ({data, loading: false, error: null} as LoadState<PlayerDetail>)),
       startWith({data: null, loading: true, error: null} as LoadState<PlayerDetail>),
       catchError(error => of({data: null, loading: false, error: this.service.errorMessage(error)} as LoadState<PlayerDetail>)),
     ))))), {initialValue: {data: null, loading: true, error: null} as LoadState<PlayerDetail>});
+  readonly financeState = toSignal(this.route.paramMap.pipe(switchMap(params => this.financeReload.pipe(switchMap(() => {
+    const id = params.get("id") ?? "";
+    if (!id || this.activeTab() !== "finance") {
+      return of({data: null, loading: false, error: null} as LoadState<Valuation>);
+    }
+    return this.finance.valuation(id).pipe(
+      map(data => ({data, loading: false, error: null} as LoadState<Valuation>)),
+      startWith({data: null, loading: true, error: null} as LoadState<Valuation>),
+      catchError(error => of({
+        data: null, loading: false, error: this.finance.errorMessage(error),
+      } as LoadState<Valuation>)),
+    );
+  })))), {initialValue: {data: null, loading: false, error: null} as LoadState<Valuation>});
   readonly insight = computed(() => this.state().data ? this.service.insights(this.state().data!) : null);
-  readonly mode = signal("coach");
-  readonly activeTab = signal(["physical", "history", "attributes", "matches"].includes(this.route.snapshot.queryParamMap.get("tab") ?? "")
-    ? this.route.snapshot.queryParamMap.get("tab")! : "overview");
   readonly modes = [{label: "Vue coach", value: "coach"}, {label: "Vue joueur", value: "player"}];
   readonly groups = STAT_GROUPS;
   readonly goalkeeperStats = GOALKEEPER_STATS;
@@ -54,6 +74,10 @@ export class PlayerDetailPage {
       const data = this.state().data;
       if (data) { this.draft.fatigue = data.player.fatigue; }
     });
+    effect(() => {
+      this.activeTab();
+      this.financeReload.next();
+    });
   }
   changeMode(mode: string) { this.mode.set(mode); this.activeTab.set(mode === "player" ? "history" : "overview"); }
   openSection(section: string) {
@@ -61,6 +85,7 @@ export class PlayerDetailPage {
     this.playerContent()?.nativeElement.scrollIntoView({block: "start", behavior: "smooth"});
   }
   retry() { this.reload.next(); }
+  retryFinance() { this.financeReload.next(); }
   save() {
     const id = this.state().data?.player.id;
     if (!id || this.saving()) return;

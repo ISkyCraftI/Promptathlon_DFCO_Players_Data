@@ -6,6 +6,7 @@ from fastapi import APIRouter
 
 # Perso
 
+from app.features.finance.view import finance_routes
 from app.features.health.view import health_routes
 from app.features.players.view import player_routes
 from app.features.prospection.view import prospection_routes
@@ -24,6 +25,7 @@ routes = APIRouter()
 routes.include_router(health_routes)
 routes.include_router(player_routes)
 routes.include_router(prospection_routes)
+routes.include_router(finance_routes)
 
 # EXAMPLE
 # routes.include_router(item_routes)

@@ -20,7 +20,7 @@
         </aside>
         <div class="player-main" #playerContent>
           <p-tabs [value]="activeTab()" (valueChange)="activeTab.set('' + $event)">
-            <p-tablist><p-tab value="overview">Vue d’ensemble</p-tab><p-tab value="attributes">Attributs</p-tab><p-tab value="physical">Physique & GPS</p-tab><p-tab value="matches">Matchs</p-tab><p-tab value="history">{{ mode() === 'coach' ? 'Suivi & ressenti' : 'Mon suivi' }}</p-tab></p-tablist>
+            <p-tablist><p-tab value="overview">Vue d’ensemble</p-tab><p-tab value="attributes">Attributs</p-tab><p-tab value="physical">Physique & GPS</p-tab><p-tab value="matches">Matchs</p-tab><p-tab value="history">{{ mode() === 'coach' ? 'Suivi & ressenti' : 'Mon suivi' }}</p-tab><p-tab value="finance">Finance</p-tab></p-tablist>
             <p-tabpanels>
               <p-tabpanel value="overview">
                 <section class="panel performance-panel"><div class="panel-heading"><div><p class="eyebrow">PROFIL SPORTIF</p><h2>{{ detail.player.goalkeeper ? 'Les qualités du gardien' : 'Les qualités du joueur' }}</h2></div><p-tag [value]="detail.player.fc27 ? 'FC 27' : 'Simulé'" severity="secondary" /></div>
@@ -61,6 +61,28 @@
                 <section class="panel history-panel"><div class="panel-heading"><h3>Historique du suivi</h3><span class="muted">{{ detail.followups.length }} bilan(s)</span></div>@for (entry of detail.followups; track entry.id) {<article class="history-entry"><span class="history-marker"><i class="pi" [class.pi-user]="entry.author === 'Joueur'" [class.pi-briefcase]="entry.author === 'Staff'"></i></span><div><div class="history-heading"><strong>{{ entry.author }}</strong><time>{{ entry.date | date:'dd/MM/yyyy · HH:mm' }}</time></div><p class="note-text">{{ entry.note }}</p><div class="entry-metrics"><span>Fatigue {{ entry.fatigue }}/100</span><span>Gêne {{ entry.soreness }}/10</span><span>Effort {{ entry.rpe }}/10</span></div></div></article>} @empty {<div class="inline-empty"><i class="pi pi-comment"></i><p>Aucun bilan saisi pour le moment. Le premier échange commence ici.</p></div>}</section>
                 <section class="panel history-panel"><div class="panel-heading"><h3>Historique des blessures</h3><p-tag value="Simulation" severity="secondary" /></div>@for (injury of detail.injuries; track injury.blessure_id) {<article class="injury-entry"><span class="injury-icon"><i class="pi pi-heart"></i></span><div><strong>{{ injury.type_blessure }}</strong><p>{{ injury.zone }} · {{ injury.gravite }}</p><small>Du {{ injury.debut | date:'dd/MM/yyyy' }} au {{ (injury.retour_effectif ?? injury.retour_prevu) | date:'dd/MM/yyyy' }} {{ injury.retour_effectif ? '' : '(prévision)' }}</small></div><p-tag [value]="injury.statut" [severity]="injury.statut === 'Terminée' ? 'secondary' : 'warn'" /></article>} @empty {<p class="muted">Aucune blessure enregistrée dans le scénario.</p>}</section>
                 <section class="panel compact-panel"><h3>Affinités dans le scénario</h3><p class="muted small">Relations fictives, sans attribution de relation personnelle réelle.</p>@for (relation of detail.relations; track relation.relation_id) {<div class="relation-row"><i class="pi" [class.pi-plus-circle]="relation.polarite === 'POSITIF'" [class.pi-minus-circle]="relation.polarite === 'NEGATIF'" [class.green-text]="relation.polarite === 'POSITIF'" [class.amber-text]="relation.polarite === 'NEGATIF'"></i><div><strong>{{ relation.target_name }}</strong><small>{{ relation.motif }}</small></div><p-tag [value]="relation.polarite === 'POSITIF' ? 'Positive' : 'Négative'" [severity]="relation.polarite === 'POSITIF' ? 'success' : 'warn'" /></div>}</section>
+              </p-tabpanel>
+              <p-tabpanel value="finance">
+                <div class="section-intro"><h2>Valorisation transparente</h2><p class="muted">Moteur TPE · chaque euro est justifié par une formule auditable (attributs, âge, intangibles, risque blessure).</p></div>
+                @if (financeState().loading) {<p-skeleton height="12rem" styleClass="finance-skeleton" /><p-skeleton height="22rem" />}
+                @else if (financeState().error; as financeError) {<div class="inline-empty"><i class="pi pi-exclamation-circle"></i><p>{{ financeError }}</p><p-button label="Recalculer" icon="pi pi-refresh" [text]="true" (onClick)="retryFinance()" /></div>}
+                @else if (financeState().data; as valuation) {
+                  <div class="finance-headline">
+                    <section class="panel finance-hero"><p class="eyebrow">VALEUR DE MARCHÉ ESTIMÉE</p><strong>{{ finance.euros(valuation.final_valuation) }}</strong><span>Poste pondéré · {{ valuation.position_label }} · PPI {{ valuation.positional_performance_score }}/100</span></section>
+                    <section class="panel finance-wage"><p class="eyebrow">PLAFOND SALARIAL</p><strong>{{ finance.euros(valuation.recommended_wage_ceiling.monthly_euros) }}<small>/ mois</small></strong><span>{{ finance.euros(valuation.recommended_wage_ceiling.annual_euros) }} / an · {{ valuation.recommended_wage_ceiling.wage_to_value_ratio * 100 }} % de la valeur</span></section>
+                  </div>
+                  <div class="finance-steps">
+                    <div class="panel finance-step"><span>1 · Baseline</span><strong>{{ finance.euros(valuation.base_league_value) }}</strong></div>
+                    <div class="panel finance-step"><span>2 · Performance</span><strong>{{ finance.euros(valuation.value_after_performance) }}</strong></div>
+                    <div class="panel finance-step"><span>3 · Âge</span><strong>{{ finance.euros(valuation.value_after_age) }}</strong></div>
+                    <div class="panel finance-step"><span>4 · Intangibles</span><strong>{{ finance.euros(valuation.value_after_intangibles) }}</strong></div>
+                    <div class="panel finance-step"><span>5 · Risque (×{{ valuation.injury_discount_factor }})</span><strong>{{ finance.euros(valuation.final_valuation) }}</strong></div>
+                  </div>
+                  <section class="panel finance-ledger"><div class="panel-heading"><div><p class="eyebrow">JOURNAL D’AUDIT</p><h3>Chaque opération, ligne par ligne</h3></div><p-tag [value]="valuation.formula_version" severity="secondary" /></div>
+                    <p-table [value]="valuation.explainability_ledger" [scrollable]="true" [tableStyle]="{'min-width': '720px'}"><ng-template #header><tr><th>Catégorie</th><th>Paramètre</th><th>Impact</th><th>Règle</th></tr></ng-template><ng-template #body let-entry><tr [class.impact-positive]="entry.impact_euros > 0" [class.impact-negative]="entry.impact_euros < 0"><td><p-tag [value]="entry.category" severity="secondary" /></td><td>{{ entry.parameter }}</td><td class="impact-cell">{{ finance.signedEuros(entry.impact_euros) }}</td><td class="rule-cell">{{ entry.calculation_rule }}</td></tr></ng-template></p-table>
+                    <p class="chart-note">Ancre Ligue 2 · matrice positionnelle · courbe d’âge actuarielle · primes traits / leadership / chimie · décote composée D_injury. Données de forme déduites des matchs simulés (proxy Opta).</p>
+                  </section>
+                }
               </p-tabpanel>
             </p-tabpanels>
           </p-tabs>
