@@ -1,0 +1,118 @@
+﻿blessure_id;joueur_id;type_blessure;zone;gravite;debut;retour_prevu;retour_effectif;statut;provenance
+BLE_0001;DFCO_001;Contusion;Cuisse;Légère;2025-11-26;2025-12-05;2025-12-05;Terminée;simule
+BLE_0002;DFCO_003;Lésion musculaire;Ischio-jambiers;Légère;2026-07-01;2026-07-06;2026-07-06;Terminée;simule
+BLE_0003;DFCO_005;Lésion musculaire;Ischio-jambiers;Légère;2026-07-12;2026-07-25;2026-07-25;Terminée;simule
+BLE_0004;DFCO_005;Lésion musculaire;Ischio-jambiers;Modérée;2026-07-24;2026-08-28;2026-08-28;Terminée;simule
+BLE_0005;DFCO_006;Entorse cheville;Cheville droite;Modérée;2026-05-10;2026-05-25;2026-05-25;Terminée;simule
+BLE_0006;DFCO_007;Lésion musculaire;Ischio-jambiers;Modérée;2026-07-21;2026-08-17;2026-08-17;Terminée;simule
+BLE_0007;DFCO_008;Lésion musculaire;Ischio-jambiers;Modérée;2026-10-02;2026-10-18;;Blessé;simule
+BLE_0008;DFCO_009;Contusion;Cuisse;Légère;2026-06-08;2026-06-13;2026-06-13;Terminée;simule
+BLE_0009;DFCO_009;Contusion;Cuisse;Modérée;2026-05-06;2026-05-25;2026-05-25;Terminée;simule
+BLE_0010;DFCO_010;Contusion;Cuisse;Légère;2026-01-11;2026-01-16;2026-01-16;Terminée;simule
+BLE_0011;DFCO_010;Lésion musculaire;Ischio-jambiers;Modérée;2026-02-10;2026-02-28;2026-02-28;Terminée;simule
+BLE_0012;DFCO_010;Entorse cheville;Cheville gauche;Légère;2026-03-09;2026-03-18;2026-03-18;Terminée;simule
+BLE_0013;DFCO_011;Lésion musculaire;Ischio-jambiers;Légère;2026-04-17;2026-04-29;2026-04-29;Terminée;simule
+BLE_0014;DFCO_011;Entorse cheville;Cheville droite;Modérée;2026-01-22;2026-02-19;2026-02-19;Terminée;simule
+BLE_0015;DFCO_011;Contusion;Cuisse;Modérée;2026-06-17;2026-07-21;2026-07-21;Terminée;simule
+BLE_0016;DFCO_012;Contusion;Cuisse;Modérée;2026-06-22;2026-07-21;2026-07-21;Terminée;simule
+BLE_0017;DFCO_013;Contusion;Cuisse;Modérée;2025-11-27;2026-01-02;2026-01-02;Terminée;simule
+BLE_0018;DFCO_015;Entorse cheville;Cheville gauche;Légère;2026-04-19;2026-04-26;2026-04-26;Terminée;simule
+BLE_0019;DFCO_015;Lésion musculaire;Ischio-jambiers;Légère;2026-03-24;2026-03-30;2026-03-30;Terminée;simule
+BLE_0020;DFCO_015;Lésion musculaire;Ischio-jambiers;Modérée;2026-09-23;2026-10-16;;Blessé;simule
+BLE_0021;DFCO_017;Contusion;Cuisse;Légère;2025-11-03;2025-11-15;2025-11-15;Terminée;simule
+BLE_0022;DFCO_017;Lésion musculaire;Ischio-jambiers;Modérée;2026-09-24;2026-11-01;;Réathlétisation;simule
+BLE_0023;DFCO_018;Lésion musculaire;Ischio-jambiers;Modérée;2025-12-05;2025-12-20;2025-12-20;Terminée;simule
+BLE_0024;DFCO_018;Contusion;Cuisse;Modérée;2026-01-07;2026-02-04;2026-02-04;Terminée;simule
+BLE_0025;DFCO_018;Lésion musculaire;Ischio-jambiers;Modérée;2026-09-30;2026-10-17;;Blessé;simule
+BLE_0026;DFCO_020;Entorse cheville;Cheville droite;Modérée;2026-04-21;2026-05-21;2026-05-21;Terminée;simule
+BLE_0027;DFCO_020;Contusion;Cuisse;Modérée;2026-06-09;2026-06-28;2026-06-28;Terminée;simule
+BLE_0028;DFCO_023;Entorse cheville;Cheville droite;Modérée;2026-05-08;2026-05-31;2026-05-31;Terminée;simule
+BLE_0029;DFCO_024;Entorse cheville;Cheville gauche;Légère;2026-08-01;2026-08-08;2026-08-08;Terminée;simule
+BLE_0030;DFCO_024;Contusion;Cuisse;Modérée;2026-02-19;2026-03-26;2026-03-26;Terminée;simule
+BLE_0031;DFCO_024;Lésion musculaire;Ischio-jambiers;Modérée;2026-10-01;2026-11-03;;Blessé;simule
+BLE_0032;DFCO_025;Contusion;Cuisse;Légère;2026-08-01;2026-08-07;2026-08-07;Terminée;simule
+BLE_0033;DFCO_027;Entorse cheville;Cheville droite;Légère;2026-05-14;2026-05-27;2026-05-27;Terminée;simule
+BLE_0034;DFCO_028;Contusion;Cuisse;Modérée;2025-12-31;2026-01-24;2026-01-24;Terminée;simule
+BLE_0035;DFCO_029;Contusion;Cuisse;Légère;2025-12-11;2025-12-18;2025-12-18;Terminée;simule
+BLE_0036;DFCO_030;Lésion musculaire;Ischio-jambiers;Modérée;2026-09-27;2026-10-25;;Blessé;simule
+BLE_0037;PRO_001;Contusion;Cuisse;Modérée;2026-07-25;2026-08-23;2026-08-23;Terminée;simule
+BLE_0038;PRO_001;Entorse cheville;Cheville gauche;Modérée;2026-04-30;2026-05-20;2026-05-20;Terminée;simule
+BLE_0039;PRO_002;Contusion;Cuisse;Modérée;2026-07-23;2026-08-07;2026-08-07;Terminée;simule
+BLE_0040;PRO_002;Lésion musculaire;Ischio-jambiers;Modérée;2026-07-25;2026-08-15;2026-08-15;Terminée;simule
+BLE_0041;PRO_002;Lésion musculaire;Ischio-jambiers;Modérée;2026-10-04;2026-10-27;;Blessé;simule
+BLE_0042;PRO_003;Lésion musculaire;Ischio-jambiers;Modérée;2026-01-13;2026-01-31;2026-01-31;Terminée;simule
+BLE_0043;PRO_004;Entorse cheville;Cheville gauche;Modérée;2026-05-08;2026-06-03;2026-06-03;Terminée;simule
+BLE_0044;PRO_004;Entorse cheville;Cheville gauche;Légère;2026-03-11;2026-03-24;2026-03-24;Terminée;simule
+BLE_0045;PRO_004;Lésion musculaire;Ischio-jambiers;Modérée;2026-09-26;2026-11-07;;Blessé;simule
+BLE_0046;PRO_005;Lésion musculaire;Ischio-jambiers;Modérée;2026-10-01;2026-10-24;;Blessé;simule
+BLE_0047;PRO_006;Lésion musculaire;Ischio-jambiers;Modérée;2026-09-28;2026-10-20;;Réathlétisation;simule
+BLE_0048;PRO_007;Lésion musculaire;Ischio-jambiers;Modérée;2025-12-17;2026-01-26;2026-01-26;Terminée;simule
+BLE_0049;PRO_008;Contusion;Cuisse;Modérée;2026-07-24;2026-08-10;2026-08-10;Terminée;simule
+BLE_0050;PRO_008;Contusion;Cuisse;Modérée;2025-11-26;2025-12-14;2025-12-14;Terminée;simule
+BLE_0051;PRO_008;Contusion;Cuisse;Légère;2025-11-30;2025-12-09;2025-12-09;Terminée;simule
+BLE_0052;PRO_009;Lésion musculaire;Ischio-jambiers;Modérée;2026-06-19;2026-07-04;2026-07-04;Terminée;simule
+BLE_0053;PRO_010;Entorse cheville;Cheville droite;Légère;2025-12-29;2026-01-03;2026-01-03;Terminée;simule
+BLE_0054;PRO_010;Entorse cheville;Cheville gauche;Modérée;2026-05-18;2026-06-22;2026-06-22;Terminée;simule
+BLE_0055;PRO_011;Entorse cheville;Cheville gauche;Légère;2026-05-24;2026-05-29;2026-05-29;Terminée;simule
+BLE_0056;PRO_011;Contusion;Cuisse;Légère;2025-11-18;2025-11-24;2025-11-24;Terminée;simule
+BLE_0057;PRO_012;Entorse cheville;Cheville gauche;Modérée;2025-12-20;2026-01-15;2026-01-15;Terminée;simule
+BLE_0058;PRO_012;Lésion musculaire;Ischio-jambiers;Modérée;2026-09-25;2026-10-31;;Blessé;simule
+BLE_0059;PRO_013;Lésion musculaire;Ischio-jambiers;Légère;2025-12-24;2026-01-07;2026-01-07;Terminée;simule
+BLE_0060;PRO_013;Contusion;Cuisse;Modérée;2025-12-28;2026-01-20;2026-01-20;Terminée;simule
+BLE_0061;PRO_014;Lésion musculaire;Ischio-jambiers;Modérée;2026-03-01;2026-04-03;2026-04-03;Terminée;simule
+BLE_0062;PRO_014;Lésion musculaire;Ischio-jambiers;Modérée;2026-05-28;2026-06-15;2026-06-15;Terminée;simule
+BLE_0063;PRO_014;Lésion musculaire;Ischio-jambiers;Modérée;2026-10-03;2026-10-22;;Réathlétisation;simule
+BLE_0064;PRO_015;Entorse cheville;Cheville droite;Modérée;2026-03-06;2026-03-26;2026-03-26;Terminée;simule
+BLE_0065;PRO_016;Lésion musculaire;Ischio-jambiers;Légère;2026-02-06;2026-02-11;2026-02-11;Terminée;simule
+BLE_0066;PRO_017;Lésion musculaire;Ischio-jambiers;Légère;2025-12-24;2025-12-31;2025-12-31;Terminée;simule
+BLE_0067;PRO_018;Contusion;Cuisse;Modérée;2026-03-12;2026-04-05;2026-04-05;Terminée;simule
+BLE_0068;PRO_018;Lésion musculaire;Ischio-jambiers;Modérée;2025-12-08;2025-12-28;2025-12-28;Terminée;simule
+BLE_0069;PRO_019;Lésion musculaire;Ischio-jambiers;Modérée;2026-09-27;2026-10-27;;Réathlétisation;simule
+BLE_0070;PRO_020;Contusion;Cuisse;Légère;2025-12-18;2025-12-25;2025-12-25;Terminée;simule
+BLE_0071;PRO_020;Lésion musculaire;Ischio-jambiers;Modérée;2026-01-12;2026-02-02;2026-02-02;Terminée;simule
+BLE_0072;PRO_021;Entorse cheville;Cheville droite;Modérée;2025-12-08;2025-12-28;2025-12-28;Terminée;simule
+BLE_0073;PRO_021;Lésion musculaire;Ischio-jambiers;Modérée;2026-09-25;2026-10-18;;Réathlétisation;simule
+BLE_0074;PRO_023;Entorse cheville;Cheville gauche;Modérée;2025-12-10;2026-01-10;2026-01-10;Terminée;simule
+BLE_0075;PRO_025;Contusion;Cuisse;Modérée;2026-07-22;2026-08-16;2026-08-16;Terminée;simule
+BLE_0076;PRO_027;Entorse cheville;Cheville droite;Modérée;2026-04-28;2026-05-19;2026-05-19;Terminée;simule
+BLE_0077;PRO_027;Lésion musculaire;Ischio-jambiers;Modérée;2026-08-02;2026-08-22;2026-08-22;Terminée;simule
+BLE_0078;PRO_028;Entorse cheville;Cheville gauche;Modérée;2026-03-08;2026-04-05;2026-04-05;Terminée;simule
+BLE_0079;PRO_029;Contusion;Cuisse;Légère;2026-04-13;2026-04-19;2026-04-19;Terminée;simule
+BLE_0080;PRO_029;Lésion musculaire;Ischio-jambiers;Modérée;2026-09-28;2026-11-03;;Blessé;simule
+BLE_0081;PRO_030;Entorse cheville;Cheville droite;Modérée;2026-04-29;2026-06-06;2026-06-06;Terminée;simule
+BLE_0082;PRO_031;Lésion musculaire;Ischio-jambiers;Légère;2026-06-16;2026-06-23;2026-06-23;Terminée;simule
+BLE_0083;PRO_031;Entorse cheville;Cheville gauche;Légère;2025-12-12;2025-12-18;2025-12-18;Terminée;simule
+BLE_0084;PRO_032;Entorse cheville;Cheville gauche;Modérée;2026-03-07;2026-04-07;2026-04-07;Terminée;simule
+BLE_0085;PRO_033;Lésion musculaire;Ischio-jambiers;Modérée;2026-07-12;2026-08-15;2026-08-15;Terminée;simule
+BLE_0086;PRO_034;Entorse cheville;Cheville gauche;Modérée;2026-06-21;2026-07-17;2026-07-17;Terminée;simule
+BLE_0087;PRO_034;Lésion musculaire;Ischio-jambiers;Modérée;2026-03-12;2026-04-21;2026-04-21;Terminée;simule
+BLE_0088;PRO_035;Lésion musculaire;Ischio-jambiers;Modérée;2026-09-28;2026-10-14;;Blessé;simule
+BLE_0089;PRO_036;Contusion;Cuisse;Légère;2025-12-20;2026-01-03;2026-01-03;Terminée;simule
+BLE_0090;PRO_036;Entorse cheville;Cheville gauche;Légère;2026-07-15;2026-07-20;2026-07-20;Terminée;simule
+BLE_0091;PRO_037;Lésion musculaire;Ischio-jambiers;Modérée;2026-10-06;2026-10-29;;Réathlétisation;simule
+BLE_0092;PRO_039;Lésion musculaire;Ischio-jambiers;Modérée;2026-10-02;2026-11-02;;Réathlétisation;simule
+BLE_0093;PRO_042;Contusion;Cuisse;Légère;2025-12-23;2025-12-30;2025-12-30;Terminée;simule
+BLE_0094;PRO_043;Entorse cheville;Cheville droite;Modérée;2026-01-17;2026-02-23;2026-02-23;Terminée;simule
+BLE_0095;PRO_044;Lésion musculaire;Ischio-jambiers;Modérée;2026-10-01;2026-11-04;;Réathlétisation;simule
+BLE_0096;PRO_045;Entorse cheville;Cheville droite;Modérée;2025-11-14;2025-12-10;2025-12-10;Terminée;simule
+BLE_0097;PRO_046;Entorse cheville;Cheville droite;Modérée;2026-06-21;2026-07-17;2026-07-17;Terminée;simule
+BLE_0098;PRO_047;Entorse cheville;Cheville gauche;Légère;2026-02-26;2026-03-06;2026-03-06;Terminée;simule
+BLE_0099;PRO_047;Entorse cheville;Cheville droite;Légère;2025-11-22;2025-11-27;2025-11-27;Terminée;simule
+BLE_0100;PRO_048;Entorse cheville;Cheville droite;Modérée;2026-03-10;2026-04-02;2026-04-02;Terminée;simule
+BLE_0101;PRO_048;Entorse cheville;Cheville gauche;Modérée;2025-12-31;2026-01-18;2026-01-18;Terminée;simule
+BLE_0102;PRO_049;Contusion;Cuisse;Légère;2026-03-07;2026-03-17;2026-03-17;Terminée;simule
+BLE_0103;PRO_049;Entorse cheville;Cheville gauche;Légère;2026-04-27;2026-05-05;2026-05-05;Terminée;simule
+BLE_0104;PRO_050;Lésion musculaire;Ischio-jambiers;Légère;2026-05-07;2026-05-13;2026-05-13;Terminée;simule
+BLE_0105;PRO_051;Contusion;Cuisse;Légère;2026-04-16;2026-04-23;2026-04-23;Terminée;simule
+BLE_0106;PRO_051;Lésion musculaire;Ischio-jambiers;Modérée;2026-09-30;2026-10-27;;Blessé;simule
+BLE_0107;PRO_055;Lésion musculaire;Ischio-jambiers;Modérée;2026-04-26;2026-05-21;2026-05-21;Terminée;simule
+BLE_0108;PRO_055;Contusion;Cuisse;Légère;2026-06-03;2026-06-11;2026-06-11;Terminée;simule
+BLE_0109;PRO_057;Contusion;Cuisse;Modérée;2026-07-12;2026-08-18;2026-08-18;Terminée;simule
+BLE_0110;PRO_057;Entorse cheville;Cheville gauche;Modérée;2026-01-01;2026-01-17;2026-01-17;Terminée;simule
+BLE_0111;PRO_057;Entorse cheville;Cheville gauche;Modérée;2025-12-25;2026-01-13;2026-01-13;Terminée;simule
+BLE_0112;PRO_057;Lésion musculaire;Ischio-jambiers;Modérée;2026-10-04;2026-10-15;;Réathlétisation;simule
+BLE_0113;PRO_058;Lésion musculaire;Ischio-jambiers;Légère;2026-02-20;2026-03-05;2026-03-05;Terminée;simule
+BLE_0114;PRO_059;Lésion musculaire;Ischio-jambiers;Modérée;2026-02-17;2026-03-29;2026-03-29;Terminée;simule
+BLE_0115;PRO_059;Entorse cheville;Cheville droite;Modérée;2026-03-04;2026-04-11;2026-04-11;Terminée;simule
+BLE_0116;PRO_060;Lésion musculaire;Ischio-jambiers;Modérée;2025-12-11;2026-01-18;2026-01-18;Terminée;simule
+BLE_0117;PRO_060;Entorse cheville;Cheville gauche;Légère;2026-02-03;2026-02-08;2026-02-08;Terminée;simule
