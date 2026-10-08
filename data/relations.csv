@@ -1,0 +1,271 @@
+﻿relation_id;joueur_source_id;joueur_cible_id;polarite;nature;intensite;effet_performance_pct;motif;date_reference;provenance
+REL_0001;DFCO_001;DFCO_016;POSITIF;Affinité personnelle;49;0;Bonne entente;2026-10-08;simule
+REL_0002;DFCO_001;DFCO_026;POSITIF;Affinité personnelle;90;0;Bonne entente;2026-10-08;simule
+REL_0003;DFCO_001;DFCO_012;NEGATIF;Friction simulée;33;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0004;DFCO_002;DFCO_001;POSITIF;Affinité personnelle;76;0;Bonne entente;2026-10-08;simule
+REL_0005;DFCO_002;DFCO_003;POSITIF;Affinité personnelle;72;0;Bonne entente;2026-10-08;simule
+REL_0006;DFCO_002;DFCO_012;NEGATIF;Friction simulée;62;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0007;DFCO_003;DFCO_025;POSITIF;Chimie sportive;39;5;Automatismes complémentaires;2026-10-08;simule
+REL_0008;DFCO_003;DFCO_018;POSITIF;Affinité personnelle;85;0;Bonne entente;2026-10-08;simule
+REL_0009;DFCO_003;DFCO_011;NEGATIF;Friction simulée;19;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0010;DFCO_004;DFCO_011;POSITIF;Affinité personnelle;38;0;Bonne entente;2026-10-08;simule
+REL_0011;DFCO_004;DFCO_018;POSITIF;Chimie sportive;78;6;Automatismes complémentaires;2026-10-08;simule
+REL_0012;DFCO_004;DFCO_012;NEGATIF;Friction simulée;89;-5;Désaccord dans le scénario;2026-10-08;simule
+REL_0013;DFCO_005;DFCO_015;POSITIF;Chimie sportive;17;5;Automatismes complémentaires;2026-10-08;simule
+REL_0014;DFCO_005;DFCO_030;POSITIF;Affinité personnelle;50;0;Bonne entente;2026-10-08;simule
+REL_0015;DFCO_005;DFCO_026;NEGATIF;Friction simulée;52;-1;Désaccord dans le scénario;2026-10-08;simule
+REL_0016;DFCO_006;DFCO_003;POSITIF;Chimie sportive;49;3;Automatismes complémentaires;2026-10-08;simule
+REL_0017;DFCO_006;DFCO_008;POSITIF;Affinité personnelle;32;0;Bonne entente;2026-10-08;simule
+REL_0018;DFCO_006;DFCO_001;NEGATIF;Friction simulée;67;-1;Désaccord dans le scénario;2026-10-08;simule
+REL_0019;DFCO_007;DFCO_004;POSITIF;Affinité personnelle;42;0;Bonne entente;2026-10-08;simule
+REL_0020;DFCO_007;DFCO_026;POSITIF;Affinité personnelle;43;0;Bonne entente;2026-10-08;simule
+REL_0021;DFCO_007;DFCO_018;NEGATIF;Friction simulée;75;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0022;DFCO_008;DFCO_007;POSITIF;Affinité personnelle;28;0;Bonne entente;2026-10-08;simule
+REL_0023;DFCO_008;DFCO_017;POSITIF;Affinité personnelle;37;0;Bonne entente;2026-10-08;simule
+REL_0024;DFCO_008;DFCO_010;NEGATIF;Friction simulée;24;-5;Désaccord dans le scénario;2026-10-08;simule
+REL_0025;DFCO_009;DFCO_028;POSITIF;Affinité personnelle;43;0;Bonne entente;2026-10-08;simule
+REL_0026;DFCO_009;DFCO_021;POSITIF;Chimie sportive;80;4;Automatismes complémentaires;2026-10-08;simule
+REL_0027;DFCO_009;DFCO_006;NEGATIF;Friction simulée;35;-1;Désaccord dans le scénario;2026-10-08;simule
+REL_0028;DFCO_010;DFCO_024;POSITIF;Chimie sportive;77;7;Automatismes complémentaires;2026-10-08;simule
+REL_0029;DFCO_010;DFCO_015;POSITIF;Chimie sportive;46;4;Automatismes complémentaires;2026-10-08;simule
+REL_0030;DFCO_010;DFCO_026;NEGATIF;Friction simulée;15;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0031;DFCO_011;DFCO_023;POSITIF;Chimie sportive;26;3;Automatismes complémentaires;2026-10-08;simule
+REL_0032;DFCO_011;DFCO_006;POSITIF;Chimie sportive;18;8;Automatismes complémentaires;2026-10-08;simule
+REL_0033;DFCO_011;DFCO_002;NEGATIF;Friction simulée;73;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0034;DFCO_012;DFCO_007;POSITIF;Chimie sportive;33;6;Automatismes complémentaires;2026-10-08;simule
+REL_0035;DFCO_012;DFCO_006;POSITIF;Chimie sportive;42;6;Automatismes complémentaires;2026-10-08;simule
+REL_0036;DFCO_012;DFCO_011;NEGATIF;Friction simulée;36;-5;Désaccord dans le scénario;2026-10-08;simule
+REL_0037;DFCO_013;DFCO_016;POSITIF;Affinité personnelle;88;0;Bonne entente;2026-10-08;simule
+REL_0038;DFCO_013;DFCO_019;POSITIF;Chimie sportive;76;1;Automatismes complémentaires;2026-10-08;simule
+REL_0039;DFCO_013;DFCO_017;NEGATIF;Friction simulée;59;-5;Désaccord dans le scénario;2026-10-08;simule
+REL_0040;DFCO_014;DFCO_007;POSITIF;Affinité personnelle;39;0;Bonne entente;2026-10-08;simule
+REL_0041;DFCO_014;DFCO_009;POSITIF;Affinité personnelle;31;0;Bonne entente;2026-10-08;simule
+REL_0042;DFCO_014;DFCO_030;NEGATIF;Friction simulée;68;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0043;DFCO_015;DFCO_016;POSITIF;Affinité personnelle;47;0;Bonne entente;2026-10-08;simule
+REL_0044;DFCO_015;DFCO_028;POSITIF;Affinité personnelle;21;0;Bonne entente;2026-10-08;simule
+REL_0045;DFCO_015;DFCO_006;NEGATIF;Friction simulée;52;-1;Désaccord dans le scénario;2026-10-08;simule
+REL_0046;DFCO_016;DFCO_024;POSITIF;Chimie sportive;69;5;Automatismes complémentaires;2026-10-08;simule
+REL_0047;DFCO_016;DFCO_022;POSITIF;Chimie sportive;57;5;Automatismes complémentaires;2026-10-08;simule
+REL_0048;DFCO_016;DFCO_018;NEGATIF;Friction simulée;45;-1;Désaccord dans le scénario;2026-10-08;simule
+REL_0049;DFCO_017;DFCO_012;POSITIF;Affinité personnelle;30;0;Bonne entente;2026-10-08;simule
+REL_0050;DFCO_017;DFCO_005;POSITIF;Affinité personnelle;27;0;Bonne entente;2026-10-08;simule
+REL_0051;DFCO_017;DFCO_022;NEGATIF;Friction simulée;89;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0052;DFCO_018;DFCO_028;POSITIF;Chimie sportive;62;5;Automatismes complémentaires;2026-10-08;simule
+REL_0053;DFCO_018;DFCO_019;POSITIF;Chimie sportive;53;2;Automatismes complémentaires;2026-10-08;simule
+REL_0054;DFCO_018;DFCO_022;NEGATIF;Friction simulée;58;-3;Désaccord dans le scénario;2026-10-08;simule
+REL_0055;DFCO_019;DFCO_005;POSITIF;Chimie sportive;17;5;Automatismes complémentaires;2026-10-08;simule
+REL_0056;DFCO_019;DFCO_017;POSITIF;Affinité personnelle;83;0;Bonne entente;2026-10-08;simule
+REL_0057;DFCO_019;DFCO_029;NEGATIF;Friction simulée;67;-3;Désaccord dans le scénario;2026-10-08;simule
+REL_0058;DFCO_020;DFCO_027;POSITIF;Chimie sportive;89;1;Automatismes complémentaires;2026-10-08;simule
+REL_0059;DFCO_020;DFCO_017;POSITIF;Chimie sportive;48;7;Automatismes complémentaires;2026-10-08;simule
+REL_0060;DFCO_020;DFCO_024;NEGATIF;Friction simulée;32;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0061;DFCO_021;DFCO_012;POSITIF;Affinité personnelle;62;0;Bonne entente;2026-10-08;simule
+REL_0062;DFCO_021;DFCO_024;POSITIF;Affinité personnelle;19;0;Bonne entente;2026-10-08;simule
+REL_0063;DFCO_021;DFCO_029;NEGATIF;Friction simulée;47;-3;Désaccord dans le scénario;2026-10-08;simule
+REL_0064;DFCO_022;DFCO_009;POSITIF;Chimie sportive;54;8;Automatismes complémentaires;2026-10-08;simule
+REL_0065;DFCO_022;DFCO_013;POSITIF;Chimie sportive;89;8;Automatismes complémentaires;2026-10-08;simule
+REL_0066;DFCO_022;DFCO_019;NEGATIF;Friction simulée;19;-1;Désaccord dans le scénario;2026-10-08;simule
+REL_0067;DFCO_023;DFCO_027;POSITIF;Chimie sportive;16;2;Automatismes complémentaires;2026-10-08;simule
+REL_0068;DFCO_023;DFCO_019;POSITIF;Chimie sportive;42;4;Automatismes complémentaires;2026-10-08;simule
+REL_0069;DFCO_023;DFCO_015;NEGATIF;Friction simulée;78;-5;Désaccord dans le scénario;2026-10-08;simule
+REL_0070;DFCO_024;DFCO_025;POSITIF;Chimie sportive;27;5;Automatismes complémentaires;2026-10-08;simule
+REL_0071;DFCO_024;DFCO_011;POSITIF;Chimie sportive;57;2;Automatismes complémentaires;2026-10-08;simule
+REL_0072;DFCO_024;DFCO_020;NEGATIF;Friction simulée;46;-5;Désaccord dans le scénario;2026-10-08;simule
+REL_0073;DFCO_025;DFCO_005;POSITIF;Chimie sportive;66;8;Automatismes complémentaires;2026-10-08;simule
+REL_0074;DFCO_025;DFCO_004;POSITIF;Affinité personnelle;28;0;Bonne entente;2026-10-08;simule
+REL_0075;DFCO_025;DFCO_013;NEGATIF;Friction simulée;62;-3;Désaccord dans le scénario;2026-10-08;simule
+REL_0076;DFCO_026;DFCO_029;POSITIF;Chimie sportive;45;2;Automatismes complémentaires;2026-10-08;simule
+REL_0077;DFCO_026;DFCO_025;POSITIF;Affinité personnelle;78;0;Bonne entente;2026-10-08;simule
+REL_0078;DFCO_026;DFCO_003;NEGATIF;Friction simulée;17;-5;Désaccord dans le scénario;2026-10-08;simule
+REL_0079;DFCO_027;DFCO_023;POSITIF;Affinité personnelle;33;0;Bonne entente;2026-10-08;simule
+REL_0080;DFCO_027;DFCO_030;POSITIF;Chimie sportive;50;4;Automatismes complémentaires;2026-10-08;simule
+REL_0081;DFCO_027;DFCO_003;NEGATIF;Friction simulée;69;-3;Désaccord dans le scénario;2026-10-08;simule
+REL_0082;DFCO_028;DFCO_022;POSITIF;Chimie sportive;18;4;Automatismes complémentaires;2026-10-08;simule
+REL_0083;DFCO_028;DFCO_004;POSITIF;Affinité personnelle;81;0;Bonne entente;2026-10-08;simule
+REL_0084;DFCO_028;DFCO_023;NEGATIF;Friction simulée;63;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0085;DFCO_029;DFCO_013;POSITIF;Chimie sportive;85;8;Automatismes complémentaires;2026-10-08;simule
+REL_0086;DFCO_029;DFCO_009;POSITIF;Affinité personnelle;80;0;Bonne entente;2026-10-08;simule
+REL_0087;DFCO_029;DFCO_003;NEGATIF;Friction simulée;15;-1;Désaccord dans le scénario;2026-10-08;simule
+REL_0088;DFCO_030;DFCO_017;POSITIF;Affinité personnelle;67;0;Bonne entente;2026-10-08;simule
+REL_0089;DFCO_030;DFCO_024;POSITIF;Affinité personnelle;39;0;Bonne entente;2026-10-08;simule
+REL_0090;DFCO_030;DFCO_029;NEGATIF;Friction simulée;15;-3;Désaccord dans le scénario;2026-10-08;simule
+REL_0091;PRO_001;PRO_049;POSITIF;Chimie sportive;49;5;Automatismes complémentaires;2026-10-08;simule
+REL_0092;PRO_001;PRO_037;POSITIF;Affinité personnelle;43;0;Bonne entente;2026-10-08;simule
+REL_0093;PRO_001;PRO_013;NEGATIF;Friction simulée;25;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0094;PRO_002;PRO_050;POSITIF;Affinité personnelle;22;0;Bonne entente;2026-10-08;simule
+REL_0095;PRO_002;PRO_038;POSITIF;Affinité personnelle;45;0;Bonne entente;2026-10-08;simule
+REL_0096;PRO_002;PRO_026;NEGATIF;Friction simulée;37;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0097;PRO_003;PRO_015;POSITIF;Chimie sportive;27;4;Automatismes complémentaires;2026-10-08;simule
+REL_0098;PRO_003;PRO_027;POSITIF;Chimie sportive;17;5;Automatismes complémentaires;2026-10-08;simule
+REL_0099;PRO_003;PRO_039;NEGATIF;Friction simulée;72;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0100;PRO_004;PRO_040;POSITIF;Chimie sportive;44;7;Automatismes complémentaires;2026-10-08;simule
+REL_0101;PRO_004;PRO_052;POSITIF;Chimie sportive;85;1;Automatismes complémentaires;2026-10-08;simule
+REL_0102;PRO_004;PRO_028;NEGATIF;Friction simulée;33;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0103;PRO_005;PRO_053;POSITIF;Affinité personnelle;85;0;Bonne entente;2026-10-08;simule
+REL_0104;PRO_005;PRO_017;POSITIF;Chimie sportive;63;2;Automatismes complémentaires;2026-10-08;simule
+REL_0105;PRO_005;PRO_029;NEGATIF;Friction simulée;80;-5;Désaccord dans le scénario;2026-10-08;simule
+REL_0106;PRO_006;PRO_042;POSITIF;Affinité personnelle;66;0;Bonne entente;2026-10-08;simule
+REL_0107;PRO_006;PRO_030;POSITIF;Affinité personnelle;52;0;Bonne entente;2026-10-08;simule
+REL_0108;PRO_006;PRO_054;NEGATIF;Friction simulée;74;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0109;PRO_007;PRO_043;POSITIF;Chimie sportive;60;6;Automatismes complémentaires;2026-10-08;simule
+REL_0110;PRO_007;PRO_031;POSITIF;Affinité personnelle;72;0;Bonne entente;2026-10-08;simule
+REL_0111;PRO_007;PRO_019;NEGATIF;Friction simulée;71;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0112;PRO_008;PRO_044;POSITIF;Affinité personnelle;77;0;Bonne entente;2026-10-08;simule
+REL_0113;PRO_008;PRO_056;POSITIF;Affinité personnelle;24;0;Bonne entente;2026-10-08;simule
+REL_0114;PRO_008;PRO_020;NEGATIF;Friction simulée;81;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0115;PRO_009;PRO_021;POSITIF;Affinité personnelle;29;0;Bonne entente;2026-10-08;simule
+REL_0116;PRO_009;PRO_045;POSITIF;Affinité personnelle;85;0;Bonne entente;2026-10-08;simule
+REL_0117;PRO_009;PRO_033;NEGATIF;Friction simulée;84;-5;Désaccord dans le scénario;2026-10-08;simule
+REL_0118;PRO_010;PRO_022;POSITIF;Chimie sportive;73;4;Automatismes complémentaires;2026-10-08;simule
+REL_0119;PRO_010;PRO_046;POSITIF;Affinité personnelle;24;0;Bonne entente;2026-10-08;simule
+REL_0120;PRO_010;PRO_034;NEGATIF;Friction simulée;49;-3;Désaccord dans le scénario;2026-10-08;simule
+REL_0121;PRO_011;PRO_035;POSITIF;Chimie sportive;32;8;Automatismes complémentaires;2026-10-08;simule
+REL_0122;PRO_011;PRO_047;POSITIF;Affinité personnelle;73;0;Bonne entente;2026-10-08;simule
+REL_0123;PRO_011;PRO_023;NEGATIF;Friction simulée;37;-1;Désaccord dans le scénario;2026-10-08;simule
+REL_0124;PRO_012;PRO_060;POSITIF;Chimie sportive;22;4;Automatismes complémentaires;2026-10-08;simule
+REL_0125;PRO_012;PRO_024;POSITIF;Chimie sportive;77;6;Automatismes complémentaires;2026-10-08;simule
+REL_0126;PRO_012;PRO_036;NEGATIF;Friction simulée;61;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0127;PRO_013;PRO_001;POSITIF;Affinité personnelle;86;0;Bonne entente;2026-10-08;simule
+REL_0128;PRO_013;PRO_049;POSITIF;Chimie sportive;54;2;Automatismes complémentaires;2026-10-08;simule
+REL_0129;PRO_013;PRO_037;NEGATIF;Friction simulée;21;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0130;PRO_014;PRO_038;POSITIF;Affinité personnelle;33;0;Bonne entente;2026-10-08;simule
+REL_0131;PRO_014;PRO_050;POSITIF;Affinité personnelle;23;0;Bonne entente;2026-10-08;simule
+REL_0132;PRO_014;PRO_002;NEGATIF;Friction simulée;48;-1;Désaccord dans le scénario;2026-10-08;simule
+REL_0133;PRO_015;PRO_051;POSITIF;Chimie sportive;75;1;Automatismes complémentaires;2026-10-08;simule
+REL_0134;PRO_015;PRO_027;POSITIF;Affinité personnelle;46;0;Bonne entente;2026-10-08;simule
+REL_0135;PRO_015;PRO_039;NEGATIF;Friction simulée;68;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0136;PRO_016;PRO_052;POSITIF;Affinité personnelle;78;0;Bonne entente;2026-10-08;simule
+REL_0137;PRO_016;PRO_028;POSITIF;Affinité personnelle;41;0;Bonne entente;2026-10-08;simule
+REL_0138;PRO_016;PRO_004;NEGATIF;Friction simulée;45;-1;Désaccord dans le scénario;2026-10-08;simule
+REL_0139;PRO_017;PRO_029;POSITIF;Affinité personnelle;90;0;Bonne entente;2026-10-08;simule
+REL_0140;PRO_017;PRO_041;POSITIF;Affinité personnelle;75;0;Bonne entente;2026-10-08;simule
+REL_0141;PRO_017;PRO_005;NEGATIF;Friction simulée;71;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0142;PRO_018;PRO_006;POSITIF;Chimie sportive;49;4;Automatismes complémentaires;2026-10-08;simule
+REL_0143;PRO_018;PRO_030;POSITIF;Chimie sportive;80;5;Automatismes complémentaires;2026-10-08;simule
+REL_0144;PRO_018;PRO_054;NEGATIF;Friction simulée;42;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0145;PRO_019;PRO_007;POSITIF;Chimie sportive;46;6;Automatismes complémentaires;2026-10-08;simule
+REL_0146;PRO_019;PRO_055;POSITIF;Affinité personnelle;56;0;Bonne entente;2026-10-08;simule
+REL_0147;PRO_019;PRO_031;NEGATIF;Friction simulée;43;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0148;PRO_020;PRO_008;POSITIF;Chimie sportive;35;1;Automatismes complémentaires;2026-10-08;simule
+REL_0149;PRO_020;PRO_044;POSITIF;Affinité personnelle;41;0;Bonne entente;2026-10-08;simule
+REL_0150;PRO_020;PRO_056;NEGATIF;Friction simulée;28;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0151;PRO_021;PRO_045;POSITIF;Affinité personnelle;31;0;Bonne entente;2026-10-08;simule
+REL_0152;PRO_021;PRO_057;POSITIF;Chimie sportive;71;8;Automatismes complémentaires;2026-10-08;simule
+REL_0153;PRO_021;PRO_033;NEGATIF;Friction simulée;33;-3;Désaccord dans le scénario;2026-10-08;simule
+REL_0154;PRO_022;PRO_010;POSITIF;Chimie sportive;90;5;Automatismes complémentaires;2026-10-08;simule
+REL_0155;PRO_022;PRO_034;POSITIF;Affinité personnelle;25;0;Bonne entente;2026-10-08;simule
+REL_0156;PRO_022;PRO_058;NEGATIF;Friction simulée;26;-1;Désaccord dans le scénario;2026-10-08;simule
+REL_0157;PRO_023;PRO_047;POSITIF;Chimie sportive;90;5;Automatismes complémentaires;2026-10-08;simule
+REL_0158;PRO_023;PRO_011;POSITIF;Chimie sportive;69;2;Automatismes complémentaires;2026-10-08;simule
+REL_0159;PRO_023;PRO_059;NEGATIF;Friction simulée;64;-3;Désaccord dans le scénario;2026-10-08;simule
+REL_0160;PRO_024;PRO_012;POSITIF;Affinité personnelle;35;0;Bonne entente;2026-10-08;simule
+REL_0161;PRO_024;PRO_048;POSITIF;Chimie sportive;82;5;Automatismes complémentaires;2026-10-08;simule
+REL_0162;PRO_024;PRO_036;NEGATIF;Friction simulée;76;-5;Désaccord dans le scénario;2026-10-08;simule
+REL_0163;PRO_025;PRO_001;POSITIF;Chimie sportive;90;7;Automatismes complémentaires;2026-10-08;simule
+REL_0164;PRO_025;PRO_013;POSITIF;Chimie sportive;58;5;Automatismes complémentaires;2026-10-08;simule
+REL_0165;PRO_025;PRO_037;NEGATIF;Friction simulée;29;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0166;PRO_026;PRO_014;POSITIF;Affinité personnelle;17;0;Bonne entente;2026-10-08;simule
+REL_0167;PRO_026;PRO_038;POSITIF;Chimie sportive;22;2;Automatismes complémentaires;2026-10-08;simule
+REL_0168;PRO_026;PRO_050;NEGATIF;Friction simulée;64;-3;Désaccord dans le scénario;2026-10-08;simule
+REL_0169;PRO_027;PRO_051;POSITIF;Chimie sportive;57;6;Automatismes complémentaires;2026-10-08;simule
+REL_0170;PRO_027;PRO_003;POSITIF;Chimie sportive;42;3;Automatismes complémentaires;2026-10-08;simule
+REL_0171;PRO_027;PRO_015;NEGATIF;Friction simulée;41;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0172;PRO_028;PRO_040;POSITIF;Chimie sportive;55;5;Automatismes complémentaires;2026-10-08;simule
+REL_0173;PRO_028;PRO_016;POSITIF;Chimie sportive;72;4;Automatismes complémentaires;2026-10-08;simule
+REL_0174;PRO_028;PRO_052;NEGATIF;Friction simulée;67;-5;Désaccord dans le scénario;2026-10-08;simule
+REL_0175;PRO_029;PRO_017;POSITIF;Affinité personnelle;19;0;Bonne entente;2026-10-08;simule
+REL_0176;PRO_029;PRO_005;POSITIF;Chimie sportive;61;1;Automatismes complémentaires;2026-10-08;simule
+REL_0177;PRO_029;PRO_041;NEGATIF;Friction simulée;73;-5;Désaccord dans le scénario;2026-10-08;simule
+REL_0178;PRO_030;PRO_042;POSITIF;Affinité personnelle;16;0;Bonne entente;2026-10-08;simule
+REL_0179;PRO_030;PRO_006;POSITIF;Chimie sportive;27;8;Automatismes complémentaires;2026-10-08;simule
+REL_0180;PRO_030;PRO_054;NEGATIF;Friction simulée;46;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0181;PRO_031;PRO_055;POSITIF;Chimie sportive;43;1;Automatismes complémentaires;2026-10-08;simule
+REL_0182;PRO_031;PRO_019;POSITIF;Chimie sportive;80;2;Automatismes complémentaires;2026-10-08;simule
+REL_0183;PRO_031;PRO_007;NEGATIF;Friction simulée;38;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0184;PRO_032;PRO_020;POSITIF;Affinité personnelle;69;0;Bonne entente;2026-10-08;simule
+REL_0185;PRO_032;PRO_056;POSITIF;Affinité personnelle;20;0;Bonne entente;2026-10-08;simule
+REL_0186;PRO_032;PRO_044;NEGATIF;Friction simulée;86;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0187;PRO_033;PRO_045;POSITIF;Affinité personnelle;27;0;Bonne entente;2026-10-08;simule
+REL_0188;PRO_033;PRO_057;POSITIF;Chimie sportive;46;7;Automatismes complémentaires;2026-10-08;simule
+REL_0189;PRO_033;PRO_021;NEGATIF;Friction simulée;83;-3;Désaccord dans le scénario;2026-10-08;simule
+REL_0190;PRO_034;PRO_058;POSITIF;Chimie sportive;45;1;Automatismes complémentaires;2026-10-08;simule
+REL_0191;PRO_034;PRO_022;POSITIF;Chimie sportive;54;6;Automatismes complémentaires;2026-10-08;simule
+REL_0192;PRO_034;PRO_010;NEGATIF;Friction simulée;29;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0193;PRO_035;PRO_059;POSITIF;Affinité personnelle;88;0;Bonne entente;2026-10-08;simule
+REL_0194;PRO_035;PRO_047;POSITIF;Chimie sportive;57;6;Automatismes complémentaires;2026-10-08;simule
+REL_0195;PRO_035;PRO_023;NEGATIF;Friction simulée;50;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0196;PRO_036;PRO_060;POSITIF;Chimie sportive;27;6;Automatismes complémentaires;2026-10-08;simule
+REL_0197;PRO_036;PRO_024;POSITIF;Chimie sportive;90;5;Automatismes complémentaires;2026-10-08;simule
+REL_0198;PRO_036;PRO_048;NEGATIF;Friction simulée;82;-1;Désaccord dans le scénario;2026-10-08;simule
+REL_0199;PRO_037;PRO_001;POSITIF;Chimie sportive;51;4;Automatismes complémentaires;2026-10-08;simule
+REL_0200;PRO_037;PRO_025;POSITIF;Affinité personnelle;68;0;Bonne entente;2026-10-08;simule
+REL_0201;PRO_037;PRO_049;NEGATIF;Friction simulée;41;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0202;PRO_038;PRO_050;POSITIF;Affinité personnelle;26;0;Bonne entente;2026-10-08;simule
+REL_0203;PRO_038;PRO_002;POSITIF;Affinité personnelle;74;0;Bonne entente;2026-10-08;simule
+REL_0204;PRO_038;PRO_026;NEGATIF;Friction simulée;48;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0205;PRO_039;PRO_051;POSITIF;Affinité personnelle;79;0;Bonne entente;2026-10-08;simule
+REL_0206;PRO_039;PRO_003;POSITIF;Affinité personnelle;54;0;Bonne entente;2026-10-08;simule
+REL_0207;PRO_039;PRO_015;NEGATIF;Friction simulée;45;-3;Désaccord dans le scénario;2026-10-08;simule
+REL_0208;PRO_040;PRO_004;POSITIF;Affinité personnelle;32;0;Bonne entente;2026-10-08;simule
+REL_0209;PRO_040;PRO_028;POSITIF;Chimie sportive;68;5;Automatismes complémentaires;2026-10-08;simule
+REL_0210;PRO_040;PRO_052;NEGATIF;Friction simulée;16;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0211;PRO_041;PRO_017;POSITIF;Affinité personnelle;85;0;Bonne entente;2026-10-08;simule
+REL_0212;PRO_041;PRO_053;POSITIF;Affinité personnelle;68;0;Bonne entente;2026-10-08;simule
+REL_0213;PRO_041;PRO_029;NEGATIF;Friction simulée;33;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0214;PRO_042;PRO_030;POSITIF;Affinité personnelle;20;0;Bonne entente;2026-10-08;simule
+REL_0215;PRO_042;PRO_006;POSITIF;Chimie sportive;83;8;Automatismes complémentaires;2026-10-08;simule
+REL_0216;PRO_042;PRO_018;NEGATIF;Friction simulée;52;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0217;PRO_043;PRO_007;POSITIF;Chimie sportive;62;5;Automatismes complémentaires;2026-10-08;simule
+REL_0218;PRO_043;PRO_055;POSITIF;Affinité personnelle;35;0;Bonne entente;2026-10-08;simule
+REL_0219;PRO_043;PRO_019;NEGATIF;Friction simulée;52;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0220;PRO_044;PRO_056;POSITIF;Affinité personnelle;71;0;Bonne entente;2026-10-08;simule
+REL_0221;PRO_044;PRO_008;POSITIF;Affinité personnelle;47;0;Bonne entente;2026-10-08;simule
+REL_0222;PRO_044;PRO_032;NEGATIF;Friction simulée;66;-1;Désaccord dans le scénario;2026-10-08;simule
+REL_0223;PRO_045;PRO_021;POSITIF;Affinité personnelle;73;0;Bonne entente;2026-10-08;simule
+REL_0224;PRO_045;PRO_033;POSITIF;Affinité personnelle;37;0;Bonne entente;2026-10-08;simule
+REL_0225;PRO_045;PRO_057;NEGATIF;Friction simulée;65;-3;Désaccord dans le scénario;2026-10-08;simule
+REL_0226;PRO_046;PRO_058;POSITIF;Chimie sportive;90;7;Automatismes complémentaires;2026-10-08;simule
+REL_0227;PRO_046;PRO_010;POSITIF;Affinité personnelle;85;0;Bonne entente;2026-10-08;simule
+REL_0228;PRO_046;PRO_022;NEGATIF;Friction simulée;35;-3;Désaccord dans le scénario;2026-10-08;simule
+REL_0229;PRO_047;PRO_059;POSITIF;Affinité personnelle;90;0;Bonne entente;2026-10-08;simule
+REL_0230;PRO_047;PRO_011;POSITIF;Affinité personnelle;84;0;Bonne entente;2026-10-08;simule
+REL_0231;PRO_047;PRO_035;NEGATIF;Friction simulée;33;-3;Désaccord dans le scénario;2026-10-08;simule
+REL_0232;PRO_048;PRO_024;POSITIF;Chimie sportive;53;1;Automatismes complémentaires;2026-10-08;simule
+REL_0233;PRO_048;PRO_036;POSITIF;Chimie sportive;78;7;Automatismes complémentaires;2026-10-08;simule
+REL_0234;PRO_048;PRO_060;NEGATIF;Friction simulée;55;-1;Désaccord dans le scénario;2026-10-08;simule
+REL_0235;PRO_049;PRO_037;POSITIF;Affinité personnelle;17;0;Bonne entente;2026-10-08;simule
+REL_0236;PRO_049;PRO_013;POSITIF;Affinité personnelle;46;0;Bonne entente;2026-10-08;simule
+REL_0237;PRO_049;PRO_025;NEGATIF;Friction simulée;89;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0238;PRO_050;PRO_014;POSITIF;Chimie sportive;34;8;Automatismes complémentaires;2026-10-08;simule
+REL_0239;PRO_050;PRO_038;POSITIF;Chimie sportive;62;7;Automatismes complémentaires;2026-10-08;simule
+REL_0240;PRO_050;PRO_002;NEGATIF;Friction simulée;88;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0241;PRO_051;PRO_027;POSITIF;Affinité personnelle;51;0;Bonne entente;2026-10-08;simule
+REL_0242;PRO_051;PRO_039;POSITIF;Chimie sportive;48;8;Automatismes complémentaires;2026-10-08;simule
+REL_0243;PRO_051;PRO_015;NEGATIF;Friction simulée;78;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0244;PRO_052;PRO_028;POSITIF;Chimie sportive;20;2;Automatismes complémentaires;2026-10-08;simule
+REL_0245;PRO_052;PRO_040;POSITIF;Chimie sportive;16;5;Automatismes complémentaires;2026-10-08;simule
+REL_0246;PRO_052;PRO_004;NEGATIF;Friction simulée;67;-2;Désaccord dans le scénario;2026-10-08;simule
+REL_0247;PRO_053;PRO_041;POSITIF;Chimie sportive;58;6;Automatismes complémentaires;2026-10-08;simule
+REL_0248;PRO_053;PRO_005;POSITIF;Chimie sportive;63;4;Automatismes complémentaires;2026-10-08;simule
+REL_0249;PRO_053;PRO_017;NEGATIF;Friction simulée;78;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0250;PRO_054;PRO_030;POSITIF;Chimie sportive;73;7;Automatismes complémentaires;2026-10-08;simule
+REL_0251;PRO_054;PRO_006;POSITIF;Chimie sportive;56;7;Automatismes complémentaires;2026-10-08;simule
+REL_0252;PRO_054;PRO_018;NEGATIF;Friction simulée;90;-1;Désaccord dans le scénario;2026-10-08;simule
+REL_0253;PRO_055;PRO_019;POSITIF;Chimie sportive;56;1;Automatismes complémentaires;2026-10-08;simule
+REL_0254;PRO_055;PRO_031;POSITIF;Affinité personnelle;39;0;Bonne entente;2026-10-08;simule
+REL_0255;PRO_055;PRO_043;NEGATIF;Friction simulée;88;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0256;PRO_056;PRO_008;POSITIF;Affinité personnelle;78;0;Bonne entente;2026-10-08;simule
+REL_0257;PRO_056;PRO_020;POSITIF;Affinité personnelle;73;0;Bonne entente;2026-10-08;simule
+REL_0258;PRO_056;PRO_044;NEGATIF;Friction simulée;36;-3;Désaccord dans le scénario;2026-10-08;simule
+REL_0259;PRO_057;PRO_045;POSITIF;Chimie sportive;33;7;Automatismes complémentaires;2026-10-08;simule
+REL_0260;PRO_057;PRO_021;POSITIF;Affinité personnelle;33;0;Bonne entente;2026-10-08;simule
+REL_0261;PRO_057;PRO_033;NEGATIF;Friction simulée;84;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0262;PRO_058;PRO_010;POSITIF;Chimie sportive;87;2;Automatismes complémentaires;2026-10-08;simule
+REL_0263;PRO_058;PRO_046;POSITIF;Affinité personnelle;78;0;Bonne entente;2026-10-08;simule
+REL_0264;PRO_058;PRO_034;NEGATIF;Friction simulée;64;-5;Désaccord dans le scénario;2026-10-08;simule
+REL_0265;PRO_059;PRO_035;POSITIF;Affinité personnelle;71;0;Bonne entente;2026-10-08;simule
+REL_0266;PRO_059;PRO_011;POSITIF;Chimie sportive;69;3;Automatismes complémentaires;2026-10-08;simule
+REL_0267;PRO_059;PRO_047;NEGATIF;Friction simulée;41;-4;Désaccord dans le scénario;2026-10-08;simule
+REL_0268;PRO_060;PRO_048;POSITIF;Affinité personnelle;79;0;Bonne entente;2026-10-08;simule
+REL_0269;PRO_060;PRO_012;POSITIF;Chimie sportive;16;3;Automatismes complémentaires;2026-10-08;simule
+REL_0270;PRO_060;PRO_036;NEGATIF;Friction simulée;81;-1;Désaccord dans le scénario;2026-10-08;simule

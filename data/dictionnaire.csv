@@ -1,0 +1,95 @@
+﻿table;colonne;type;description
+joueurs;joueur_id;texte_ou_date;Identifiant stable, clé primaire.
+joueurs;nom;texte_ou_date;Nom public DFCO ou identité fictive explicitement nommée.
+joueurs;type_joueur;texte_ou_date;DFCO ou PROSPECT.
+joueurs;club;texte_ou_date;DFCO ou club fictif.
+joueurs;groupe_poste;texte_ou_date;Groupe de poste, pas poste tactique détaillé.
+joueurs;gardien;booleen;Booléen. CSV : 1 gardien, 0 joueur de champ.
+joueurs;date_reference;texte_ou_date;Date du scénario, ISO 8601.
+joueurs;date_naissance_simulee;texte_ou_date;Date fictive utilisée pour calculer un âge cohérent, jamais biographie vérifiée.
+joueurs;age;nombre;Années révolues calculées au 08/10/2026 à partir de la naissance simulée.
+joueurs;taille_cm;nombre;Taille simulée en centimètres.
+joueurs;poids_kg;nombre;Poids simulé en kilogrammes.
+joueurs;pied_fort;texte_ou_date;Droit, Gauche ou Ambidextre, simulé.
+joueurs;personnalite_tags;liste;Liste de tags simulés.
+joueurs;specialite_tags;liste;Liste de spécialités simulées, labels descriptifs sans règle de bonus.
+joueurs;langues_parlees;liste;Liste de langues simulées, sans déduction de la nationalité.
+joueurs;relation_equipe_score;nombre;Intégration simulée 0–100. Indépendante des relations individuelles.
+joueurs;satisfaction_score;nombre;Satisfaction simulée 0–100, valeur élevée = satisfait.
+joueurs;satisfaction_motif;texte_ou_date;Motif simulé de satisfaction.
+joueurs;fatigue_score;nombre;Fatigue simulée 0–100, valeur élevée = fatigué.
+joueurs;sante_score;nombre;Score de scénario 0–100 lié au statut, sans interprétation médicale.
+joueurs;statut_sante;texte_ou_date;Disponible, Vigilance, Blessé ou Réathlétisation.
+joueurs;indicateur_sante;texte_ou_date;"VERT disponible ; ORANGE vigilance/réathlétisation ; ROUGE blessé."
+joueurs;disponibilite;texte_ou_date;Résumé de disponibilité pour éviter d’ouvrir la fiche santé.
+joueurs;retour_prevu;texte_ou_date;Date ISO simulée, vide/null si aucune blessure active.
+joueurs;nb_blessures_12_mois;nombre;Nombre d’événements débutés dans les 365 jours précédant la référence.
+joueurs;affinites_positives_ids;liste;Liste des cibles de relations positives dirigées.
+joueurs;affinites_negatives_ids;liste;Liste des cibles de relations négatives dirigées.
+joueurs;provenance_identite;texte_ou_date;source_publique ou fictif.
+joueurs;provenance_groupe_poste;texte_ou_date;source_publique ou simule.
+joueurs;provenance_autres_champs;texte_ou_date;simule pour tous les autres champs hors source et identifiant.
+joueurs;source_url;texte_ou_date;Source de l’identité et du groupe de poste uniquement.
+joueurs;source_consultee_le;texte_ou_date;Date de consultation ISO.
+joueurs;relation_equipe_general;texte_ou_date;"Tendue <40 ; En intégration 40–64 ; Bonne cohésion ≥65."
+joueurs;acceleration;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;vitesse_de_pointe;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;note_vitesse;nombre;Moyenne arithmétique des sous-attributs du groupe, arrondie à 1 décimale. Valeur figée à régénérer si les notes changent.
+joueurs;placement_offensif;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;finition;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;puissance_de_tir;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;tir_de_loin;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;volee;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;penalty;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;note_frappe;nombre;Moyenne arithmétique des sous-attributs du groupe, arrondie à 1 décimale. Valeur figée à régénérer si les notes changent.
+joueurs;vista;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;centre;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;precision_coup_franc;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;passe_courte;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;passe_longue;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;effet;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;note_passe;nombre;Moyenne arithmétique des sous-attributs du groupe, arrondie à 1 décimale. Valeur figée à régénérer si les notes changent.
+joueurs;agilite;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;equilibre;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;reactivite;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;conduite_de_balle;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;dribble;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;calme;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;note_dribble;nombre;Moyenne arithmétique des sous-attributs du groupe, arrondie à 1 décimale. Valeur figée à régénérer si les notes changent.
+joueurs;interception;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;precision_de_la_tete;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;lucidite_defensive;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;tacle_debout;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;tacle_glisse;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;note_defense;nombre;Moyenne arithmétique des sous-attributs du groupe, arrondie à 1 décimale. Valeur figée à régénérer si les notes changent.
+joueurs;detente;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;endurance;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;force;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;agressivite;nombre;Attribut technique simulé, entier 1–99 (échelle sur 100).
+joueurs;note_physique;nombre;Moyenne arithmétique des sous-attributs du groupe, arrondie à 1 décimale. Valeur figée à régénérer si les notes changent.
+joueurs;gardien_plongeon;nombre;"Attribut gardien simulé 1–99 ; null/vide pour joueurs de champ."
+joueurs;gardien_prise_de_balle;nombre;"Attribut gardien simulé 1–99 ; null/vide pour joueurs de champ."
+joueurs;gardien_jeu_au_pied;nombre;"Attribut gardien simulé 1–99 ; null/vide pour joueurs de champ."
+joueurs;gardien_reflexes;nombre;"Attribut gardien simulé 1–99 ; null/vide pour joueurs de champ."
+joueurs;gardien_sorties;nombre;"Attribut gardien simulé 1–99 ; null/vide pour joueurs de champ."
+joueurs;gardien_placement;nombre;"Attribut gardien simulé 1–99 ; null/vide pour joueurs de champ."
+blessures;blessure_id;texte_ou_date;Identifiant de l’événement.
+blessures;joueur_id;texte_ou_date;Identifiant stable, clé primaire.
+blessures;type_blessure;texte_ou_date;Type de blessure simulé.
+blessures;zone;texte_ou_date;Zone concernée simulée.
+blessures;gravite;texte_ou_date;Légère ou Modérée, label du scénario.
+blessures;debut;texte_ou_date;Date de début simulée ISO.
+blessures;retour_prevu;texte_ou_date;Date ISO simulée, vide/null si aucune blessure active.
+blessures;retour_effectif;texte_ou_date;"Date de retour ISO ; null/vide pour une blessure active."
+blessures;statut;texte_ou_date;Terminée, Blessé ou Réathlétisation.
+blessures;provenance;texte_ou_date;simule.
+relations;relation_id;texte_ou_date;Identifiant de relation.
+relations;joueur_source_id;texte_ou_date;Joueur qui ressent ou bénéficie de la relation.
+relations;joueur_cible_id;texte_ou_date;Joueur visé par la relation.
+relations;polarite;texte_ou_date;POSITIF ou NEGATIF uniquement, aucune ligne neutre.
+relations;nature;texte_ou_date;Chimie sportive, Affinité personnelle ou Friction simulée.
+relations;intensite;nombre;Force de relation simulée 1–100.
+relations;effet_performance_pct;nombre;Variation fictive en points de pourcentage : +1 à +8, 0 pour affinité sociale, −1 à −5 pour friction. Règle indicative à implémenter dans votre simulateur.
+relations;motif;texte_ou_date;Explication fictive de relation.
+relations;date_reference;texte_ou_date;Date du scénario, ISO 8601.
+relations;provenance;texte_ou_date;simule.
