@@ -1,0 +1,34 @@
+---
+description: Architecture Easyfoot — lire AGENTS.md avant toute modification
+globs:
+  - backend/**/*
+  - frontend/**/*
+  - docker-compose*.yml
+alwaysApply: true
+---
+
+# Architecture Easyfoot
+
+Lire et respecter `AGENTS.md` à la racine.
+
+## Backend (FastAPI MVC)
+
+- Feature = `backend/app/features/<name>/` avec `model.py`, `schemas.py`, `controller.py`, `view.py`
+- `view.py` = routes uniquement ; logique dans `controller.py`
+- Enregistrer dans `app/shared/router.py`
+- Erreurs : `AppError` → `detail: { user_safe_title, user_safe_description, dev }`
+- SQLite, pas d'auth, port 5059, préfixe `/api`
+
+## Frontend (Angular + PrimeNG)
+
+- HTTP uniquement via `AsyncHttpClient`
+- UI = PrimeNG (sauf composant manquant)
+- Feature = model Zod + service + page
+- Strings en double quotes
+- Ports : serve 8089 ; prod `apiBaseUrl = "/api"`
+
+## Docker
+
+- `docker-compose.yml` = images Hub
+- `docker-compose.override.yml` = build local
+- Ne jamais versionner `*.db`, `.env`, `.venv`, `node_modules`, certs

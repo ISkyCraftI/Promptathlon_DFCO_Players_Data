@@ -1,0 +1,55 @@
+<section class="items-page">
+  <h1>Items</h1>
+  <p class="subtitle">Exemple CRUD branché sur le backend FastAPI.</p>
+
+  <form class="create-form" (ngSubmit)="createItem()">
+    <input
+      pInputText
+      type="text"
+      name="title"
+      placeholder="Titre"
+      [(ngModel)]="title"
+      required
+    />
+    <textarea
+      pTextarea
+      name="description"
+      placeholder="Description"
+      [(ngModel)]="description"
+      rows="3"
+    ></textarea>
+    <p-button type="submit" label="Ajouter" />
+
+  </form>
+
+  <p-table [value]="items() ?? []" [tableStyle]="{ 'min-width': '40rem' }">
+    <ng-template #header>
+      <tr>
+        <th>Id</th>
+        <th>Titre</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.title }}</td>
+        <td>{{ item.description }}</td>
+        <td>
+          <p-button
+            label="Supprimer"
+            severity="danger"
+            size="small"
+            (onClick)="removeItem(item.id)"
+          />
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="4">Aucun élément pour le moment.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</section>

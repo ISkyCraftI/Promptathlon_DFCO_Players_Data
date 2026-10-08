@@ -1,0 +1,10 @@
+# Chargé automatiquement en local (si présent).
+# Ajoute le build depuis le code source. Sur le serveur, ne pas déployer ce fichier
+# pour forcer le pull des images uniquement.
+
+services:
+  backend:
+    build: ./backend
+
+  frontend:
+    build: ./frontend

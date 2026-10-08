@@ -1,0 +1,84 @@
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  align-items: center;
+  min-height: calc(100vh - 4.5rem);
+  padding: 3rem 1.5rem 4rem;
+  max-width: 68rem;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  font-family: "Oswald", sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ef-red);
+}
+
+h1 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.12rem;
+  font-family: "Bebas Neue", "Oswald", sans-serif;
+  font-size: clamp(3.5rem, 10vw, 6.5rem);
+  letter-spacing: 0.04em;
+  line-height: 0.92;
+  color: var(--ef-cream);
+}
+
+.hero-e {
+  display: inline-block;
+  width: clamp(2.8rem, 8vw, 5rem);
+  height: clamp(2.8rem, 8vw, 5rem);
+  object-fit: contain;
+  transform: translateY(0.12rem);
+}
+
+.lede {
+  margin: 1.25rem 0 0;
+  max-width: 28rem;
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: rgba(255, 245, 240, 0.78);
+}
+
+.hero-panel {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0.65rem;
+  min-height: 18rem;
+}
+
+.stripe {
+  border-radius: 0.15rem;
+  transform: skewY(-4deg);
+}
+
+.stripe-a {
+  background: var(--ef-red);
+}
+
+.stripe-b {
+  background: #2a2a2a;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.stripe-c {
+  background: linear-gradient(90deg, var(--ef-red) 0%, #5a050b 100%);
+}
+
+@media (max-width: 800px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 2rem;
+  }
+
+  .hero-panel {
+    min-height: 10rem;
+    order: -1;
+  }
+}

@@ -1,0 +1,20 @@
+<header class="top-bar">
+  <a class="brand" routerLink="/" aria-label="Easyfoot — accueil">
+    <span class="brand-word">
+      <img
+        class="brand-e"
+        src="/brand/easyfoot-e.png"
+        width="34"
+        height="34"
+        alt=""
+      />asyfoot
+    </span>
+  </a>
+
+  <p-menubar [model]="items" styleClass="app-menubar">
+    <ng-template #start></ng-template>
+    <ng-template #end>
+      <span class="club-tag">DFCO · Dijon</span>
+    </ng-template>
+  </p-menubar>
+</header>
